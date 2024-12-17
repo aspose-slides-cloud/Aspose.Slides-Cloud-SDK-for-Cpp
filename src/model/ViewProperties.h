@@ -105,6 +105,13 @@ public:
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getShowComments() const;
 	ASPOSE_DLL_EXPORT void setShowComments(utility::string_t value);
+	/// <summary>
+	/// The grid spacing that should be used for the grid underlying the presentation document, in points.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getGridSpacing() const;
+	ASPOSE_DLL_EXPORT void setGridSpacing(double value);
+	ASPOSE_DLL_EXPORT bool gridSpacingIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetGridSpacing();
 
 protected:
 	utility::string_t m_LastView;
@@ -117,6 +124,8 @@ protected:
 	std::shared_ptr<CommonSlideViewProperties> m_SlideViewProperties;
 	std::shared_ptr<CommonSlideViewProperties> m_NotesViewProperties;
 	utility::string_t m_ShowComments;
+	double m_GridSpacing;
+	bool m_GridSpacingIsSet;
 };
 
 }

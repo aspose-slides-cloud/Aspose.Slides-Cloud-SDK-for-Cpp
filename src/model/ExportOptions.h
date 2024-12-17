@@ -62,6 +62,13 @@ public:
 	ASPOSE_DLL_EXPORT utility::string_t getDefaultRegularFont() const;
 	ASPOSE_DLL_EXPORT void setDefaultRegularFont(utility::string_t value);
 	/// <summary>
+	/// True to delete delete all embedded binary objects.
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isDeleteEmbeddedBinaryObjects() const;
+	ASPOSE_DLL_EXPORT void setDeleteEmbeddedBinaryObjects(bool value);
+	ASPOSE_DLL_EXPORT bool deleteEmbeddedBinaryObjectsIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetDeleteEmbeddedBinaryObjects();
+	/// <summary>
 	/// Default regular font for rendering the presentation. 
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getGradientStyle() const;
@@ -84,6 +91,8 @@ public:
 
 protected:
 	utility::string_t m_DefaultRegularFont;
+	bool m_DeleteEmbeddedBinaryObjects;
+	bool m_DeleteEmbeddedBinaryObjectsIsSet;
 	utility::string_t m_GradientStyle;
 	std::vector<std::shared_ptr<FontFallbackRule>> m_FontFallbackRules;
 	std::vector<std::shared_ptr<FontSubstRule>> m_FontSubstRules;

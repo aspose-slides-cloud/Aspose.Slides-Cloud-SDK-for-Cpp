@@ -83,6 +83,7 @@
 #include "model/DocumentProperties.h"
 #include "model/DocumentProperty.h"
 #include "model/DocumentReplaceResult.h"
+#include "model/DrawingGuide.h"
 #include "model/DuotoneEffect.h"
 #include "model/Effect.h"
 #include "model/EffectFormat.h"
@@ -702,6 +703,12 @@ std::shared_ptr<void> ClassRegistry::deserializeSubclass(utility::string_t class
 	if (className == L"DocumentReplaceResult")
 	{
 		std::shared_ptr<DocumentReplaceResult> result(new DocumentReplaceResult());
+		result->fromJson(json);
+		return result;
+	}
+	if (className == L"DrawingGuide")
+	{
+		std::shared_ptr<DrawingGuide> result(new DrawingGuide());
 		result->fromJson(json);
 		return result;
 	}
@@ -2144,6 +2151,7 @@ std::map<utility::string_t, std::map<utility::string_t, utility::string_t>> Clas
 	{ L"DocumentProperties", { } },
 	{ L"DocumentProperty", { } },
 	{ L"DocumentReplaceResult", { } },
+	{ L"DrawingGuide", { } },
 	{ L"DuotoneEffect", { { L"Type", L"Duotone" }, } },
 	{ L"Effect", { } },
 	{ L"EffectFormat", { } },

@@ -153,6 +153,11 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<HttpContent> compressEmbeddedFontsOnline(std::shared_ptr<HttpContent> document, utility::string_t password = L"");
 
 	/// <summary>
+	/// Deletes cropped areas of a pictire.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<void> compressImage(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, boost::optional<double> resolution = boost::none, boost::optional<bool> deletePictureCroppedAreas = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+
+	/// <summary>
 	/// Convert presentation from request content to format specified.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<HttpContent> convert(std::shared_ptr<HttpContent> document, utility::string_t format, utility::string_t password = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"", std::vector<int32_t> slides = std::vector<int32_t>(), std::shared_ptr<ExportOptions> options = std::shared_ptr<ExportOptions>());

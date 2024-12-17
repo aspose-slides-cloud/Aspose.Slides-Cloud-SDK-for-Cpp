@@ -184,6 +184,7 @@
     <ClCompile Include="model\DocumentProperties.cpp" />
     <ClCompile Include="model\DocumentProperty.cpp" />
     <ClCompile Include="model\DocumentReplaceResult.cpp" />
+    <ClCompile Include="model\DrawingGuide.cpp" />
     <ClCompile Include="model\DuotoneEffect.cpp" />
     <ClCompile Include="model\Effect.cpp" />
     <ClCompile Include="model\EffectFormat.cpp" />
@@ -459,6 +460,7 @@
     <ClInclude Include="model\DocumentProperties.h" />
     <ClInclude Include="model\DocumentProperty.h" />
     <ClInclude Include="model\DocumentReplaceResult.h" />
+    <ClInclude Include="model\DrawingGuide.h" />
     <ClInclude Include="model\DuotoneEffect.h" />
     <ClInclude Include="model\Effect.h" />
     <ClInclude Include="model\EffectFormat.h" />

@@ -44,6 +44,7 @@ PdfExportOptions::PdfExportOptions()
 	m_HideInkIsSet = false;
 	m_InterpretMaskOpAsOpacityIsSet = false;
 	m_RasterizeUnsupportedFontStylesIsSet = false;
+	m_IncludeOleDataIsSet = false;
 	setFormat(L"pdf");
 }
 
@@ -359,6 +360,27 @@ void PdfExportOptions::unsetRasterizeUnsupportedFontStyles()
 	m_RasterizeUnsupportedFontStylesIsSet = false;
 }
 
+bool PdfExportOptions::isIncludeOleData() const
+{
+	return m_IncludeOleData;
+}
+
+void PdfExportOptions::setIncludeOleData(bool value)
+{
+	m_IncludeOleData = value;
+	m_IncludeOleDataIsSet = true;
+}
+
+bool PdfExportOptions::includeOleDataIsSet() const
+{
+	return m_IncludeOleDataIsSet;
+}
+
+void PdfExportOptions::unsetIncludeOleData()
+{
+	m_IncludeOleDataIsSet = false;
+}
+
 web::json::value PdfExportOptions::toJson() const
 {
 	web::json::value val = this->ExportOptions::toJson();
@@ -438,6 +460,10 @@ web::json::value PdfExportOptions::toJson() const
 	if(m_RasterizeUnsupportedFontStylesIsSet)
 	{
 		val[utility::conversions::to_string_t("RasterizeUnsupportedFontStyles")] = ModelBase::toJson(m_RasterizeUnsupportedFontStyles);
+	}
+	if(m_IncludeOleDataIsSet)
+	{
+		val[utility::conversions::to_string_t("IncludeOleData")] = ModelBase::toJson(m_IncludeOleData);
 	}
 	return val;
 }
@@ -543,6 +569,11 @@ void PdfExportOptions::fromJson(web::json::value& val)
 	if(jsonForRasterizeUnsupportedFontStyles != nullptr && !jsonForRasterizeUnsupportedFontStyles->is_null())
 	{
 		setRasterizeUnsupportedFontStyles(ModelBase::boolFromJson(*jsonForRasterizeUnsupportedFontStyles));
+	}
+	web::json::value* jsonForIncludeOleData = ModelBase::getField(val, "IncludeOleData");
+	if(jsonForIncludeOleData != nullptr && !jsonForIncludeOleData->is_null())
+	{
+		setIncludeOleData(ModelBase::boolFromJson(*jsonForIncludeOleData));
 	}
 }
 

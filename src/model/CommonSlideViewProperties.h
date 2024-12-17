@@ -34,6 +34,8 @@
 
 #include "../ModelBase.h"
 
+#include <vector>
+#include "../model/DrawingGuide.h"
 
 #include "../ClassRegistry.h"
 
@@ -66,12 +68,18 @@ public:
 	ASPOSE_DLL_EXPORT void setVariableScale(bool value);
 	ASPOSE_DLL_EXPORT bool variableScaleIsSet() const;
 	ASPOSE_DLL_EXPORT void unsetVariableScale();
+	/// <summary>
+	/// Drawing guides
+	/// </summary>
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<DrawingGuide>> getDrawingGuides() const;
+	ASPOSE_DLL_EXPORT void setDrawingGuides(std::vector<std::shared_ptr<DrawingGuide>> value);
 
 protected:
 	int32_t m_Scale;
 	bool m_ScaleIsSet;
 	bool m_VariableScale;
 	bool m_VariableScaleIsSet;
+	std::vector<std::shared_ptr<DrawingGuide>> m_DrawingGuides;
 };
 
 }

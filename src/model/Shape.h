@@ -37,6 +37,7 @@
 #include "../model/GeometryShape.h"
 #include "../model/Hyperlink.h"
 #include "../model/EffectFormat.h"
+#include "../model/Paragraph.h"
 #include "../model/TextFrameFormat.h"
 #include <cpprest/details/basic_types.h>
 #include "../model/FillFormat.h"
@@ -70,8 +71,8 @@ public:
 	/// <summary>
 	/// Get or sets list to paragraphs list
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getParagraphs() const;
-	ASPOSE_DLL_EXPORT void setParagraphs(std::shared_ptr<ResourceUri> value);
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<Paragraph>> getParagraphs() const;
+	ASPOSE_DLL_EXPORT void setParagraphs(std::vector<std::shared_ptr<Paragraph>> value);
 	/// <summary>
 	/// Returns TextFrame&#39;s formatting properties.
 	/// </summary>
@@ -80,7 +81,7 @@ public:
 
 protected:
 	utility::string_t m_Text;
-	std::shared_ptr<ResourceUri> m_Paragraphs;
+	std::vector<std::shared_ptr<Paragraph>> m_Paragraphs;
 	std::shared_ptr<TextFrameFormat> m_TextFrameFormat;
 };
 

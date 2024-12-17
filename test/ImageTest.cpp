@@ -124,6 +124,16 @@ TEST_F(ImageTest, imageDownloadRequest) {
 	EXPECT_NE(pngResultSize, defaultResultSize);
 }
 
+TEST_F(ImageTest, compressImage) {
+	utils->initialize("", "", "");
+	utility::string_t fileName = L"test.pptx";
+	utility::string_t folderName = L"TempSlidesSDK";
+	utility::string_t password = L"password";
+	int slideIndex = 2;
+	int shapeIndex = 2;
+	utils->getSlidesApi()->compressImage(fileName, slideIndex, shapeIndex, 150, false, password, folderName).get();
+}
+
 TEST_F(ImageTest, deletePictureCroppedAreas) {
 	utils->initialize("", "", "");
 	utility::string_t fileName = L"test.pptx";
@@ -131,7 +141,7 @@ TEST_F(ImageTest, deletePictureCroppedAreas) {
 	utility::string_t password = L"password";
 	int slideIndex = 2;
 	int shapeIndex = 2;
-	utils->getSlidesApi()->deletePictureCroppedAreas(fileName, slideIndex, shapeIndex, password, folderName).get();
+	utils->getSlidesApi()->compressImage(fileName, slideIndex, shapeIndex, boost::none, true, password, folderName).get();
 }
 
 TEST_F(ImageTest, deletePictureCroppedAreasWrongShapeType) {
@@ -143,7 +153,7 @@ TEST_F(ImageTest, deletePictureCroppedAreasWrongShapeType) {
 	int shapeIndex = 3;
 	try
 	{
-		utils->getSlidesApi()->deletePictureCroppedAreas(fileName, slideIndex, shapeIndex, password, folderName).get();
+		utils->getSlidesApi()->compressImage(fileName, slideIndex, shapeIndex, boost::none, true, password, folderName).get();
 		FAIL() << "Must have failed";
 	}
 	catch (ApiException ex)

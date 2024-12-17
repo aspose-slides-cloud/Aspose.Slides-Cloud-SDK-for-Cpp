@@ -171,6 +171,13 @@ public:
 	ASPOSE_DLL_EXPORT void setRasterizeUnsupportedFontStyles(bool value);
 	ASPOSE_DLL_EXPORT bool rasterizeUnsupportedFontStylesIsSet() const;
 	ASPOSE_DLL_EXPORT void unsetRasterizeUnsupportedFontStyles();
+	/// <summary>
+	/// True to convert all OLE data from the presentation to embedded files in the resulting PDF.
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isIncludeOleData() const;
+	ASPOSE_DLL_EXPORT void setIncludeOleData(bool value);
+	ASPOSE_DLL_EXPORT bool includeOleDataIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetIncludeOleData();
 
 protected:
 	utility::string_t m_TextCompression;
@@ -202,6 +209,8 @@ protected:
 	bool m_InterpretMaskOpAsOpacityIsSet;
 	bool m_RasterizeUnsupportedFontStyles;
 	bool m_RasterizeUnsupportedFontStylesIsSet;
+	bool m_IncludeOleData;
+	bool m_IncludeOleDataIsSet;
 };
 
 }

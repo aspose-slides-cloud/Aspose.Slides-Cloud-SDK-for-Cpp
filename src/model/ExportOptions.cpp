@@ -33,6 +33,7 @@ namespace model {
 
 ExportOptions::ExportOptions()
 {
+	m_DeleteEmbeddedBinaryObjectsIsSet = false;
 }
 
 ExportOptions::~ExportOptions()
@@ -48,6 +49,27 @@ void ExportOptions::setDefaultRegularFont(utility::string_t value)
 {
 	m_DefaultRegularFont = value;
 	
+}
+
+bool ExportOptions::isDeleteEmbeddedBinaryObjects() const
+{
+	return m_DeleteEmbeddedBinaryObjects;
+}
+
+void ExportOptions::setDeleteEmbeddedBinaryObjects(bool value)
+{
+	m_DeleteEmbeddedBinaryObjects = value;
+	m_DeleteEmbeddedBinaryObjectsIsSet = true;
+}
+
+bool ExportOptions::deleteEmbeddedBinaryObjectsIsSet() const
+{
+	return m_DeleteEmbeddedBinaryObjectsIsSet;
+}
+
+void ExportOptions::unsetDeleteEmbeddedBinaryObjects()
+{
+	m_DeleteEmbeddedBinaryObjectsIsSet = false;
 }
 
 utility::string_t ExportOptions::getGradientStyle() const
@@ -101,6 +123,10 @@ web::json::value ExportOptions::toJson() const
 	{
 		val[utility::conversions::to_string_t("DefaultRegularFont")] = ModelBase::toJson(m_DefaultRegularFont);
 	}
+	if(m_DeleteEmbeddedBinaryObjectsIsSet)
+	{
+		val[utility::conversions::to_string_t("DeleteEmbeddedBinaryObjects")] = ModelBase::toJson(m_DeleteEmbeddedBinaryObjects);
+	}
 	if (!m_GradientStyle.empty())
 	{
 		val[utility::conversions::to_string_t("GradientStyle")] = ModelBase::toJson(m_GradientStyle);
@@ -136,6 +162,11 @@ void ExportOptions::fromJson(web::json::value& val)
 	if(jsonForDefaultRegularFont != nullptr && !jsonForDefaultRegularFont->is_null())
 	{
 		setDefaultRegularFont(ModelBase::stringFromJson(*jsonForDefaultRegularFont));
+	}
+	web::json::value* jsonForDeleteEmbeddedBinaryObjects = ModelBase::getField(val, "DeleteEmbeddedBinaryObjects");
+	if(jsonForDeleteEmbeddedBinaryObjects != nullptr && !jsonForDeleteEmbeddedBinaryObjects->is_null())
+	{
+		setDeleteEmbeddedBinaryObjects(ModelBase::boolFromJson(*jsonForDeleteEmbeddedBinaryObjects));
 	}
 	web::json::value* jsonForGradientStyle = ModelBase::getField(val, "GradientStyle");
 	if(jsonForGradientStyle != nullptr && !jsonForGradientStyle->is_null())

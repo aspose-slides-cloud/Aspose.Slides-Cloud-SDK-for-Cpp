@@ -51,12 +51,12 @@ void Shape::setText(utility::string_t value)
 	
 }
 
-std::shared_ptr<ResourceUri> Shape::getParagraphs() const
+std::vector<std::shared_ptr<Paragraph>> Shape::getParagraphs() const
 {
 	return m_Paragraphs;
 }
 
-void Shape::setParagraphs(std::shared_ptr<ResourceUri> value)
+void Shape::setParagraphs(std::vector<std::shared_ptr<Paragraph>> value)
 {
 	m_Paragraphs = value;
 	
@@ -80,9 +80,14 @@ web::json::value Shape::toJson() const
 	{
 		val[utility::conversions::to_string_t("Text")] = ModelBase::toJson(m_Text);
 	}
-	if (m_Paragraphs != nullptr)
+	if (m_Paragraphs.size() > 0)
 	{
-		val[utility::conversions::to_string_t("Paragraphs")] = ModelBase::toJson(m_Paragraphs);
+		std::vector<web::json::value> jsonArray;
+		for (auto& item : m_Paragraphs)
+		{
+			jsonArray.push_back(ModelBase::toJson(item));
+		}
+		val[utility::conversions::to_string_t("Paragraphs")] = web::json::value::array(jsonArray);
 	}
 	if (m_TextFrameFormat != nullptr)
 	{
@@ -102,8 +107,22 @@ void Shape::fromJson(web::json::value& val)
 	web::json::value* jsonForParagraphs = ModelBase::getField(val, "Paragraphs");
 	if(jsonForParagraphs != nullptr && !jsonForParagraphs->is_null())
 	{
-		std::shared_ptr<void> instanceForParagraphs = asposeslidescloud::api::ClassRegistry::deserialize(L"ResourceUri", *jsonForParagraphs);
-		setParagraphs(std::static_pointer_cast<ResourceUri>(instanceForParagraphs));
+		{
+			m_Paragraphs.clear();
+			std::vector<web::json::value> jsonArray;
+			for(auto& item : jsonForParagraphs->as_array())
+			{
+				if(item.is_null())
+				{
+					m_Paragraphs.push_back(std::shared_ptr<Paragraph>(nullptr));
+				}
+				else
+				{
+					std::shared_ptr<void> newItem = asposeslidescloud::api::ClassRegistry::deserialize(L"Paragraph", item);
+					m_Paragraphs.push_back(std::static_pointer_cast<Paragraph>(newItem));
+				}
+			}
+        	}
 	}
 	web::json::value* jsonForTextFrameFormat = ModelBase::getField(val, "TextFrameFormat");
 	if(jsonForTextFrameFormat != nullptr && !jsonForTextFrameFormat->is_null())

@@ -83,6 +83,44 @@ public:
 	ASPOSE_DLL_EXPORT int32_t getDpi() const;
 	ASPOSE_DLL_EXPORT void setDpi(int32_t value);
 	/// <summary>
+	/// The horizontal offset of the texture from the shape&#39;s origin in points. A positive value moves the texture to the right, while a negative value moves it to the left.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getTileOffsetX() const;
+	ASPOSE_DLL_EXPORT void setTileOffsetX(double value);
+	ASPOSE_DLL_EXPORT bool tileOffsetXIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetTileOffsetX();
+	/// <summary>
+	/// The vertical offset of the texture from the shape&#39;s origin in points. A positive value moves the texture down, while a negative value moves it up.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getTileOffsetY() const;
+	ASPOSE_DLL_EXPORT void setTileOffsetY(double value);
+	ASPOSE_DLL_EXPORT bool tileOffsetYIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetTileOffsetY();
+	/// <summary>
+	/// The horizontal scale for the texture fill as a percentage.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getTileScaleX() const;
+	ASPOSE_DLL_EXPORT void setTileScaleX(double value);
+	ASPOSE_DLL_EXPORT bool tileScaleXIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetTileScaleX();
+	/// <summary>
+	/// The vertical scale for the texture fill as a percentage.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getTileScaleY() const;
+	ASPOSE_DLL_EXPORT void setTileScaleY(double value);
+	ASPOSE_DLL_EXPORT bool tileScaleYIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetTileScaleY();
+	/// <summary>
+	/// The way texture is aligned within the shape. This setting controls the starting point of the texture pattern and how it repeats across the shape.
+	/// </summary>
+	ASPOSE_DLL_EXPORT utility::string_t getTileAlignment() const;
+	ASPOSE_DLL_EXPORT void setTileAlignment(utility::string_t value);
+	/// <summary>
+	/// Flips the texture tile around its horizontal, vertical or both axis.
+	/// </summary>
+	ASPOSE_DLL_EXPORT utility::string_t getTileFlip() const;
+	ASPOSE_DLL_EXPORT void setTileFlip(utility::string_t value);
+	/// <summary>
 	/// Internal image link.
 	/// </summary>
 	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getImage() const;
@@ -114,6 +152,16 @@ protected:
 	double m_CropRight;
 	double m_CropTop;
 	int32_t m_Dpi;
+	double m_TileOffsetX;
+	bool m_TileOffsetXIsSet;
+	double m_TileOffsetY;
+	bool m_TileOffsetYIsSet;
+	double m_TileScaleX;
+	bool m_TileScaleXIsSet;
+	double m_TileScaleY;
+	bool m_TileScaleYIsSet;
+	utility::string_t m_TileAlignment;
+	utility::string_t m_TileFlip;
 	std::shared_ptr<ResourceUri> m_Image;
 	utility::string_t m_Base64Data;
 	utility::string_t m_SvgData;

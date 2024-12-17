@@ -33,6 +33,10 @@ namespace model {
 
 PictureFill::PictureFill()
 {
+	m_TileOffsetXIsSet = false;
+	m_TileOffsetYIsSet = false;
+	m_TileScaleXIsSet = false;
+	m_TileScaleYIsSet = false;
 	setType(L"Picture");
 	setCropBottom(0.0);
 	setCropLeft(0.0);
@@ -100,6 +104,112 @@ void PictureFill::setDpi(int32_t value)
 	
 }
 
+double PictureFill::getTileOffsetX() const
+{
+	return m_TileOffsetX;
+}
+
+void PictureFill::setTileOffsetX(double value)
+{
+	m_TileOffsetX = value;
+	m_TileOffsetXIsSet = true;
+}
+
+bool PictureFill::tileOffsetXIsSet() const
+{
+	return m_TileOffsetXIsSet;
+}
+
+void PictureFill::unsetTileOffsetX()
+{
+	m_TileOffsetXIsSet = false;
+}
+
+double PictureFill::getTileOffsetY() const
+{
+	return m_TileOffsetY;
+}
+
+void PictureFill::setTileOffsetY(double value)
+{
+	m_TileOffsetY = value;
+	m_TileOffsetYIsSet = true;
+}
+
+bool PictureFill::tileOffsetYIsSet() const
+{
+	return m_TileOffsetYIsSet;
+}
+
+void PictureFill::unsetTileOffsetY()
+{
+	m_TileOffsetYIsSet = false;
+}
+
+double PictureFill::getTileScaleX() const
+{
+	return m_TileScaleX;
+}
+
+void PictureFill::setTileScaleX(double value)
+{
+	m_TileScaleX = value;
+	m_TileScaleXIsSet = true;
+}
+
+bool PictureFill::tileScaleXIsSet() const
+{
+	return m_TileScaleXIsSet;
+}
+
+void PictureFill::unsetTileScaleX()
+{
+	m_TileScaleXIsSet = false;
+}
+
+double PictureFill::getTileScaleY() const
+{
+	return m_TileScaleY;
+}
+
+void PictureFill::setTileScaleY(double value)
+{
+	m_TileScaleY = value;
+	m_TileScaleYIsSet = true;
+}
+
+bool PictureFill::tileScaleYIsSet() const
+{
+	return m_TileScaleYIsSet;
+}
+
+void PictureFill::unsetTileScaleY()
+{
+	m_TileScaleYIsSet = false;
+}
+
+utility::string_t PictureFill::getTileAlignment() const
+{
+	return m_TileAlignment;
+}
+
+void PictureFill::setTileAlignment(utility::string_t value)
+{
+	m_TileAlignment = value;
+	
+}
+
+utility::string_t PictureFill::getTileFlip() const
+{
+	return m_TileFlip;
+}
+
+void PictureFill::setTileFlip(utility::string_t value)
+{
+	m_TileFlip = value;
+	
+}
+
 std::shared_ptr<ResourceUri> PictureFill::getImage() const
 {
 	return m_Image;
@@ -163,6 +273,30 @@ web::json::value PictureFill::toJson() const
 	val[utility::conversions::to_string_t("CropRight")] = ModelBase::toJson(m_CropRight);
 	val[utility::conversions::to_string_t("CropTop")] = ModelBase::toJson(m_CropTop);
 	val[utility::conversions::to_string_t("Dpi")] = ModelBase::toJson(m_Dpi);
+	if(m_TileOffsetXIsSet)
+	{
+		val[utility::conversions::to_string_t("TileOffsetX")] = ModelBase::toJson(m_TileOffsetX);
+	}
+	if(m_TileOffsetYIsSet)
+	{
+		val[utility::conversions::to_string_t("TileOffsetY")] = ModelBase::toJson(m_TileOffsetY);
+	}
+	if(m_TileScaleXIsSet)
+	{
+		val[utility::conversions::to_string_t("TileScaleX")] = ModelBase::toJson(m_TileScaleX);
+	}
+	if(m_TileScaleYIsSet)
+	{
+		val[utility::conversions::to_string_t("TileScaleY")] = ModelBase::toJson(m_TileScaleY);
+	}
+	if (!m_TileAlignment.empty())
+	{
+		val[utility::conversions::to_string_t("TileAlignment")] = ModelBase::toJson(m_TileAlignment);
+	}
+	if (!m_TileFlip.empty())
+	{
+		val[utility::conversions::to_string_t("TileFlip")] = ModelBase::toJson(m_TileFlip);
+	}
 	if (m_Image != nullptr)
 	{
 		val[utility::conversions::to_string_t("Image")] = ModelBase::toJson(m_Image);
@@ -218,6 +352,36 @@ void PictureFill::fromJson(web::json::value& val)
 	if(jsonForDpi != nullptr && !jsonForDpi->is_null() && jsonForDpi->is_number())
 	{
 		setDpi(ModelBase::int32_tFromJson(*jsonForDpi));
+	}
+	web::json::value* jsonForTileOffsetX = ModelBase::getField(val, "TileOffsetX");
+	if(jsonForTileOffsetX != nullptr && !jsonForTileOffsetX->is_null() && jsonForTileOffsetX->is_number())
+	{
+		setTileOffsetX(ModelBase::doubleFromJson(*jsonForTileOffsetX));
+	}
+	web::json::value* jsonForTileOffsetY = ModelBase::getField(val, "TileOffsetY");
+	if(jsonForTileOffsetY != nullptr && !jsonForTileOffsetY->is_null() && jsonForTileOffsetY->is_number())
+	{
+		setTileOffsetY(ModelBase::doubleFromJson(*jsonForTileOffsetY));
+	}
+	web::json::value* jsonForTileScaleX = ModelBase::getField(val, "TileScaleX");
+	if(jsonForTileScaleX != nullptr && !jsonForTileScaleX->is_null() && jsonForTileScaleX->is_number())
+	{
+		setTileScaleX(ModelBase::doubleFromJson(*jsonForTileScaleX));
+	}
+	web::json::value* jsonForTileScaleY = ModelBase::getField(val, "TileScaleY");
+	if(jsonForTileScaleY != nullptr && !jsonForTileScaleY->is_null() && jsonForTileScaleY->is_number())
+	{
+		setTileScaleY(ModelBase::doubleFromJson(*jsonForTileScaleY));
+	}
+	web::json::value* jsonForTileAlignment = ModelBase::getField(val, "TileAlignment");
+	if(jsonForTileAlignment != nullptr && !jsonForTileAlignment->is_null())
+	{
+		setTileAlignment(ModelBase::stringFromJson(*jsonForTileAlignment));
+	}
+	web::json::value* jsonForTileFlip = ModelBase::getField(val, "TileFlip");
+	if(jsonForTileFlip != nullptr && !jsonForTileFlip->is_null())
+	{
+		setTileFlip(ModelBase::stringFromJson(*jsonForTileFlip));
 	}
 	web::json::value* jsonForImage = ModelBase::getField(val, "Image");
 	if(jsonForImage != nullptr && !jsonForImage->is_null())

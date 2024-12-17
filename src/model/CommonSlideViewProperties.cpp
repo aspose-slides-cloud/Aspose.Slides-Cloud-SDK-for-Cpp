@@ -83,6 +83,17 @@ void CommonSlideViewProperties::unsetVariableScale()
 	m_VariableScaleIsSet = false;
 }
 
+std::vector<std::shared_ptr<DrawingGuide>> CommonSlideViewProperties::getDrawingGuides() const
+{
+	return m_DrawingGuides;
+}
+
+void CommonSlideViewProperties::setDrawingGuides(std::vector<std::shared_ptr<DrawingGuide>> value)
+{
+	m_DrawingGuides = value;
+	
+}
+
 web::json::value CommonSlideViewProperties::toJson() const
 {
 	web::json::value val = web::json::value::object();
@@ -93,6 +104,15 @@ web::json::value CommonSlideViewProperties::toJson() const
 	if(m_VariableScaleIsSet)
 	{
 		val[utility::conversions::to_string_t("VariableScale")] = ModelBase::toJson(m_VariableScale);
+	}
+	if (m_DrawingGuides.size() > 0)
+	{
+		std::vector<web::json::value> jsonArray;
+		for (auto& item : m_DrawingGuides)
+		{
+			jsonArray.push_back(ModelBase::toJson(item));
+		}
+		val[utility::conversions::to_string_t("DrawingGuides")] = web::json::value::array(jsonArray);
 	}
 	return val;
 }
@@ -108,6 +128,26 @@ void CommonSlideViewProperties::fromJson(web::json::value& val)
 	if(jsonForVariableScale != nullptr && !jsonForVariableScale->is_null())
 	{
 		setVariableScale(ModelBase::boolFromJson(*jsonForVariableScale));
+	}
+	web::json::value* jsonForDrawingGuides = ModelBase::getField(val, "DrawingGuides");
+	if(jsonForDrawingGuides != nullptr && !jsonForDrawingGuides->is_null())
+	{
+		{
+			m_DrawingGuides.clear();
+			std::vector<web::json::value> jsonArray;
+			for(auto& item : jsonForDrawingGuides->as_array())
+			{
+				if(item.is_null())
+				{
+					m_DrawingGuides.push_back(std::shared_ptr<DrawingGuide>(nullptr));
+				}
+				else
+				{
+					std::shared_ptr<void> newItem = asposeslidescloud::api::ClassRegistry::deserialize(L"DrawingGuide", item);
+					m_DrawingGuides.push_back(std::static_pointer_cast<DrawingGuide>(newItem));
+				}
+			}
+        	}
 	}
 }
 

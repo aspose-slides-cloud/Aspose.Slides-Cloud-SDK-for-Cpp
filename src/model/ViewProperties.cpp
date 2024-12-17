@@ -34,6 +34,7 @@ namespace model {
 ViewProperties::ViewProperties()
 {
 	m_PreferSingleViewIsSet = false;
+	m_GridSpacingIsSet = false;
 }
 
 ViewProperties::~ViewProperties()
@@ -149,6 +150,27 @@ void ViewProperties::setShowComments(utility::string_t value)
 	
 }
 
+double ViewProperties::getGridSpacing() const
+{
+	return m_GridSpacing;
+}
+
+void ViewProperties::setGridSpacing(double value)
+{
+	m_GridSpacing = value;
+	m_GridSpacingIsSet = true;
+}
+
+bool ViewProperties::gridSpacingIsSet() const
+{
+	return m_GridSpacingIsSet;
+}
+
+void ViewProperties::unsetGridSpacing()
+{
+	m_GridSpacingIsSet = false;
+}
+
 web::json::value ViewProperties::toJson() const
 {
 	web::json::value val = this->ResourceBase::toJson();
@@ -187,6 +209,10 @@ web::json::value ViewProperties::toJson() const
 	if (!m_ShowComments.empty())
 	{
 		val[utility::conversions::to_string_t("ShowComments")] = ModelBase::toJson(m_ShowComments);
+	}
+	if(m_GridSpacingIsSet)
+	{
+		val[utility::conversions::to_string_t("GridSpacing")] = ModelBase::toJson(m_GridSpacing);
 	}
 	return val;
 }
@@ -242,6 +268,11 @@ void ViewProperties::fromJson(web::json::value& val)
 	if(jsonForShowComments != nullptr && !jsonForShowComments->is_null())
 	{
 		setShowComments(ModelBase::stringFromJson(*jsonForShowComments));
+	}
+	web::json::value* jsonForGridSpacing = ModelBase::getField(val, "GridSpacing");
+	if(jsonForGridSpacing != nullptr && !jsonForGridSpacing->is_null() && jsonForGridSpacing->is_number())
+	{
+		setGridSpacing(ModelBase::doubleFromJson(*jsonForGridSpacing));
 	}
 }
 
