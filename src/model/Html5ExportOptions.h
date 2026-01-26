@@ -37,8 +37,8 @@
 #include "../model/ExportOptions.h"
 #include "../model/FontFallbackRule.h"
 #include "../model/FontSubstRule.h"
+#include "../model/SlidesLayoutOptions.h"
 #include <cpprest/details/basic_types.h>
-#include "../model/NotesCommentsLayoutingOptions.h"
 #include <vector>
 
 #include "../ClassRegistry.h"
@@ -82,13 +82,20 @@ public:
 	/// <summary>
 	/// Slides layouting options
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<NotesCommentsLayoutingOptions> getNotesCommentsLayouting() const;
-	ASPOSE_DLL_EXPORT void setNotesCommentsLayouting(std::shared_ptr<NotesCommentsLayoutingOptions> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<SlidesLayoutOptions> getSlidesLayoutOptions() const;
+	ASPOSE_DLL_EXPORT void setSlidesLayoutOptions(std::shared_ptr<SlidesLayoutOptions> value);
 	/// <summary>
 	/// Path to custom templates
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getTemplatesPath() const;
 	ASPOSE_DLL_EXPORT void setTemplatesPath(utility::string_t value);
+	/// <summary>
+	/// true to disable ligatures in the rendered output.
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isDisableFontLigatures() const;
+	ASPOSE_DLL_EXPORT void setDisableFontLigatures(bool value);
+	ASPOSE_DLL_EXPORT bool disableFontLigaturesIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetDisableFontLigatures();
 
 protected:
 	bool m_AnimateTransitions;
@@ -97,8 +104,10 @@ protected:
 	bool m_AnimateShapesIsSet;
 	bool m_EmbedImages;
 	bool m_EmbedImagesIsSet;
-	std::shared_ptr<NotesCommentsLayoutingOptions> m_NotesCommentsLayouting;
+	std::shared_ptr<SlidesLayoutOptions> m_SlidesLayoutOptions;
 	utility::string_t m_TemplatesPath;
+	bool m_DisableFontLigatures;
+	bool m_DisableFontLigaturesIsSet;
 };
 
 }

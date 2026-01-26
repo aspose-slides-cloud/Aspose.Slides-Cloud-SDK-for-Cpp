@@ -108,6 +108,13 @@ public:
 	/// </summary>
 	ASPOSE_DLL_EXPORT std::shared_ptr<SlidesLayoutOptions> getSlidesLayoutOptions() const;
 	ASPOSE_DLL_EXPORT void setSlidesLayoutOptions(std::shared_ptr<SlidesLayoutOptions> value);
+	/// <summary>
+	/// true to disable ligatures in the rendered output.
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isDisableFontLigatures() const;
+	ASPOSE_DLL_EXPORT void setDisableFontLigatures(bool value);
+	ASPOSE_DLL_EXPORT bool disableFontLigaturesIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetDisableFontLigatures();
 
 protected:
 	bool m_SaveAsZip;
@@ -123,6 +130,8 @@ protected:
 	bool m_DeletePicturesCroppedAreas;
 	bool m_DeletePicturesCroppedAreasIsSet;
 	std::shared_ptr<SlidesLayoutOptions> m_SlidesLayoutOptions;
+	bool m_DisableFontLigatures;
+	bool m_DisableFontLigaturesIsSet;
 };
 
 }

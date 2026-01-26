@@ -159,6 +159,8 @@
     <ClCompile Include="model\BubbleChartDataPoint.cpp" />
     <ClCompile Include="model\BubbleSeries.cpp" />
     <ClCompile Include="model\Camera.cpp" />
+    <ClCompile Include="model\CaptionTrack.cpp" />
+    <ClCompile Include="model\CaptionTracks.cpp" />
     <ClCompile Include="model\Chart.cpp" />
     <ClCompile Include="model\ChartCategory.cpp" />
     <ClCompile Include="model\ChartLinesFormat.cpp" />
@@ -283,6 +285,7 @@
     <ClCompile Include="model\PatternFill.cpp" />
     <ClCompile Include="model\PdfExportOptions.cpp" />
     <ClCompile Include="model\PdfImportOptions.cpp" />
+    <ClCompile Include="model\PhantomElement.cpp" />
     <ClCompile Include="model\PictureFill.cpp" />
     <ClCompile Include="model\PictureFrame.cpp" />
     <ClCompile Include="model\Pipeline.cpp" />
@@ -435,6 +438,8 @@
     <ClInclude Include="model\BubbleChartDataPoint.h" />
     <ClInclude Include="model\BubbleSeries.h" />
     <ClInclude Include="model\Camera.h" />
+    <ClInclude Include="model\CaptionTrack.h" />
+    <ClInclude Include="model\CaptionTracks.h" />
     <ClInclude Include="model\Chart.h" />
     <ClInclude Include="model\ChartCategory.h" />
     <ClInclude Include="model\ChartLinesFormat.h" />
@@ -559,6 +564,7 @@
     <ClInclude Include="model\PatternFill.h" />
     <ClInclude Include="model\PdfExportOptions.h" />
     <ClInclude Include="model\PdfImportOptions.h" />
+    <ClInclude Include="model\PhantomElement.h" />
     <ClInclude Include="model\PictureFill.h" />
     <ClInclude Include="model\PictureFrame.h" />
     <ClInclude Include="model\Pipeline.h" />

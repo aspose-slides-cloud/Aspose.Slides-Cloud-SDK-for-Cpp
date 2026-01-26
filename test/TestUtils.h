@@ -48,6 +48,7 @@ public:
 	void initialize(std::string functionName, std::string parameterName, std::string parameterType, int32_t parameterValue);
 	void initialize(std::string functionName, std::string parameterName, std::string parameterType, double parameterValue);
 	void initialize(std::string functionName, std::string parameterName, std::string parameterType, std::vector<int32_t> parameterValue);
+	void initialize(std::string functionName, std::string parameterName, std::string parameterType, std::vector<utility::string_t> parameterValue);
 	void initialize(std::string functionName, std::string parameterName, std::string parameterType, std::vector<std::shared_ptr<HttpContent>> parameterValue);
 	void initialize(std::string functionName, std::string parameterName, std::string parameterType, utility::string_t parameterValue);
 
@@ -71,6 +72,7 @@ public:
 	double getDoubleTestValue(std::string functionName, std::string parameterName, std::string parameterType);
 	boost::optional<double> getOptionalDoubleTestValue(std::string functionName, std::string parameterName, std::string parameterType);
 	std::vector<int32_t> getIntVectorTestValue(std::string functionName, std::string parameterName, std::string parameterType);
+	std::vector<utility::string_t> getStringVectorTestValue(std::string functionName, std::string parameterName, std::string parameterType);
 	utility::string_t getTestValue(std::string functionName, std::string parameterName, std::string parameterType);
 	web::json::value* getTestJsonValue(std::string functionName, std::string parameterName, std::string parameterType);
 
@@ -82,6 +84,7 @@ public:
 	std::vector<std::shared_ptr<HttpContent>> getInvalidBinArrayTestValue(std::string functionName, std::string parameterName, std::string parameterType, std::vector<std::shared_ptr<HttpContent>> value);
 	boost::optional<int32_t> getInvalidIntTestValue(std::string functionName, std::string parameterName, std::string parameterType, boost::optional<int32_t> value);
 	std::vector<int32_t> getInvalidIntVectorTestValue(std::string functionName, std::string parameterName, std::string parameterType, std::vector<int32_t> value);
+	std::vector<utility::string_t> getInvalidStringVectorTestValue(std::string functionName, std::string parameterName, std::string parameterType, std::vector<utility::string_t> value);
 	boost::optional<double> getInvalidDoubleTestValue(std::string functionName, std::string parameterName, std::string parameterType, boost::optional<double> value);
 	utility::string_t getInvalidTestValue(std::string functionName, std::string parameterName, std::string parameterType, utility::string_t value);
 	web::json::value* getInvalidTestValue(std::string functionName, std::string parameterName, std::string parameterType);
@@ -94,6 +97,7 @@ public:
 	utility::string_t getExpectedMessage(std::string functionName, std::string parameterName, std::string parameterType, int32_t value);
 	utility::string_t getExpectedMessage(std::string functionName, std::string parameterName, std::string parameterType, double value);
 	utility::string_t getExpectedMessage(std::string functionName, std::string parameterName, std::string parameterType, std::vector<int32_t> value);
+	utility::string_t getExpectedMessage(std::string functionName, std::string parameterName, std::string parameterType, std::vector<utility::string_t> value);
 	utility::string_t getExpectedMessage(std::string functionName, std::string parameterName, std::string parameterType, std::vector<std::shared_ptr<HttpContent>> value);
 	utility::string_t getExpectedMessage(std::string functionName, std::string parameterName, std::string parameterType, utility::string_t value);
 

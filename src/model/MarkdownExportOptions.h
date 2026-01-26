@@ -98,6 +98,23 @@ public:
 	ASPOSE_DLL_EXPORT void setShowHiddenSlides(bool value);
 	ASPOSE_DLL_EXPORT bool showHiddenSlidesIsSet() const;
 	ASPOSE_DLL_EXPORT void unsetShowHiddenSlides();
+	/// <summary>
+	/// true to remove empty or whitespace-only lines from the final Markdown output. Default is false. 
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isRemoveEmptyLines() const;
+	ASPOSE_DLL_EXPORT void setRemoveEmptyLines(bool value);
+	ASPOSE_DLL_EXPORT bool removeEmptyLinesIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetRemoveEmptyLines();
+	/// <summary>
+	/// Specifies how repeated space characters are preserved to maintain visual alignment. 
+	/// </summary>
+	ASPOSE_DLL_EXPORT utility::string_t getHandleRepeatedSpaces() const;
+	ASPOSE_DLL_EXPORT void setHandleRepeatedSpaces(utility::string_t value);
+	/// <summary>
+	/// The format of slide number headers. 
+	/// </summary>
+	ASPOSE_DLL_EXPORT utility::string_t getSlideNumberFormat() const;
+	ASPOSE_DLL_EXPORT void setSlideNumberFormat(utility::string_t value);
 
 protected:
 	utility::string_t m_ExportType;
@@ -110,6 +127,10 @@ protected:
 	bool m_ShowCommentsIsSet;
 	bool m_ShowHiddenSlides;
 	bool m_ShowHiddenSlidesIsSet;
+	bool m_RemoveEmptyLines;
+	bool m_RemoveEmptyLinesIsSet;
+	utility::string_t m_HandleRepeatedSpaces;
+	utility::string_t m_SlideNumberFormat;
 };
 
 }

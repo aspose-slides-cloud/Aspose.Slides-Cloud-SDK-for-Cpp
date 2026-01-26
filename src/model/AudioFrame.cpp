@@ -40,8 +40,13 @@ AudioFrame::AudioFrame()
 	m_EmbeddedIsSet = false;
 	m_HideAtShowingIsSet = false;
 	m_PlayLoopModeIsSet = false;
+	m_VolumeValueIsSet = false;
 	m_PlayAcrossSlidesIsSet = false;
 	m_RewindAudioIsSet = false;
+	m_FadeInDurationIsSet = false;
+	m_FadeOutDurationIsSet = false;
+	m_TrimFromStartIsSet = false;
+	m_TrimFromEndIsSet = false;
 	setType(L"AudioFrame");
 }
 
@@ -218,6 +223,27 @@ void AudioFrame::setVolume(utility::string_t value)
 	
 }
 
+double AudioFrame::getVolumeValue() const
+{
+	return m_VolumeValue;
+}
+
+void AudioFrame::setVolumeValue(double value)
+{
+	m_VolumeValue = value;
+	m_VolumeValueIsSet = true;
+}
+
+bool AudioFrame::volumeValueIsSet() const
+{
+	return m_VolumeValueIsSet;
+}
+
+void AudioFrame::unsetVolumeValue()
+{
+	m_VolumeValueIsSet = false;
+}
+
 utility::string_t AudioFrame::getBase64Data() const
 {
 	return m_Base64Data;
@@ -271,6 +297,90 @@ void AudioFrame::unsetRewindAudio()
 	m_RewindAudioIsSet = false;
 }
 
+double AudioFrame::getFadeInDuration() const
+{
+	return m_FadeInDuration;
+}
+
+void AudioFrame::setFadeInDuration(double value)
+{
+	m_FadeInDuration = value;
+	m_FadeInDurationIsSet = true;
+}
+
+bool AudioFrame::fadeInDurationIsSet() const
+{
+	return m_FadeInDurationIsSet;
+}
+
+void AudioFrame::unsetFadeInDuration()
+{
+	m_FadeInDurationIsSet = false;
+}
+
+double AudioFrame::getFadeOutDuration() const
+{
+	return m_FadeOutDuration;
+}
+
+void AudioFrame::setFadeOutDuration(double value)
+{
+	m_FadeOutDuration = value;
+	m_FadeOutDurationIsSet = true;
+}
+
+bool AudioFrame::fadeOutDurationIsSet() const
+{
+	return m_FadeOutDurationIsSet;
+}
+
+void AudioFrame::unsetFadeOutDuration()
+{
+	m_FadeOutDurationIsSet = false;
+}
+
+double AudioFrame::getTrimFromStart() const
+{
+	return m_TrimFromStart;
+}
+
+void AudioFrame::setTrimFromStart(double value)
+{
+	m_TrimFromStart = value;
+	m_TrimFromStartIsSet = true;
+}
+
+bool AudioFrame::trimFromStartIsSet() const
+{
+	return m_TrimFromStartIsSet;
+}
+
+void AudioFrame::unsetTrimFromStart()
+{
+	m_TrimFromStartIsSet = false;
+}
+
+double AudioFrame::getTrimFromEnd() const
+{
+	return m_TrimFromEnd;
+}
+
+void AudioFrame::setTrimFromEnd(double value)
+{
+	m_TrimFromEnd = value;
+	m_TrimFromEndIsSet = true;
+}
+
+bool AudioFrame::trimFromEndIsSet() const
+{
+	return m_TrimFromEndIsSet;
+}
+
+void AudioFrame::unsetTrimFromEnd()
+{
+	m_TrimFromEndIsSet = false;
+}
+
 std::shared_ptr<PictureFill> AudioFrame::getPictureFillFormat() const
 {
 	return m_PictureFillFormat;
@@ -321,6 +431,10 @@ web::json::value AudioFrame::toJson() const
 	{
 		val[utility::conversions::to_string_t("Volume")] = ModelBase::toJson(m_Volume);
 	}
+	if(m_VolumeValueIsSet)
+	{
+		val[utility::conversions::to_string_t("VolumeValue")] = ModelBase::toJson(m_VolumeValue);
+	}
 	if (!m_Base64Data.empty())
 	{
 		val[utility::conversions::to_string_t("Base64Data")] = ModelBase::toJson(m_Base64Data);
@@ -332,6 +446,22 @@ web::json::value AudioFrame::toJson() const
 	if(m_RewindAudioIsSet)
 	{
 		val[utility::conversions::to_string_t("RewindAudio")] = ModelBase::toJson(m_RewindAudio);
+	}
+	if(m_FadeInDurationIsSet)
+	{
+		val[utility::conversions::to_string_t("FadeInDuration")] = ModelBase::toJson(m_FadeInDuration);
+	}
+	if(m_FadeOutDurationIsSet)
+	{
+		val[utility::conversions::to_string_t("FadeOutDuration")] = ModelBase::toJson(m_FadeOutDuration);
+	}
+	if(m_TrimFromStartIsSet)
+	{
+		val[utility::conversions::to_string_t("TrimFromStart")] = ModelBase::toJson(m_TrimFromStart);
+	}
+	if(m_TrimFromEndIsSet)
+	{
+		val[utility::conversions::to_string_t("TrimFromEnd")] = ModelBase::toJson(m_TrimFromEnd);
 	}
 	if (m_PictureFillFormat != nullptr)
 	{
@@ -388,6 +518,11 @@ void AudioFrame::fromJson(web::json::value& val)
 	{
 		setVolume(ModelBase::stringFromJson(*jsonForVolume));
 	}
+	web::json::value* jsonForVolumeValue = ModelBase::getField(val, "VolumeValue");
+	if(jsonForVolumeValue != nullptr && !jsonForVolumeValue->is_null() && jsonForVolumeValue->is_number())
+	{
+		setVolumeValue(ModelBase::doubleFromJson(*jsonForVolumeValue));
+	}
 	web::json::value* jsonForBase64Data = ModelBase::getField(val, "Base64Data");
 	if(jsonForBase64Data != nullptr && !jsonForBase64Data->is_null())
 	{
@@ -402,6 +537,26 @@ void AudioFrame::fromJson(web::json::value& val)
 	if(jsonForRewindAudio != nullptr && !jsonForRewindAudio->is_null())
 	{
 		setRewindAudio(ModelBase::boolFromJson(*jsonForRewindAudio));
+	}
+	web::json::value* jsonForFadeInDuration = ModelBase::getField(val, "FadeInDuration");
+	if(jsonForFadeInDuration != nullptr && !jsonForFadeInDuration->is_null() && jsonForFadeInDuration->is_number())
+	{
+		setFadeInDuration(ModelBase::doubleFromJson(*jsonForFadeInDuration));
+	}
+	web::json::value* jsonForFadeOutDuration = ModelBase::getField(val, "FadeOutDuration");
+	if(jsonForFadeOutDuration != nullptr && !jsonForFadeOutDuration->is_null() && jsonForFadeOutDuration->is_number())
+	{
+		setFadeOutDuration(ModelBase::doubleFromJson(*jsonForFadeOutDuration));
+	}
+	web::json::value* jsonForTrimFromStart = ModelBase::getField(val, "TrimFromStart");
+	if(jsonForTrimFromStart != nullptr && !jsonForTrimFromStart->is_null() && jsonForTrimFromStart->is_number())
+	{
+		setTrimFromStart(ModelBase::doubleFromJson(*jsonForTrimFromStart));
+	}
+	web::json::value* jsonForTrimFromEnd = ModelBase::getField(val, "TrimFromEnd");
+	if(jsonForTrimFromEnd != nullptr && !jsonForTrimFromEnd->is_null() && jsonForTrimFromEnd->is_number())
+	{
+		setTrimFromEnd(ModelBase::doubleFromJson(*jsonForTrimFromEnd));
 	}
 	web::json::value* jsonForPictureFillFormat = ModelBase::getField(val, "PictureFillFormat");
 	if(jsonForPictureFillFormat != nullptr && !jsonForPictureFillFormat->is_null())

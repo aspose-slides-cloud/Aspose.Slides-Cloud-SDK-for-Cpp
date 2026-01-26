@@ -34,6 +34,7 @@ namespace model {
 ExportOptions::ExportOptions()
 {
 	m_DeleteEmbeddedBinaryObjectsIsSet = false;
+	m_SkipJavaScriptLinksIsSet = false;
 }
 
 ExportOptions::~ExportOptions()
@@ -105,6 +106,27 @@ void ExportOptions::setFontSubstRules(std::vector<std::shared_ptr<FontSubstRule>
 	
 }
 
+bool ExportOptions::isSkipJavaScriptLinks() const
+{
+	return m_SkipJavaScriptLinks;
+}
+
+void ExportOptions::setSkipJavaScriptLinks(bool value)
+{
+	m_SkipJavaScriptLinks = value;
+	m_SkipJavaScriptLinksIsSet = true;
+}
+
+bool ExportOptions::skipJavaScriptLinksIsSet() const
+{
+	return m_SkipJavaScriptLinksIsSet;
+}
+
+void ExportOptions::unsetSkipJavaScriptLinks()
+{
+	m_SkipJavaScriptLinksIsSet = false;
+}
+
 utility::string_t ExportOptions::getFormat() const
 {
 	return m_Format;
@@ -148,6 +170,10 @@ web::json::value ExportOptions::toJson() const
 			jsonArray.push_back(ModelBase::toJson(item));
 		}
 		val[utility::conversions::to_string_t("FontSubstRules")] = web::json::value::array(jsonArray);
+	}
+	if(m_SkipJavaScriptLinksIsSet)
+	{
+		val[utility::conversions::to_string_t("SkipJavaScriptLinks")] = ModelBase::toJson(m_SkipJavaScriptLinks);
 	}
 	if (!m_Format.empty())
 	{
@@ -212,6 +238,11 @@ void ExportOptions::fromJson(web::json::value& val)
 				}
 			}
         	}
+	}
+	web::json::value* jsonForSkipJavaScriptLinks = ModelBase::getField(val, "SkipJavaScriptLinks");
+	if(jsonForSkipJavaScriptLinks != nullptr && !jsonForSkipJavaScriptLinks->is_null())
+	{
+		setSkipJavaScriptLinks(ModelBase::boolFromJson(*jsonForSkipJavaScriptLinks));
 	}
 	web::json::value* jsonForFormat = ModelBase::getField(val, "Format");
 	if(jsonForFormat != nullptr && !jsonForFormat->is_null())

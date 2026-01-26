@@ -67,10 +67,19 @@ public:
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getZip64Mode() const;
 	ASPOSE_DLL_EXPORT void setZip64Mode(utility::string_t value);
+	/// <summary>
+	/// True to refresh the presentation thumbnail on save
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isRefreshThumbnail() const;
+	ASPOSE_DLL_EXPORT void setRefreshThumbnail(bool value);
+	ASPOSE_DLL_EXPORT bool refreshThumbnailIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetRefreshThumbnail();
 
 protected:
 	utility::string_t m_Conformance;
 	utility::string_t m_Zip64Mode;
+	bool m_RefreshThumbnail;
+	bool m_RefreshThumbnailIsSet;
 };
 
 }

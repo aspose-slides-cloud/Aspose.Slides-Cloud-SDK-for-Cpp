@@ -311,9 +311,9 @@ pplx::task<HttpContent> SlidesApi::convert(std::shared_ptr<HttpContent> document
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Html") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Swf") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Mpeg4") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Html") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Swf") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Mpeg4") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Pdf, Xps, Tiff, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Pot, Potx, Potm, Html, Html5, Swf, Svg, Jpeg, Png, Gif, Bmp, Fodp, Xaml, Mpeg4, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Pdf, Xps, Tiff, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Pot, Potx, Potm, Html, Html5, Swf, Svg, Jpeg, Png, Gif, Bmp, Fodp, Xaml, Mpeg4, Md, Xml, Emf.");
 	}
 	utility::string_t methodPath = utility::conversions::to_string_t("/slides/convert/{format}");
 	ApiClient::setPathParameter(methodPath, "format", format);
@@ -369,9 +369,9 @@ pplx::task<void> SlidesApi::convertAndSave(std::shared_ptr<HttpContent> document
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Html") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Swf") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Mpeg4") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Html") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Swf") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Mpeg4") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Pdf, Xps, Tiff, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Pot, Potx, Potm, Html, Html5, Swf, Svg, Jpeg, Png, Gif, Bmp, Fodp, Xaml, Mpeg4, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Pdf, Xps, Tiff, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Pot, Potx, Potm, Html, Html5, Swf, Svg, Jpeg, Png, Gif, Bmp, Fodp, Xaml, Mpeg4, Md, Xml, Emf.");
 	}
 	// verify the required parameter 'outPath' is set
 	if (outPath.empty())
@@ -765,6 +765,54 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::createAnimationInteractiv
 			web::json::value json = web::json::value::parse(response);
 			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"SlideAnimation", json);
 			return std::static_pointer_cast<SlideAnimation>(instance);
+		});
+}
+
+pplx::task<std::shared_ptr<CaptionTrack>> SlidesApi::createCaptionTrack(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, utility::string_t label, utility::string_t data, utility::string_t password, utility::string_t folder, utility::string_t storage)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	// verify the required parameter 'label' is set
+	if (label.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: label");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+	ApiClient::setPathParameter(methodPath, "shapeIndex", shapeIndex);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("label"), label);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+	if (!data.empty())
+	{
+		httpBody = std::shared_ptr<IHttpBody>(new StringBody(data));
+	}
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("POST"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "createCaptionTrack");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			utility::string_t response(responseVector.begin(), responseVector.end());
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"CaptionTrack", json);
+			return std::static_pointer_cast<CaptionTrack>(instance);
 		});
 }
 
@@ -2513,6 +2561,79 @@ pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::deleteBackground(utility
 		});
 }
 
+pplx::task<void> SlidesApi::deleteCaptionTrack(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t captionsIndex, utility::string_t password, utility::string_t folder, utility::string_t storage)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks/{captionsIndex}");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+	ApiClient::setPathParameter(methodPath, "shapeIndex", shapeIndex);
+	ApiClient::setPathParameter(methodPath, "captionsIndex", captionsIndex);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("DELETE"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "deleteCaptionTrack");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			utility::string_t response(responseVector.begin(), responseVector.end());
+			m_ApiClient->logString(response);
+			return void();
+		});
+}
+
+pplx::task<void> SlidesApi::deleteCaptionTracks(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, utility::string_t password, utility::string_t folder, utility::string_t storage)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+	ApiClient::setPathParameter(methodPath, "shapeIndex", shapeIndex);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("DELETE"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "deleteCaptionTracks");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			utility::string_t response(responseVector.begin(), responseVector.end());
+			m_ApiClient->logString(response);
+			return void();
+		});
+}
+
 pplx::task<std::shared_ptr<Chart>> SlidesApi::deleteChartCategory(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t categoryIndex, utility::string_t password, utility::string_t folder, utility::string_t storage)
 {
 	// verify the required parameter 'name' is set
@@ -3046,42 +3167,6 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteParagraphs(utility::str
 			web::json::value json = web::json::value::parse(response);
 			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"Paragraphs", json);
 			return std::static_pointer_cast<Paragraphs>(instance);
-		});
-}
-
-pplx::task<void> SlidesApi::deletePictureCroppedAreas(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, utility::string_t password, utility::string_t folder, utility::string_t storage)
-{
-	// verify the required parameter 'name' is set
-	if (name.empty())
-	{
-		throw std::invalid_argument("Missing required parameter: name");
-	}
-	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/pictureCroppedAreas");
-	ApiClient::setPathParameter(methodPath, "name", name);
-	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
-	ApiClient::setPathParameter(methodPath, "shapeIndex", shapeIndex);
-
-	std::map<utility::string_t, utility::string_t> queryParams;
-	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
-	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
-
-	std::map<utility::string_t, utility::string_t> headerParams;
-	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
-
-	std::shared_ptr<IHttpBody> httpBody = nullptr;
-	std::vector<std::shared_ptr<HttpContent>> requestFiles;
-
-	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("DELETE"), queryParams, headerParams, httpBody, requestFiles)
-		.then([=](web::http::http_response response)
-		{
-			m_ApiClient->assertResponseException(response, "deletePictureCroppedAreas");
-			return response.extract_vector();
-		})
-		.then([=](std::vector<unsigned char> responseVector)
-		{
-			utility::string_t response(responseVector.begin(), responseVector.end());
-			m_ApiClient->logString(response);
-			return void();
 		});
 }
 
@@ -4663,7 +4748,7 @@ pplx::task<HttpContent> SlidesApi::downloadFile(utility::string_t path, utility:
 		});
 }
 
-pplx::task<HttpContent> SlidesApi::downloadImage(utility::string_t name, int32_t index, utility::string_t format, utility::string_t password, utility::string_t folder, utility::string_t storage)
+pplx::task<HttpContent> SlidesApi::downloadImage(utility::string_t name, int32_t index, utility::string_t format, utility::string_t password, utility::string_t folder, utility::string_t storage, boost::optional<int32_t> quality)
 {
 	// verify the required parameter 'name' is set
 	if (name.empty())
@@ -4693,6 +4778,10 @@ pplx::task<HttpContent> SlidesApi::downloadImage(utility::string_t name, int32_t
 	std::map<utility::string_t, utility::string_t> queryParams;
 	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
 	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+	if (quality.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("quality"), quality.value());
+	}
 
 	std::map<utility::string_t, utility::string_t> headerParams;
 	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
@@ -4787,7 +4876,7 @@ pplx::task<HttpContent> SlidesApi::downloadImageDefaultFormatOnline(std::shared_
 		});
 }
 
-pplx::task<HttpContent> SlidesApi::downloadImageOnline(std::shared_ptr<HttpContent> document, int32_t index, utility::string_t format, utility::string_t password)
+pplx::task<HttpContent> SlidesApi::downloadImageOnline(std::shared_ptr<HttpContent> document, int32_t index, utility::string_t format, utility::string_t password, boost::optional<int32_t> quality)
 {
 	if (document == nullptr)
 	{
@@ -4813,6 +4902,10 @@ pplx::task<HttpContent> SlidesApi::downloadImageOnline(std::shared_ptr<HttpConte
 	ApiClient::setPathParameter(methodPath, "format", format);
 
 	std::map<utility::string_t, utility::string_t> queryParams;
+	if (quality.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("quality"), quality.value());
+	}
 
 	std::map<utility::string_t, utility::string_t> headerParams;
 	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
@@ -4839,7 +4932,7 @@ pplx::task<HttpContent> SlidesApi::downloadImageOnline(std::shared_ptr<HttpConte
 		});
 }
 
-pplx::task<HttpContent> SlidesApi::downloadImages(utility::string_t name, utility::string_t format, utility::string_t password, utility::string_t folder, utility::string_t storage)
+pplx::task<HttpContent> SlidesApi::downloadImages(utility::string_t name, utility::string_t format, utility::string_t password, utility::string_t folder, utility::string_t storage, boost::optional<int32_t> quality)
 {
 	// verify the required parameter 'name' is set
 	if (name.empty())
@@ -4868,6 +4961,10 @@ pplx::task<HttpContent> SlidesApi::downloadImages(utility::string_t name, utilit
 	std::map<utility::string_t, utility::string_t> queryParams;
 	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
 	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+	if (quality.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("quality"), quality.value());
+	}
 
 	std::map<utility::string_t, utility::string_t> headerParams;
 	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
@@ -4960,7 +5057,7 @@ pplx::task<HttpContent> SlidesApi::downloadImagesDefaultFormatOnline(std::shared
 		});
 }
 
-pplx::task<HttpContent> SlidesApi::downloadImagesOnline(std::shared_ptr<HttpContent> document, utility::string_t format, utility::string_t password)
+pplx::task<HttpContent> SlidesApi::downloadImagesOnline(std::shared_ptr<HttpContent> document, utility::string_t format, utility::string_t password, boost::optional<int32_t> quality)
 {
 	if (document == nullptr)
 	{
@@ -4985,6 +5082,10 @@ pplx::task<HttpContent> SlidesApi::downloadImagesOnline(std::shared_ptr<HttpCont
 	ApiClient::setPathParameter(methodPath, "format", format);
 
 	std::map<utility::string_t, utility::string_t> queryParams;
+	if (quality.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("quality"), quality.value());
+	}
 
 	std::map<utility::string_t, utility::string_t> headerParams;
 	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
@@ -5206,9 +5307,9 @@ pplx::task<HttpContent> SlidesApi::downloadPresentation(utility::string_t name, 
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Html") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Swf") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Mpeg4") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Html") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Swf") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Mpeg4") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Pdf, Xps, Tiff, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Pot, Potx, Potm, Html, Html5, Swf, Svg, Jpeg, Png, Gif, Bmp, Fodp, Xaml, Mpeg4, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Pdf, Xps, Tiff, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Pot, Potx, Potm, Html, Html5, Swf, Svg, Jpeg, Png, Gif, Bmp, Fodp, Xaml, Mpeg4, Md, Xml, Emf.");
 	}
 	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/{format}");
 	ApiClient::setPathParameter(methodPath, "name", name);
@@ -5263,9 +5364,9 @@ pplx::task<HttpContent> SlidesApi::downloadShape(utility::string_t name, int32_t
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg, Emf.");
 	}
 	// validate the parameter 'bounds'
 	if (!bounds.empty() && !boost::iequals(bounds, "Slide") && !boost::iequals(bounds, "Shape") && !boost::iequals(bounds, "Appearance"))
@@ -5331,9 +5432,9 @@ pplx::task<HttpContent> SlidesApi::downloadShapeFromDto(utility::string_t format
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg, Emf.");
 	}
 	if (dto == nullptr)
 	{
@@ -5385,9 +5486,9 @@ pplx::task<HttpContent> SlidesApi::downloadShapeOnline(std::shared_ptr<HttpConte
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg, Emf.");
 	}
 	// validate the parameter 'bounds'
 	if (!bounds.empty() && !boost::iequals(bounds, "Slide") && !boost::iequals(bounds, "Shape") && !boost::iequals(bounds, "Appearance"))
@@ -5459,9 +5560,9 @@ pplx::task<HttpContent> SlidesApi::downloadSlide(utility::string_t name, int32_t
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml, Emf.");
 	}
 	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/{format}");
 	ApiClient::setPathParameter(methodPath, "name", name);
@@ -5523,9 +5624,9 @@ pplx::task<HttpContent> SlidesApi::downloadSlideOnline(std::shared_ptr<HttpConte
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml, Emf.");
 	}
 	utility::string_t methodPath = utility::conversions::to_string_t("/slides/slides/{slideIndex}/{format}");
 	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
@@ -5605,9 +5706,9 @@ pplx::task<HttpContent> SlidesApi::downloadSpecialSlideShape(utility::string_t n
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg, Emf.");
 	}
 	// validate the parameter 'bounds'
 	if (!bounds.empty() && !boost::iequals(bounds, "Slide") && !boost::iequals(bounds, "Shape") && !boost::iequals(bounds, "Appearance"))
@@ -5796,6 +5897,48 @@ pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::getBackground(utility::s
 			web::json::value json = web::json::value::parse(response);
 			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"SlideBackground", json);
 			return std::static_pointer_cast<SlideBackground>(instance);
+		});
+}
+
+pplx::task<std::shared_ptr<CaptionTracks>> SlidesApi::getCaptionTracks(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, boost::optional<bool> includeData, utility::string_t password, utility::string_t folder, utility::string_t storage)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+	ApiClient::setPathParameter(methodPath, "shapeIndex", shapeIndex);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	if (includeData.has_value())
+	{
+		ApiClient::setBoolQueryParameter(queryParams, utility::conversions::to_string_t("includeData"), includeData.value());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("GET"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "getCaptionTracks");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			utility::string_t response(responseVector.begin(), responseVector.end());
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"CaptionTracks", json);
+			return std::static_pointer_cast<CaptionTracks>(instance);
 		});
 }
 
@@ -7286,7 +7429,7 @@ pplx::task<std::shared_ptr<HeaderFooter>> SlidesApi::getSlideHeaderFooter(utilit
 		});
 }
 
-pplx::task<std::shared_ptr<Images>> SlidesApi::getSlideImages(utility::string_t name, int32_t slideIndex, utility::string_t password, utility::string_t folder, utility::string_t storage)
+pplx::task<std::shared_ptr<Images>> SlidesApi::getSlideImages(utility::string_t name, int32_t slideIndex, boost::optional<int32_t> shapeIndex, utility::string_t shapeAltText, utility::string_t password, utility::string_t folder, utility::string_t storage)
 {
 	// verify the required parameter 'name' is set
 	if (name.empty())
@@ -7298,6 +7441,11 @@ pplx::task<std::shared_ptr<Images>> SlidesApi::getSlideImages(utility::string_t 
 	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
 
 	std::map<utility::string_t, utility::string_t> queryParams;
+	if (shapeIndex.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("shapeIndex"), shapeIndex.value());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("shapeAltText"), shapeAltText);
 	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
 	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
 
@@ -8396,7 +8544,7 @@ pplx::task<std::shared_ptr<Shape>> SlidesApi::highlightShapeText(utility::string
 		});
 }
 
-pplx::task<std::shared_ptr<Document>> SlidesApi::importFromHtml(utility::string_t name, utility::string_t html, utility::string_t password, utility::string_t folder, utility::string_t storage)
+pplx::task<std::shared_ptr<Document>> SlidesApi::importFromHtml(utility::string_t name, utility::string_t html, utility::string_t password, utility::string_t folder, utility::string_t storage, boost::optional<int32_t> position, boost::optional<bool> useSlideWithIndexAsStart)
 {
 	// verify the required parameter 'name' is set
 	if (name.empty())
@@ -8409,6 +8557,14 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::importFromHtml(utility::string_
 	std::map<utility::string_t, utility::string_t> queryParams;
 	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
 	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+	if (position.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("position"), position.value());
+	}
+	if (useSlideWithIndexAsStart.has_value())
+	{
+		ApiClient::setBoolQueryParameter(queryParams, utility::conversions::to_string_t("useSlideWithIndexAsStart"), useSlideWithIndexAsStart.value());
+	}
 
 	std::map<utility::string_t, utility::string_t> headerParams;
 	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
@@ -9786,9 +9942,9 @@ pplx::task<void> SlidesApi::savePresentation(utility::string_t name, utility::st
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Html") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Swf") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Mpeg4") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Html") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Swf") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Mpeg4") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Pdf, Xps, Tiff, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Pot, Potx, Potm, Html, Html5, Swf, Svg, Jpeg, Png, Gif, Bmp, Fodp, Xaml, Mpeg4, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Pdf, Xps, Tiff, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Pot, Potx, Potm, Html, Html5, Swf, Svg, Jpeg, Png, Gif, Bmp, Fodp, Xaml, Mpeg4, Md, Xml, Emf.");
 	}
 	// verify the required parameter 'outPath' is set
 	if (outPath.empty())
@@ -9848,9 +10004,9 @@ pplx::task<void> SlidesApi::saveShape(utility::string_t name, int32_t slideIndex
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg, Emf.");
 	}
 	// verify the required parameter 'outPath' is set
 	if (outPath.empty())
@@ -9925,9 +10081,9 @@ pplx::task<void> SlidesApi::saveShapeOnline(std::shared_ptr<HttpContent> documen
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg, Emf.");
 	}
 	// verify the required parameter 'outPath' is set
 	if (outPath.empty())
@@ -10004,9 +10160,9 @@ pplx::task<void> SlidesApi::saveSlide(utility::string_t name, int32_t slideIndex
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml, Emf.");
 	}
 	// verify the required parameter 'outPath' is set
 	if (outPath.empty())
@@ -10073,9 +10229,9 @@ pplx::task<void> SlidesApi::saveSlideOnline(std::shared_ptr<HttpContent> documen
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml, Emf.");
 	}
 	// verify the required parameter 'outPath' is set
 	if (outPath.empty())
@@ -10160,9 +10316,9 @@ pplx::task<void> SlidesApi::saveSpecialSlideShape(utility::string_t name, int32_
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Svg, Emf.");
 	}
 	// verify the required parameter 'outPath' is set
 	if (outPath.empty())
@@ -10712,101 +10868,6 @@ pplx::task<std::shared_ptr<FontsData>> SlidesApi::setEmbeddedFont(utility::strin
 		});
 }
 
-pplx::task<std::shared_ptr<FontsData>> SlidesApi::setEmbeddedFontFromRequest(std::shared_ptr<HttpContent> font, utility::string_t name, boost::optional<bool> onlyUsed, utility::string_t password, utility::string_t folder, utility::string_t storage)
-{
-	if (font == nullptr)
-	{
-		throw std::invalid_argument("Missing required parameter: request.font");
-	}
-	// verify the required parameter 'name' is set
-	if (name.empty())
-	{
-		throw std::invalid_argument("Missing required parameter: name");
-	}
-	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/fonts/embedded");
-	ApiClient::setPathParameter(methodPath, "name", name);
-
-	std::map<utility::string_t, utility::string_t> queryParams;
-	if (onlyUsed.has_value())
-	{
-		ApiClient::setBoolQueryParameter(queryParams, utility::conversions::to_string_t("onlyUsed"), onlyUsed.value());
-	}
-	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
-	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
-
-	std::map<utility::string_t, utility::string_t> headerParams;
-	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
-
-	std::shared_ptr<IHttpBody> httpBody = nullptr;
-	std::vector<std::shared_ptr<HttpContent>> requestFiles;
-	if (font != nullptr)
-	{
-		requestFiles.push_back(font);
-	}
-
-	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("POST"), queryParams, headerParams, httpBody, requestFiles)
-		.then([=](web::http::http_response response)
-		{
-			m_ApiClient->assertResponseException(response, "setEmbeddedFontFromRequest");
-			return response.extract_vector();
-		})
-		.then([=](std::vector<unsigned char> responseVector)
-		{
-			utility::string_t response(responseVector.begin(), responseVector.end());
-			m_ApiClient->logString(response);
-			web::json::value json = web::json::value::parse(response);
-			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"FontsData", json);
-			return std::static_pointer_cast<FontsData>(instance);
-		});
-}
-
-pplx::task<HttpContent> SlidesApi::setEmbeddedFontFromRequestOnline(std::shared_ptr<HttpContent> document, std::shared_ptr<HttpContent> font, boost::optional<bool> onlyUsed, utility::string_t password)
-{
-	if (document == nullptr)
-	{
-		throw std::invalid_argument("Missing required parameter: request.document");
-	}
-	if (font == nullptr)
-	{
-		throw std::invalid_argument("Missing required parameter: request.font");
-	}
-	utility::string_t methodPath = utility::conversions::to_string_t("/slides/fonts/embedded");
-
-	std::map<utility::string_t, utility::string_t> queryParams;
-	if (onlyUsed.has_value())
-	{
-		ApiClient::setBoolQueryParameter(queryParams, utility::conversions::to_string_t("onlyUsed"), onlyUsed.value());
-	}
-
-	std::map<utility::string_t, utility::string_t> headerParams;
-	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
-
-	std::shared_ptr<IHttpBody> httpBody = nullptr;
-	std::vector<std::shared_ptr<HttpContent>> requestFiles;
-	if (document != nullptr)
-	{
-		requestFiles.push_back(document);
-	}
-	if (font != nullptr)
-	{
-		requestFiles.push_back(font);
-	}
-
-	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("POST"), queryParams, headerParams, httpBody, requestFiles)
-		.then([=](web::http::http_response response)
-		{
-			m_ApiClient->assertResponseException(response, "setEmbeddedFontFromRequestOnline");
-			return response.extract_vector();
-		})
-		.then([=](std::vector<unsigned char> responseVector)
-		{
-			HttpContent result;
-			std::shared_ptr<std::stringstream> stream = std::make_shared<std::stringstream>(std::string(responseVector.begin(), responseVector.end()));
-			result.setData(stream);
-			return result;
-		});
-}
-
 pplx::task<HttpContent> SlidesApi::setEmbeddedFontOnline(std::shared_ptr<HttpContent> document, utility::string_t fontName, boost::optional<bool> onlyUsed, utility::string_t password, utility::string_t fontsFolder)
 {
 	if (document == nullptr)
@@ -10842,6 +10903,89 @@ pplx::task<HttpContent> SlidesApi::setEmbeddedFontOnline(std::shared_ptr<HttpCon
 		.then([=](web::http::http_response response)
 		{
 			m_ApiClient->assertResponseException(response, "setEmbeddedFontOnline");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			HttpContent result;
+			std::shared_ptr<std::stringstream> stream = std::make_shared<std::stringstream>(std::string(responseVector.begin(), responseVector.end()));
+			result.setData(stream);
+			return result;
+		});
+}
+
+pplx::task<std::shared_ptr<FontsData>> SlidesApi::setEmbeddedFonts(utility::string_t name, std::vector<std::shared_ptr<HttpContent>> fonts, std::vector<utility::string_t> fontNames, boost::optional<bool> onlyUsed, utility::string_t password, utility::string_t folder, utility::string_t storage)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/fonts/embedded");
+	ApiClient::setPathParameter(methodPath, "name", name);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("fontNames"), fontNames);
+	if (onlyUsed.has_value())
+	{
+		ApiClient::setBoolQueryParameter(queryParams, utility::conversions::to_string_t("onlyUsed"), onlyUsed.value());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+	requestFiles.insert(requestFiles.end(), fonts.begin(), fonts.end());
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("POST"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "setEmbeddedFonts");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			utility::string_t response(responseVector.begin(), responseVector.end());
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"FontsData", json);
+			return std::static_pointer_cast<FontsData>(instance);
+		});
+}
+
+pplx::task<HttpContent> SlidesApi::setEmbeddedFontsOnline(std::shared_ptr<HttpContent> document, std::vector<std::shared_ptr<HttpContent>> fonts, std::vector<utility::string_t> fontNames, boost::optional<bool> onlyUsed, utility::string_t password)
+{
+	if (document == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.document");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/fonts/embedded");
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("fontNames"), fontNames);
+	if (onlyUsed.has_value())
+	{
+		ApiClient::setBoolQueryParameter(queryParams, utility::conversions::to_string_t("onlyUsed"), onlyUsed.value());
+	}
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+	if (document != nullptr)
+	{
+		requestFiles.push_back(document);
+	}
+	requestFiles.insert(requestFiles.end(), fonts.begin(), fonts.end());
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("POST"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "setEmbeddedFontsOnline");
 			return response.extract_vector();
 		})
 		.then([=](std::vector<unsigned char> responseVector)
@@ -11365,9 +11509,9 @@ pplx::task<std::shared_ptr<SplitDocumentResult>> SlidesApi::split(utility::strin
 		throw std::invalid_argument("Missing required parameter: name");
 	}
 	// validate the parameter 'format'
-	if (!format.empty() && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!format.empty() && !boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml, Emf.");
 	}
 	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/split");
 	ApiClient::setPathParameter(methodPath, "name", name);
@@ -11438,9 +11582,9 @@ pplx::task<std::shared_ptr<SplitDocumentResult>> SlidesApi::splitAndSaveOnline(s
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml, Emf.");
 	}
 	utility::string_t methodPath = utility::conversions::to_string_t("/slides/split/{format}");
 	ApiClient::setPathParameter(methodPath, "format", format);
@@ -11513,9 +11657,9 @@ pplx::task<HttpContent> SlidesApi::splitOnline(std::shared_ptr<HttpContent> docu
 		throw std::invalid_argument("Missing required parameter: format");
 	}
 	// validate the parameter 'format'
-	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml"))
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff") && !boost::iequals(format, "Html") && !boost::iequals(format, "Pdf") && !boost::iequals(format, "Xps") && !boost::iequals(format, "Pptx") && !boost::iequals(format, "Odp") && !boost::iequals(format, "Otp") && !boost::iequals(format, "Ppt") && !boost::iequals(format, "Pps") && !boost::iequals(format, "Ppsx") && !boost::iequals(format, "Pptm") && !boost::iequals(format, "Ppsm") && !boost::iequals(format, "Potx") && !boost::iequals(format, "Pot") && !boost::iequals(format, "Potm") && !boost::iequals(format, "Svg") && !boost::iequals(format, "Fodp") && !boost::iequals(format, "Xaml") && !boost::iequals(format, "Html5") && !boost::iequals(format, "Md") && !boost::iequals(format, "Xml") && !boost::iequals(format, "Emf"))
 	{
-		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml.");
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff, Html, Pdf, Xps, Pptx, Odp, Otp, Ppt, Pps, Ppsx, Pptm, Ppsm, Potx, Pot, Potm, Svg, Fodp, Xaml, Html5, Md, Xml, Emf.");
 	}
 	utility::string_t methodPath = utility::conversions::to_string_t("/slides/split/{format}");
 	ApiClient::setPathParameter(methodPath, "format", format);

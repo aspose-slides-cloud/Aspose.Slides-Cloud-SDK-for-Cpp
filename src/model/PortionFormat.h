@@ -212,6 +212,13 @@ public:
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getComplexScriptFont() const;
 	ASPOSE_DLL_EXPORT void setComplexScriptFont(utility::string_t value);
+	/// <summary>
+	/// true to enable spell checking for the portion.
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isSpellCheck() const;
+	ASPOSE_DLL_EXPORT void setSpellCheck(bool value);
+	ASPOSE_DLL_EXPORT bool spellCheckIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetSpellCheck();
 
 protected:
 	utility::string_t m_FontBold;
@@ -248,6 +255,8 @@ protected:
 	utility::string_t m_LatinFont;
 	utility::string_t m_EastAsianFont;
 	utility::string_t m_ComplexScriptFont;
+	bool m_SpellCheck;
+	bool m_SpellCheckIsSet;
 };
 
 }

@@ -37,6 +37,8 @@ PictureFill::PictureFill()
 	m_TileOffsetYIsSet = false;
 	m_TileScaleXIsSet = false;
 	m_TileScaleYIsSet = false;
+	m_DeletePictureCroppedAreasIsSet = false;
+	m_ResolutionIsSet = false;
 	setType(L"Picture");
 	setCropBottom(0.0);
 	setCropLeft(0.0);
@@ -243,6 +245,48 @@ void PictureFill::setSvgData(utility::string_t value)
 	
 }
 
+bool PictureFill::isDeletePictureCroppedAreas() const
+{
+	return m_DeletePictureCroppedAreas;
+}
+
+void PictureFill::setDeletePictureCroppedAreas(bool value)
+{
+	m_DeletePictureCroppedAreas = value;
+	m_DeletePictureCroppedAreasIsSet = true;
+}
+
+bool PictureFill::deletePictureCroppedAreasIsSet() const
+{
+	return m_DeletePictureCroppedAreasIsSet;
+}
+
+void PictureFill::unsetDeletePictureCroppedAreas()
+{
+	m_DeletePictureCroppedAreasIsSet = false;
+}
+
+double PictureFill::getResolution() const
+{
+	return m_Resolution;
+}
+
+void PictureFill::setResolution(double value)
+{
+	m_Resolution = value;
+	m_ResolutionIsSet = true;
+}
+
+bool PictureFill::resolutionIsSet() const
+{
+	return m_ResolutionIsSet;
+}
+
+void PictureFill::unsetResolution()
+{
+	m_ResolutionIsSet = false;
+}
+
 utility::string_t PictureFill::getPictureFillMode() const
 {
 	return m_PictureFillMode;
@@ -308,6 +352,14 @@ web::json::value PictureFill::toJson() const
 	if (!m_SvgData.empty())
 	{
 		val[utility::conversions::to_string_t("SvgData")] = ModelBase::toJson(m_SvgData);
+	}
+	if(m_DeletePictureCroppedAreasIsSet)
+	{
+		val[utility::conversions::to_string_t("DeletePictureCroppedAreas")] = ModelBase::toJson(m_DeletePictureCroppedAreas);
+	}
+	if(m_ResolutionIsSet)
+	{
+		val[utility::conversions::to_string_t("Resolution")] = ModelBase::toJson(m_Resolution);
 	}
 	if (!m_PictureFillMode.empty())
 	{
@@ -398,6 +450,16 @@ void PictureFill::fromJson(web::json::value& val)
 	if(jsonForSvgData != nullptr && !jsonForSvgData->is_null())
 	{
 		setSvgData(ModelBase::stringFromJson(*jsonForSvgData));
+	}
+	web::json::value* jsonForDeletePictureCroppedAreas = ModelBase::getField(val, "DeletePictureCroppedAreas");
+	if(jsonForDeletePictureCroppedAreas != nullptr && !jsonForDeletePictureCroppedAreas->is_null())
+	{
+		setDeletePictureCroppedAreas(ModelBase::boolFromJson(*jsonForDeletePictureCroppedAreas));
+	}
+	web::json::value* jsonForResolution = ModelBase::getField(val, "Resolution");
+	if(jsonForResolution != nullptr && !jsonForResolution->is_null() && jsonForResolution->is_number())
+	{
+		setResolution(ModelBase::doubleFromJson(*jsonForResolution));
 	}
 	web::json::value* jsonForPictureFillMode = ModelBase::getField(val, "PictureFillMode");
 	if(jsonForPictureFillMode != nullptr && !jsonForPictureFillMode->is_null())

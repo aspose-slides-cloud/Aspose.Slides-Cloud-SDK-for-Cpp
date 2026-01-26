@@ -157,6 +157,13 @@ public:
 	ASPOSE_DLL_EXPORT utility::string_t getKumimoji() const;
 	ASPOSE_DLL_EXPORT void setKumimoji(utility::string_t value);
 	/// <summary>
+	/// true to enable spell checking for the portion.
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isSpellCheck() const;
+	ASPOSE_DLL_EXPORT void setSpellCheck(bool value);
+	ASPOSE_DLL_EXPORT bool spellCheckIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetSpellCheck();
+	/// <summary>
 	/// Proving language ID.
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getLanguageId() const;
@@ -250,6 +257,8 @@ protected:
 	double m_KerningMinimalSize;
 	bool m_KerningMinimalSizeIsSet;
 	utility::string_t m_Kumimoji;
+	bool m_SpellCheck;
+	bool m_SpellCheckIsSet;
 	utility::string_t m_LanguageId;
 	utility::string_t m_AlternativeLanguageId;
 	utility::string_t m_IsHardUnderlineFill;

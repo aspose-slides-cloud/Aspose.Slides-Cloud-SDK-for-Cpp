@@ -52,7 +52,7 @@ TEST_F(ImageTest, imageGet) {
 	utility::string_t password = L"password";
 
 	std::shared_ptr<Images> presentationResult = utils->getSlidesApi()->getPresentationImages(fileName, password, folderName).get();
-	std::shared_ptr<Images> slideResult = utils->getSlidesApi()->getSlideImages(fileName, 1, password, folderName).get();
+	std::shared_ptr<Images> slideResult = utils->getSlidesApi()->getSlideImages(fileName, 1, boost::none, L"", password, folderName).get();
 	EXPECT_LT(slideResult->getList().size(), presentationResult->getList().size());
 }
 

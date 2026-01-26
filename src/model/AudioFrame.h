@@ -122,6 +122,13 @@ public:
 	ASPOSE_DLL_EXPORT utility::string_t getVolume() const;
 	ASPOSE_DLL_EXPORT void setVolume(utility::string_t value);
 	/// <summary>
+	/// Audio volume percent.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getVolumeValue() const;
+	ASPOSE_DLL_EXPORT void setVolumeValue(double value);
+	ASPOSE_DLL_EXPORT bool volumeValueIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetVolumeValue();
+	/// <summary>
 	/// Audio data encoded in base64.
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getBase64Data() const;
@@ -140,6 +147,34 @@ public:
 	ASPOSE_DLL_EXPORT void setRewindAudio(bool value);
 	ASPOSE_DLL_EXPORT bool rewindAudioIsSet() const;
 	ASPOSE_DLL_EXPORT void unsetRewindAudio();
+	/// <summary>
+	/// Time duration for the initial fade-in of the media in milliseconds.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getFadeInDuration() const;
+	ASPOSE_DLL_EXPORT void setFadeInDuration(double value);
+	ASPOSE_DLL_EXPORT bool fadeInDurationIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetFadeInDuration();
+	/// <summary>
+	/// Time duration for the ending fade-out of the media in milliseconds.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getFadeOutDuration() const;
+	ASPOSE_DLL_EXPORT void setFadeOutDuration(double value);
+	ASPOSE_DLL_EXPORT bool fadeOutDurationIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetFadeOutDuration();
+	/// <summary>
+	/// Time duration to be removed from the beginning of the media during playback in milliseconds.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getTrimFromStart() const;
+	ASPOSE_DLL_EXPORT void setTrimFromStart(double value);
+	ASPOSE_DLL_EXPORT bool trimFromStartIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetTrimFromStart();
+	/// <summary>
+	/// Time duration to be removed from the end of the media during playback in milliseconds.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getTrimFromEnd() const;
+	ASPOSE_DLL_EXPORT void setTrimFromEnd(double value);
+	ASPOSE_DLL_EXPORT bool trimFromEndIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetTrimFromEnd();
 	/// <summary>
 	/// Picture fill format.
 	/// </summary>
@@ -163,11 +198,21 @@ protected:
 	bool m_PlayLoopModeIsSet;
 	utility::string_t m_PlayMode;
 	utility::string_t m_Volume;
+	double m_VolumeValue;
+	bool m_VolumeValueIsSet;
 	utility::string_t m_Base64Data;
 	bool m_PlayAcrossSlides;
 	bool m_PlayAcrossSlidesIsSet;
 	bool m_RewindAudio;
 	bool m_RewindAudioIsSet;
+	double m_FadeInDuration;
+	bool m_FadeInDurationIsSet;
+	double m_FadeOutDuration;
+	bool m_FadeOutDurationIsSet;
+	double m_TrimFromStart;
+	bool m_TrimFromStartIsSet;
+	double m_TrimFromEnd;
+	bool m_TrimFromEndIsSet;
 	std::shared_ptr<PictureFill> m_PictureFillFormat;
 };
 

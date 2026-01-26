@@ -84,6 +84,13 @@ public:
 	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<FontSubstRule>> getFontSubstRules() const;
 	ASPOSE_DLL_EXPORT void setFontSubstRules(std::vector<std::shared_ptr<FontSubstRule>> value);
 	/// <summary>
+	/// True to skip hyperlinks with javascript calls when saving the presentation.
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isSkipJavaScriptLinks() const;
+	ASPOSE_DLL_EXPORT void setSkipJavaScriptLinks(bool value);
+	ASPOSE_DLL_EXPORT bool skipJavaScriptLinksIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetSkipJavaScriptLinks();
+	/// <summary>
 	/// 
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getFormat() const;
@@ -96,6 +103,8 @@ protected:
 	utility::string_t m_GradientStyle;
 	std::vector<std::shared_ptr<FontFallbackRule>> m_FontFallbackRules;
 	std::vector<std::shared_ptr<FontSubstRule>> m_FontSubstRules;
+	bool m_SkipJavaScriptLinks;
+	bool m_SkipJavaScriptLinksIsSet;
 	utility::string_t m_Format;
 };
 

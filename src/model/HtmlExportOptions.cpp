@@ -38,6 +38,7 @@ HtmlExportOptions::HtmlExportOptions()
 	m_SvgResponsiveLayoutIsSet = false;
 	m_JpegQualityIsSet = false;
 	m_DeletePicturesCroppedAreasIsSet = false;
+	m_DisableFontLigaturesIsSet = false;
 	setFormat(L"html");
 }
 
@@ -183,6 +184,27 @@ void HtmlExportOptions::setSlidesLayoutOptions(std::shared_ptr<SlidesLayoutOptio
 	
 }
 
+bool HtmlExportOptions::isDisableFontLigatures() const
+{
+	return m_DisableFontLigatures;
+}
+
+void HtmlExportOptions::setDisableFontLigatures(bool value)
+{
+	m_DisableFontLigatures = value;
+	m_DisableFontLigaturesIsSet = true;
+}
+
+bool HtmlExportOptions::disableFontLigaturesIsSet() const
+{
+	return m_DisableFontLigaturesIsSet;
+}
+
+void HtmlExportOptions::unsetDisableFontLigatures()
+{
+	m_DisableFontLigaturesIsSet = false;
+}
+
 web::json::value HtmlExportOptions::toJson() const
 {
 	web::json::value val = this->ExportOptions::toJson();
@@ -217,6 +239,10 @@ web::json::value HtmlExportOptions::toJson() const
 	if (m_SlidesLayoutOptions != nullptr)
 	{
 		val[utility::conversions::to_string_t("SlidesLayoutOptions")] = ModelBase::toJson(m_SlidesLayoutOptions);
+	}
+	if(m_DisableFontLigaturesIsSet)
+	{
+		val[utility::conversions::to_string_t("DisableFontLigatures")] = ModelBase::toJson(m_DisableFontLigatures);
 	}
 	return val;
 }
@@ -264,6 +290,11 @@ void HtmlExportOptions::fromJson(web::json::value& val)
 	{
 		std::shared_ptr<void> instanceForSlidesLayoutOptions = asposeslidescloud::api::ClassRegistry::deserialize(L"SlidesLayoutOptions", *jsonForSlidesLayoutOptions);
 		setSlidesLayoutOptions(std::static_pointer_cast<SlidesLayoutOptions>(instanceForSlidesLayoutOptions));
+	}
+	web::json::value* jsonForDisableFontLigatures = ModelBase::getField(val, "DisableFontLigatures");
+	if(jsonForDisableFontLigatures != nullptr && !jsonForDisableFontLigatures->is_null())
+	{
+		setDisableFontLigatures(ModelBase::boolFromJson(*jsonForDisableFontLigatures));
 	}
 }
 

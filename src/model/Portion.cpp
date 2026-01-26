@@ -38,6 +38,7 @@ Portion::Portion()
 	m_FontHeightIsSet = false;
 	m_SmartTagCleanIsSet = false;
 	m_KerningMinimalSizeIsSet = false;
+	m_SpellCheckIsSet = false;
 }
 
 Portion::~Portion()
@@ -281,6 +282,27 @@ void Portion::setKumimoji(utility::string_t value)
 	
 }
 
+bool Portion::isSpellCheck() const
+{
+	return m_SpellCheck;
+}
+
+void Portion::setSpellCheck(bool value)
+{
+	m_SpellCheck = value;
+	m_SpellCheckIsSet = true;
+}
+
+bool Portion::spellCheckIsSet() const
+{
+	return m_SpellCheckIsSet;
+}
+
+void Portion::unsetSpellCheck()
+{
+	m_SpellCheckIsSet = false;
+}
+
 utility::string_t Portion::getLanguageId() const
 {
 	return m_LanguageId;
@@ -506,6 +528,10 @@ web::json::value Portion::toJson() const
 	{
 		val[utility::conversions::to_string_t("Kumimoji")] = ModelBase::toJson(m_Kumimoji);
 	}
+	if(m_SpellCheckIsSet)
+	{
+		val[utility::conversions::to_string_t("SpellCheck")] = ModelBase::toJson(m_SpellCheck);
+	}
 	if (!m_LanguageId.empty())
 	{
 		val[utility::conversions::to_string_t("LanguageId")] = ModelBase::toJson(m_LanguageId);
@@ -653,6 +679,11 @@ void Portion::fromJson(web::json::value& val)
 	if(jsonForKumimoji != nullptr && !jsonForKumimoji->is_null())
 	{
 		setKumimoji(ModelBase::stringFromJson(*jsonForKumimoji));
+	}
+	web::json::value* jsonForSpellCheck = ModelBase::getField(val, "SpellCheck");
+	if(jsonForSpellCheck != nullptr && !jsonForSpellCheck->is_null())
+	{
+		setSpellCheck(ModelBase::boolFromJson(*jsonForSpellCheck));
 	}
 	web::json::value* jsonForLanguageId = ModelBase::getField(val, "LanguageId");
 	if(jsonForLanguageId != nullptr && !jsonForLanguageId->is_null())

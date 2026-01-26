@@ -36,6 +36,7 @@ Html5ExportOptions::Html5ExportOptions()
 	m_AnimateTransitionsIsSet = false;
 	m_AnimateShapesIsSet = false;
 	m_EmbedImagesIsSet = false;
+	m_DisableFontLigaturesIsSet = false;
 	setFormat(L"html5");
 }
 
@@ -106,14 +107,14 @@ void Html5ExportOptions::unsetEmbedImages()
 	m_EmbedImagesIsSet = false;
 }
 
-std::shared_ptr<NotesCommentsLayoutingOptions> Html5ExportOptions::getNotesCommentsLayouting() const
+std::shared_ptr<SlidesLayoutOptions> Html5ExportOptions::getSlidesLayoutOptions() const
 {
-	return m_NotesCommentsLayouting;
+	return m_SlidesLayoutOptions;
 }
 
-void Html5ExportOptions::setNotesCommentsLayouting(std::shared_ptr<NotesCommentsLayoutingOptions> value)
+void Html5ExportOptions::setSlidesLayoutOptions(std::shared_ptr<SlidesLayoutOptions> value)
 {
-	m_NotesCommentsLayouting = value;
+	m_SlidesLayoutOptions = value;
 	
 }
 
@@ -126,6 +127,27 @@ void Html5ExportOptions::setTemplatesPath(utility::string_t value)
 {
 	m_TemplatesPath = value;
 	
+}
+
+bool Html5ExportOptions::isDisableFontLigatures() const
+{
+	return m_DisableFontLigatures;
+}
+
+void Html5ExportOptions::setDisableFontLigatures(bool value)
+{
+	m_DisableFontLigatures = value;
+	m_DisableFontLigaturesIsSet = true;
+}
+
+bool Html5ExportOptions::disableFontLigaturesIsSet() const
+{
+	return m_DisableFontLigaturesIsSet;
+}
+
+void Html5ExportOptions::unsetDisableFontLigatures()
+{
+	m_DisableFontLigaturesIsSet = false;
 }
 
 web::json::value Html5ExportOptions::toJson() const
@@ -143,13 +165,17 @@ web::json::value Html5ExportOptions::toJson() const
 	{
 		val[utility::conversions::to_string_t("EmbedImages")] = ModelBase::toJson(m_EmbedImages);
 	}
-	if (m_NotesCommentsLayouting != nullptr)
+	if (m_SlidesLayoutOptions != nullptr)
 	{
-		val[utility::conversions::to_string_t("NotesCommentsLayouting")] = ModelBase::toJson(m_NotesCommentsLayouting);
+		val[utility::conversions::to_string_t("SlidesLayoutOptions")] = ModelBase::toJson(m_SlidesLayoutOptions);
 	}
 	if (!m_TemplatesPath.empty())
 	{
 		val[utility::conversions::to_string_t("TemplatesPath")] = ModelBase::toJson(m_TemplatesPath);
+	}
+	if(m_DisableFontLigaturesIsSet)
+	{
+		val[utility::conversions::to_string_t("DisableFontLigatures")] = ModelBase::toJson(m_DisableFontLigatures);
 	}
 	return val;
 }
@@ -172,16 +198,21 @@ void Html5ExportOptions::fromJson(web::json::value& val)
 	{
 		setEmbedImages(ModelBase::boolFromJson(*jsonForEmbedImages));
 	}
-	web::json::value* jsonForNotesCommentsLayouting = ModelBase::getField(val, "NotesCommentsLayouting");
-	if(jsonForNotesCommentsLayouting != nullptr && !jsonForNotesCommentsLayouting->is_null())
+	web::json::value* jsonForSlidesLayoutOptions = ModelBase::getField(val, "SlidesLayoutOptions");
+	if(jsonForSlidesLayoutOptions != nullptr && !jsonForSlidesLayoutOptions->is_null())
 	{
-		std::shared_ptr<void> instanceForNotesCommentsLayouting = asposeslidescloud::api::ClassRegistry::deserialize(L"NotesCommentsLayoutingOptions", *jsonForNotesCommentsLayouting);
-		setNotesCommentsLayouting(std::static_pointer_cast<NotesCommentsLayoutingOptions>(instanceForNotesCommentsLayouting));
+		std::shared_ptr<void> instanceForSlidesLayoutOptions = asposeslidescloud::api::ClassRegistry::deserialize(L"SlidesLayoutOptions", *jsonForSlidesLayoutOptions);
+		setSlidesLayoutOptions(std::static_pointer_cast<SlidesLayoutOptions>(instanceForSlidesLayoutOptions));
 	}
 	web::json::value* jsonForTemplatesPath = ModelBase::getField(val, "TemplatesPath");
 	if(jsonForTemplatesPath != nullptr && !jsonForTemplatesPath->is_null())
 	{
 		setTemplatesPath(ModelBase::stringFromJson(*jsonForTemplatesPath));
+	}
+	web::json::value* jsonForDisableFontLigatures = ModelBase::getField(val, "DisableFontLigatures");
+	if(jsonForDisableFontLigatures != nullptr && !jsonForDisableFontLigatures->is_null())
+	{
+		setDisableFontLigatures(ModelBase::boolFromJson(*jsonForDisableFontLigatures));
 	}
 }
 

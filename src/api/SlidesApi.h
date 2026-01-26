@@ -42,6 +42,8 @@
 
 #include "../model/ApiInfo.h"
 #include "../model/Axis.h"
+#include "../model/CaptionTrack.h"
+#include "../model/CaptionTracks.h"
 #include "../model/Chart.h"
 #include "../model/ChartCategory.h"
 #include "../model/ChartSeriesGroup.h"
@@ -206,6 +208,11 @@ public:
 	/// Add an animation effect to a slide interactive sequence.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<SlideAnimation>> createAnimationInteractiveSequenceEffect(utility::string_t name, int32_t slideIndex, int32_t sequenceIndex, std::shared_ptr<Effect> effect, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+
+	/// <summary>
+	/// Create video/audio captions track.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<CaptionTrack>> createCaptionTrack(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, utility::string_t label, utility::string_t data = L"", utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
 
 	/// <summary>
 	/// Add a new category to a chart.
@@ -393,6 +400,16 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<SlideBackground>> deleteBackground(utility::string_t name, int32_t slideIndex, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
 
 	/// <summary>
+	/// Delete video/audio captions track.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<void> deleteCaptionTrack(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t captionsIndex, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+
+	/// <summary>
+	/// Delete all video/audio captions tracks.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<void> deleteCaptionTracks(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+
+	/// <summary>
 	/// Delete a category from a chart.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> deleteChartCategory(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t categoryIndex, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
@@ -461,11 +478,6 @@ public:
 	/// Remove a range of paragraphs.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Paragraphs>> deleteParagraphs(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, std::vector<int32_t> paragraphs = std::vector<int32_t>(), utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t subShape = L"");
-
-	/// <summary>
-	/// Deletes cropped areas of a pictire.
-	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<void> deletePictureCroppedAreas(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
 
 	/// <summary>
 	/// Remove a portion.
@@ -650,7 +662,7 @@ public:
 	/// <summary>
 	/// Get image in specified format.
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadImage(utility::string_t name, int32_t index, utility::string_t format, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadImage(utility::string_t name, int32_t index, utility::string_t format, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", boost::optional<int32_t> quality = boost::none);
 
 	/// <summary>
 	/// Get image binary data.
@@ -665,12 +677,12 @@ public:
 	/// <summary>
 	/// Get image in specified format.
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadImageOnline(std::shared_ptr<HttpContent> document, int32_t index, utility::string_t format, utility::string_t password = L"");
+	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadImageOnline(std::shared_ptr<HttpContent> document, int32_t index, utility::string_t format, utility::string_t password = L"", boost::optional<int32_t> quality = boost::none);
 
 	/// <summary>
 	/// Get all presentation images in specified format.
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadImages(utility::string_t name, utility::string_t format, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadImages(utility::string_t name, utility::string_t format, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", boost::optional<int32_t> quality = boost::none);
 
 	/// <summary>
 	/// Get all presentation images.
@@ -685,7 +697,7 @@ public:
 	/// <summary>
 	/// Get all presentation images in specified format. 
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadImagesOnline(std::shared_ptr<HttpContent> document, utility::string_t format, utility::string_t password = L"");
+	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadImagesOnline(std::shared_ptr<HttpContent> document, utility::string_t format, utility::string_t password = L"", boost::optional<int32_t> quality = boost::none);
 
 	/// <summary>
 	/// Convert Mathematical Text to MathML Format
@@ -756,6 +768,11 @@ public:
 	/// Read slide background info.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<SlideBackground>> getBackground(utility::string_t name, int32_t slideIndex, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+
+	/// <summary>
+	/// Gets video/audio captions tracks.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<CaptionTracks>> getCaptionTracks(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, boost::optional<bool> includeData = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
 
 	/// <summary>
 	/// Read slide theme color scheme info.
@@ -960,7 +977,7 @@ public:
 	/// <summary>
 	/// Read slide images info.
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Images>> getSlideImages(utility::string_t name, int32_t slideIndex, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Images>> getSlideImages(utility::string_t name, int32_t slideIndex, boost::optional<int32_t> shapeIndex = boost::none, utility::string_t shapeAltText = L"", utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
 
 	/// <summary>
 	/// Read presentation slide properties.
@@ -1080,7 +1097,7 @@ public:
 	/// <summary>
 	/// Create presentation document from html.
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Document>> importFromHtml(utility::string_t name, utility::string_t html = L"", utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Document>> importFromHtml(utility::string_t name, utility::string_t html = L"", utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", boost::optional<int32_t> position = boost::none, boost::optional<bool> useSlideWithIndexAsStart = boost::none);
 
 	/// <summary>
 	/// Create presentation document from pdf or append pdf to an existing presentation.
@@ -1308,19 +1325,19 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<FontsData>> setEmbeddedFont(utility::string_t name, utility::string_t fontName, boost::optional<bool> onlyUsed = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"");
 
 	/// <summary>
-	/// Embeds font from request and returns presentation fonts info.
+	/// Embeds specified font and returns presentation.
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<FontsData>> setEmbeddedFontFromRequest(std::shared_ptr<HttpContent> font, utility::string_t name, boost::optional<bool> onlyUsed = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+	ASPOSE_DLL_EXPORT pplx::task<HttpContent> setEmbeddedFontOnline(std::shared_ptr<HttpContent> document, utility::string_t fontName, boost::optional<bool> onlyUsed = boost::none, utility::string_t password = L"", utility::string_t fontsFolder = L"");
+
+	/// <summary>
+	/// Embeds fonts with specified names and/or fonts from request and returns presentation fonts info.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<FontsData>> setEmbeddedFonts(utility::string_t name, std::vector<std::shared_ptr<HttpContent>> fonts = std::vector<std::shared_ptr<HttpContent>>(), std::vector<utility::string_t> fontNames = std::vector<utility::string_t>(), boost::optional<bool> onlyUsed = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
 
 	/// <summary>
 	/// Embeds font from request and returns presentation.
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<HttpContent> setEmbeddedFontFromRequestOnline(std::shared_ptr<HttpContent> document, std::shared_ptr<HttpContent> font, boost::optional<bool> onlyUsed = boost::none, utility::string_t password = L"");
-
-	/// <summary>
-	/// Embeds specified font and returns presentation.
-	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<HttpContent> setEmbeddedFontOnline(std::shared_ptr<HttpContent> document, utility::string_t fontName, boost::optional<bool> onlyUsed = boost::none, utility::string_t password = L"", utility::string_t fontsFolder = L"");
+	ASPOSE_DLL_EXPORT pplx::task<HttpContent> setEmbeddedFontsOnline(std::shared_ptr<HttpContent> document, std::vector<std::shared_ptr<HttpContent>> fonts = std::vector<std::shared_ptr<HttpContent>>(), std::vector<utility::string_t> fontNames = std::vector<utility::string_t>(), boost::optional<bool> onlyUsed = boost::none, utility::string_t password = L"");
 
 	/// <summary>
 	/// Set header/footer the notes slide.

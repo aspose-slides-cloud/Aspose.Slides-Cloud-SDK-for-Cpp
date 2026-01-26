@@ -230,11 +230,29 @@ void ApiClient::setQueryParameter(
 void ApiClient::setQueryParameter(
 	std::map<utility::string_t, utility::string_t>& queryParams, utility::string_t name, std::vector<int32_t> value)
 {
-	std::ostringstream oss;
 	if (!value.empty())
 	{
+		std::ostringstream oss;
 		std::copy(value.begin(), value.end() - 1, std::ostream_iterator<int>(oss, ","));
 		oss << value.back();
+		queryParams[name] = utility::conversions::to_string_t(oss.str());
+	}
+}
+
+void ApiClient::setQueryParameter(
+	std::map<utility::string_t, utility::string_t>& queryParams, utility::string_t name, std::vector<utility::string_t> value)
+{
+	if (!value.empty())
+	{
+		utility::ostringstream_t oss;
+		for (size_t i = 0; i < value.size(); ++i)
+		{
+			if (i > 0)
+			{
+				oss << L",";
+			}
+			oss << value[i];
+		}
 		queryParams[name] = utility::conversions::to_string_t(oss.str());
 	}
 }

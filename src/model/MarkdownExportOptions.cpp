@@ -36,6 +36,7 @@ MarkdownExportOptions::MarkdownExportOptions()
 	m_ShowSlideNumberIsSet = false;
 	m_ShowCommentsIsSet = false;
 	m_ShowHiddenSlidesIsSet = false;
+	m_RemoveEmptyLinesIsSet = false;
 	setFormat(L"md");
 }
 
@@ -150,6 +151,49 @@ void MarkdownExportOptions::unsetShowHiddenSlides()
 	m_ShowHiddenSlidesIsSet = false;
 }
 
+bool MarkdownExportOptions::isRemoveEmptyLines() const
+{
+	return m_RemoveEmptyLines;
+}
+
+void MarkdownExportOptions::setRemoveEmptyLines(bool value)
+{
+	m_RemoveEmptyLines = value;
+	m_RemoveEmptyLinesIsSet = true;
+}
+
+bool MarkdownExportOptions::removeEmptyLinesIsSet() const
+{
+	return m_RemoveEmptyLinesIsSet;
+}
+
+void MarkdownExportOptions::unsetRemoveEmptyLines()
+{
+	m_RemoveEmptyLinesIsSet = false;
+}
+
+utility::string_t MarkdownExportOptions::getHandleRepeatedSpaces() const
+{
+	return m_HandleRepeatedSpaces;
+}
+
+void MarkdownExportOptions::setHandleRepeatedSpaces(utility::string_t value)
+{
+	m_HandleRepeatedSpaces = value;
+	
+}
+
+utility::string_t MarkdownExportOptions::getSlideNumberFormat() const
+{
+	return m_SlideNumberFormat;
+}
+
+void MarkdownExportOptions::setSlideNumberFormat(utility::string_t value)
+{
+	m_SlideNumberFormat = value;
+	
+}
+
 web::json::value MarkdownExportOptions::toJson() const
 {
 	web::json::value val = this->ExportOptions::toJson();
@@ -180,6 +224,18 @@ web::json::value MarkdownExportOptions::toJson() const
 	if(m_ShowHiddenSlidesIsSet)
 	{
 		val[utility::conversions::to_string_t("ShowHiddenSlides")] = ModelBase::toJson(m_ShowHiddenSlides);
+	}
+	if(m_RemoveEmptyLinesIsSet)
+	{
+		val[utility::conversions::to_string_t("RemoveEmptyLines")] = ModelBase::toJson(m_RemoveEmptyLines);
+	}
+	if (!m_HandleRepeatedSpaces.empty())
+	{
+		val[utility::conversions::to_string_t("HandleRepeatedSpaces")] = ModelBase::toJson(m_HandleRepeatedSpaces);
+	}
+	if (!m_SlideNumberFormat.empty())
+	{
+		val[utility::conversions::to_string_t("SlideNumberFormat")] = ModelBase::toJson(m_SlideNumberFormat);
 	}
 	return val;
 }
@@ -221,6 +277,21 @@ void MarkdownExportOptions::fromJson(web::json::value& val)
 	if(jsonForShowHiddenSlides != nullptr && !jsonForShowHiddenSlides->is_null())
 	{
 		setShowHiddenSlides(ModelBase::boolFromJson(*jsonForShowHiddenSlides));
+	}
+	web::json::value* jsonForRemoveEmptyLines = ModelBase::getField(val, "RemoveEmptyLines");
+	if(jsonForRemoveEmptyLines != nullptr && !jsonForRemoveEmptyLines->is_null())
+	{
+		setRemoveEmptyLines(ModelBase::boolFromJson(*jsonForRemoveEmptyLines));
+	}
+	web::json::value* jsonForHandleRepeatedSpaces = ModelBase::getField(val, "HandleRepeatedSpaces");
+	if(jsonForHandleRepeatedSpaces != nullptr && !jsonForHandleRepeatedSpaces->is_null())
+	{
+		setHandleRepeatedSpaces(ModelBase::stringFromJson(*jsonForHandleRepeatedSpaces));
+	}
+	web::json::value* jsonForSlideNumberFormat = ModelBase::getField(val, "SlideNumberFormat");
+	if(jsonForSlideNumberFormat != nullptr && !jsonForSlideNumberFormat->is_null())
+	{
+		setSlideNumberFormat(ModelBase::stringFromJson(*jsonForSlideNumberFormat));
 	}
 }
 

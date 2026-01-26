@@ -130,6 +130,13 @@ public:
 	ASPOSE_DLL_EXPORT void setUseFrameRotation(bool value);
 	ASPOSE_DLL_EXPORT bool useFrameRotationIsSet() const;
 	ASPOSE_DLL_EXPORT void unsetUseFrameRotation();
+	/// <summary>
+	/// true to disable ligatures in the rendered output.
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isDisableFontLigatures() const;
+	ASPOSE_DLL_EXPORT void setDisableFontLigatures(bool value);
+	ASPOSE_DLL_EXPORT bool disableFontLigaturesIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetDisableFontLigatures();
 
 protected:
 	bool m_VectorizeText;
@@ -152,6 +159,8 @@ protected:
 	bool m_UseFrameSizeIsSet;
 	bool m_UseFrameRotation;
 	bool m_UseFrameRotationIsSet;
+	bool m_DisableFontLigatures;
+	bool m_DisableFontLigaturesIsSet;
 };
 
 }

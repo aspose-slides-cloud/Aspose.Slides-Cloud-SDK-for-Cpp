@@ -191,6 +191,13 @@ public:
 	ASPOSE_DLL_EXPORT void setSpokes(int32_t value);
 	ASPOSE_DLL_EXPORT bool spokesIsSet() const;
 	ASPOSE_DLL_EXPORT void unsetSpokes();
+	/// <summary>
+	/// The duration of the slide transition effect in milliseconds. If not set, the duration is determined automatically based on Speed and Type values.
+	/// </summary>
+	ASPOSE_DLL_EXPORT int32_t getDuration() const;
+	ASPOSE_DLL_EXPORT void setDuration(int32_t value);
+	ASPOSE_DLL_EXPORT bool durationIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetDuration();
 
 protected:
 	utility::string_t m_Type;
@@ -226,6 +233,8 @@ protected:
 	utility::string_t m_Orientation;
 	int32_t m_Spokes;
 	bool m_SpokesIsSet;
+	int32_t m_Duration;
+	bool m_DurationIsSet;
 };
 
 }

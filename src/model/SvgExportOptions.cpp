@@ -42,6 +42,7 @@ SvgExportOptions::SvgExportOptions()
 	m_DeletePicturesCroppedAreasIsSet = false;
 	m_UseFrameSizeIsSet = false;
 	m_UseFrameRotationIsSet = false;
+	m_DisableFontLigaturesIsSet = false;
 	setFormat(L"svg");
 }
 
@@ -260,6 +261,27 @@ void SvgExportOptions::unsetUseFrameRotation()
 	m_UseFrameRotationIsSet = false;
 }
 
+bool SvgExportOptions::isDisableFontLigatures() const
+{
+	return m_DisableFontLigatures;
+}
+
+void SvgExportOptions::setDisableFontLigatures(bool value)
+{
+	m_DisableFontLigatures = value;
+	m_DisableFontLigaturesIsSet = true;
+}
+
+bool SvgExportOptions::disableFontLigaturesIsSet() const
+{
+	return m_DisableFontLigaturesIsSet;
+}
+
+void SvgExportOptions::unsetDisableFontLigatures()
+{
+	m_DisableFontLigaturesIsSet = false;
+}
+
 web::json::value SvgExportOptions::toJson() const
 {
 	web::json::value val = this->ExportOptions::toJson();
@@ -306,6 +328,10 @@ web::json::value SvgExportOptions::toJson() const
 	if(m_UseFrameRotationIsSet)
 	{
 		val[utility::conversions::to_string_t("UseFrameRotation")] = ModelBase::toJson(m_UseFrameRotation);
+	}
+	if(m_DisableFontLigaturesIsSet)
+	{
+		val[utility::conversions::to_string_t("DisableFontLigatures")] = ModelBase::toJson(m_DisableFontLigatures);
 	}
 	return val;
 }
@@ -367,6 +393,11 @@ void SvgExportOptions::fromJson(web::json::value& val)
 	if(jsonForUseFrameRotation != nullptr && !jsonForUseFrameRotation->is_null())
 	{
 		setUseFrameRotation(ModelBase::boolFromJson(*jsonForUseFrameRotation));
+	}
+	web::json::value* jsonForDisableFontLigatures = ModelBase::getField(val, "DisableFontLigatures");
+	if(jsonForDisableFontLigatures != nullptr && !jsonForDisableFontLigatures->is_null())
+	{
+		setDisableFontLigatures(ModelBase::boolFromJson(*jsonForDisableFontLigatures));
 	}
 }
 

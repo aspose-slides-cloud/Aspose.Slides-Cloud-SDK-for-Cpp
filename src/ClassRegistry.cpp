@@ -58,6 +58,8 @@
 #include "model/BubbleChartDataPoint.h"
 #include "model/BubbleSeries.h"
 #include "model/Camera.h"
+#include "model/CaptionTrack.h"
+#include "model/CaptionTracks.h"
 #include "model/Chart.h"
 #include "model/ChartCategory.h"
 #include "model/ChartLinesFormat.h"
@@ -182,6 +184,7 @@
 #include "model/PatternFill.h"
 #include "model/PdfExportOptions.h"
 #include "model/PdfImportOptions.h"
+#include "model/PhantomElement.h"
 #include "model/PictureFill.h"
 #include "model/PictureFrame.h"
 #include "model/Pipeline.h"
@@ -553,6 +556,18 @@ std::shared_ptr<void> ClassRegistry::deserializeSubclass(utility::string_t class
 	if (className == L"Camera")
 	{
 		std::shared_ptr<Camera> result(new Camera());
+		result->fromJson(json);
+		return result;
+	}
+	if (className == L"CaptionTrack")
+	{
+		std::shared_ptr<CaptionTrack> result(new CaptionTrack());
+		result->fromJson(json);
+		return result;
+	}
+	if (className == L"CaptionTracks")
+	{
+		std::shared_ptr<CaptionTracks> result(new CaptionTracks());
 		result->fromJson(json);
 		return result;
 	}
@@ -1300,6 +1315,12 @@ std::shared_ptr<void> ClassRegistry::deserializeSubclass(utility::string_t class
 		result->fromJson(json);
 		return result;
 	}
+	if (className == L"PhantomElement")
+	{
+		std::shared_ptr<PhantomElement> result(new PhantomElement());
+		result->fromJson(json);
+		return result;
+	}
 	if (className == L"PictureFill")
 	{
 		std::shared_ptr<PictureFill> result(new PictureFill());
@@ -1959,6 +1980,8 @@ std::map<utility::string_t, utility::string_t> ClassRegistry::s_hierarchy =
 	{ L"BoxElement", L"MathElement" },
 	{ L"BubbleChartDataPoint", L"ScatterChartDataPoint" },
 	{ L"BubbleSeries", L"XYSeries" },
+	{ L"CaptionTrack", L"ResourceBase" },
+	{ L"CaptionTracks", L"ResourceBase" },
 	{ L"Chart", L"ShapeBase" },
 	{ L"ClosePathSegment", L"PathSegment" },
 	{ L"ColorChangeEffect", L"ImageTransformEffect" },
@@ -2022,6 +2045,7 @@ std::map<utility::string_t, utility::string_t> ClassRegistry::s_hierarchy =
 	{ L"PathOutputFile", L"OutputFile" },
 	{ L"PatternFill", L"FillFormat" },
 	{ L"PdfExportOptions", L"ExportOptions" },
+	{ L"PhantomElement", L"MathElement" },
 	{ L"PictureFill", L"FillFormat" },
 	{ L"PictureFrame", L"GeometryShape" },
 	{ L"Placeholder", L"ResourceBase" },
@@ -2126,6 +2150,8 @@ std::map<utility::string_t, std::map<utility::string_t, utility::string_t>> Clas
 	{ L"BubbleChartDataPoint", { { L"Type", L"Bubble" }, } },
 	{ L"BubbleSeries", { { L"DataPointType", L"Bubble" }, } },
 	{ L"Camera", { } },
+	{ L"CaptionTrack", { } },
+	{ L"CaptionTracks", { } },
 	{ L"Chart", { { L"Type", L"Chart" }, } },
 	{ L"ChartCategory", { } },
 	{ L"ChartLinesFormat", { } },
@@ -2250,6 +2276,7 @@ std::map<utility::string_t, std::map<utility::string_t, utility::string_t>> Clas
 	{ L"PatternFill", { { L"Type", L"Pattern" }, } },
 	{ L"PdfExportOptions", { { L"Format", L"pdf" }, } },
 	{ L"PdfImportOptions", { } },
+	{ L"PhantomElement", { { L"Type", L"Phantom" }, } },
 	{ L"PictureFill", { { L"Type", L"Picture" }, } },
 	{ L"PictureFrame", { { L"Type", L"PictureFrame" }, } },
 	{ L"Pipeline", { } },

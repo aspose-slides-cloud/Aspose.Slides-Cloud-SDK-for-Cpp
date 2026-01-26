@@ -136,6 +136,20 @@ public:
 	ASPOSE_DLL_EXPORT utility::string_t getSvgData() const;
 	ASPOSE_DLL_EXPORT void setSvgData(utility::string_t value);
 	/// <summary>
+	/// true to delete picture cropped areas on save.
+	/// </summary>
+	ASPOSE_DLL_EXPORT bool isDeletePictureCroppedAreas() const;
+	ASPOSE_DLL_EXPORT void setDeletePictureCroppedAreas(bool value);
+	ASPOSE_DLL_EXPORT bool deletePictureCroppedAreasIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetDeletePictureCroppedAreas();
+	/// <summary>
+	/// true to compress the picture image with the specified resolution (in dpi) on save.
+	/// </summary>
+	ASPOSE_DLL_EXPORT double getResolution() const;
+	ASPOSE_DLL_EXPORT void setResolution(double value);
+	ASPOSE_DLL_EXPORT bool resolutionIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetResolution();
+	/// <summary>
 	/// Fill mode.
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getPictureFillMode() const;
@@ -165,6 +179,10 @@ protected:
 	std::shared_ptr<ResourceUri> m_Image;
 	utility::string_t m_Base64Data;
 	utility::string_t m_SvgData;
+	bool m_DeletePictureCroppedAreas;
+	bool m_DeletePictureCroppedAreasIsSet;
+	double m_Resolution;
+	bool m_ResolutionIsSet;
 	utility::string_t m_PictureFillMode;
 	std::vector<std::shared_ptr<ImageTransformEffect>> m_ImageTransformList;
 };

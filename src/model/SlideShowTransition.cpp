@@ -42,6 +42,7 @@ SlideShowTransition::SlideShowTransition()
 	m_FromBlackIsSet = false;
 	m_ThroughBlackIsSet = false;
 	m_SpokesIsSet = false;
+	m_DurationIsSet = false;
 }
 
 SlideShowTransition::~SlideShowTransition()
@@ -402,6 +403,27 @@ void SlideShowTransition::unsetSpokes()
 	m_SpokesIsSet = false;
 }
 
+int32_t SlideShowTransition::getDuration() const
+{
+	return m_Duration;
+}
+
+void SlideShowTransition::setDuration(int32_t value)
+{
+	m_Duration = value;
+	m_DurationIsSet = true;
+}
+
+bool SlideShowTransition::durationIsSet() const
+{
+	return m_DurationIsSet;
+}
+
+void SlideShowTransition::unsetDuration()
+{
+	m_DurationIsSet = false;
+}
+
 web::json::value SlideShowTransition::toJson() const
 {
 	web::json::value val = web::json::value::object();
@@ -500,6 +522,10 @@ web::json::value SlideShowTransition::toJson() const
 	if(m_SpokesIsSet)
 	{
 		val[utility::conversions::to_string_t("Spokes")] = ModelBase::toJson(m_Spokes);
+	}
+	if(m_DurationIsSet)
+	{
+		val[utility::conversions::to_string_t("Duration")] = ModelBase::toJson(m_Duration);
 	}
 	return val;
 }
@@ -625,6 +651,11 @@ void SlideShowTransition::fromJson(web::json::value& val)
 	if(jsonForSpokes != nullptr && !jsonForSpokes->is_null() && jsonForSpokes->is_number())
 	{
 		setSpokes(ModelBase::int32_tFromJson(*jsonForSpokes));
+	}
+	web::json::value* jsonForDuration = ModelBase::getField(val, "Duration");
+	if(jsonForDuration != nullptr && !jsonForDuration->is_null() && jsonForDuration->is_number())
+	{
+		setDuration(ModelBase::int32_tFromJson(*jsonForDuration));
 	}
 }
 

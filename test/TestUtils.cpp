@@ -114,6 +114,11 @@ void TestUtils::initialize(std::string functionName, std::string parameterName, 
 	initialize(functionName, parameterName, parameterType, L"");
 }
 
+void TestUtils::initialize(std::string functionName, std::string parameterName, std::string parameterType, std::vector<utility::string_t> parameterValue)
+{
+	initialize(functionName, parameterName, parameterType, L"");
+}
+
 void TestUtils::initialize(std::string functionName, std::string parameterName, std::string parameterType, std::vector<std::shared_ptr<HttpContent>> parameterValue)
 {
 	initialize(functionName, parameterName, parameterType, L"");
@@ -233,6 +238,21 @@ std::vector<int32_t> TestUtils::getIntVectorTestValue(std::string functionName, 
 		for (auto el = jsonArray.cbegin(); el != jsonArray.cend(); ++el)
 		{
 			value.push_back(el->as_integer());
+		}
+	}
+	return value;
+}
+
+std::vector<utility::string_t> TestUtils::getStringVectorTestValue(std::string functionName, std::string parameterName, std::string parameterType)
+{
+	std::vector<utility::string_t> value;
+	web::json::value* jsonValue = getTestJsonValue(functionName, parameterName, parameterType);
+	if (jsonValue != nullptr && jsonValue->is_array())
+	{
+		web::json::array jsonArray = jsonValue->as_array();
+		for (auto el = jsonArray.cbegin(); el != jsonArray.cend(); ++el)
+		{
+			value.push_back(el->as_string());
 		}
 	}
 	return value;
@@ -372,6 +392,25 @@ std::vector<int32_t> TestUtils::getInvalidIntVectorTestValue(std::string functio
 	return value;
 }
 
+std::vector<utility::string_t> TestUtils::getInvalidStringVectorTestValue(std::string functionName, std::string parameterName, std::string parameterType, std::vector<utility::string_t> value)
+{
+	web::json::value* jsonValue = getInvalidTestValue(functionName, parameterName, parameterType);
+	if (jsonValue != nullptr)
+	{
+		std::vector<utility::string_t> ivalue;
+		if (jsonValue->is_array())
+		{
+			web::json::array jsonArray = jsonValue->as_array();
+			for (auto el = jsonArray.cbegin(); el != jsonArray.cend(); ++el)
+			{
+				ivalue.push_back(el->as_string());
+			}
+		}
+		return ivalue;
+	}
+	return value;
+}
+
 boost::optional<double> TestUtils::getInvalidDoubleTestValue(std::string functionName, std::string parameterName, std::string parameterType, boost::optional<double> value)
 {
 	web::json::value* ivalueJson = getInvalidTestValue(functionName, parameterName, parameterType);
@@ -459,6 +498,11 @@ utility::string_t TestUtils::getExpectedMessage(std::string functionName, std::s
 }
 
 utility::string_t TestUtils::getExpectedMessage(std::string functionName, std::string parameterName, std::string parameterType, std::vector<int32_t> value)
+{
+	return getExpectedMessage(functionName, parameterName, parameterType, L"");
+}
+
+utility::string_t TestUtils::getExpectedMessage(std::string functionName, std::string parameterName, std::string parameterType, std::vector<utility::string_t> value)
 {
 	return getExpectedMessage(functionName, parameterName, parameterType, L"");
 }

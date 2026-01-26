@@ -33,6 +33,7 @@ namespace model {
 
 PptxExportOptions::PptxExportOptions()
 {
+	m_RefreshThumbnailIsSet = false;
 	setFormat(L"pptx");
 }
 
@@ -62,6 +63,27 @@ void PptxExportOptions::setZip64Mode(utility::string_t value)
 	
 }
 
+bool PptxExportOptions::isRefreshThumbnail() const
+{
+	return m_RefreshThumbnail;
+}
+
+void PptxExportOptions::setRefreshThumbnail(bool value)
+{
+	m_RefreshThumbnail = value;
+	m_RefreshThumbnailIsSet = true;
+}
+
+bool PptxExportOptions::refreshThumbnailIsSet() const
+{
+	return m_RefreshThumbnailIsSet;
+}
+
+void PptxExportOptions::unsetRefreshThumbnail()
+{
+	m_RefreshThumbnailIsSet = false;
+}
+
 web::json::value PptxExportOptions::toJson() const
 {
 	web::json::value val = this->ExportOptions::toJson();
@@ -72,6 +94,10 @@ web::json::value PptxExportOptions::toJson() const
 	if (!m_Zip64Mode.empty())
 	{
 		val[utility::conversions::to_string_t("Zip64Mode")] = ModelBase::toJson(m_Zip64Mode);
+	}
+	if(m_RefreshThumbnailIsSet)
+	{
+		val[utility::conversions::to_string_t("RefreshThumbnail")] = ModelBase::toJson(m_RefreshThumbnail);
 	}
 	return val;
 }
@@ -88,6 +114,11 @@ void PptxExportOptions::fromJson(web::json::value& val)
 	if(jsonForZip64Mode != nullptr && !jsonForZip64Mode->is_null())
 	{
 		setZip64Mode(ModelBase::stringFromJson(*jsonForZip64Mode));
+	}
+	web::json::value* jsonForRefreshThumbnail = ModelBase::getField(val, "RefreshThumbnail");
+	if(jsonForRefreshThumbnail != nullptr && !jsonForRefreshThumbnail->is_null())
+	{
+		setRefreshThumbnail(ModelBase::boolFromJson(*jsonForRefreshThumbnail));
 	}
 }
 

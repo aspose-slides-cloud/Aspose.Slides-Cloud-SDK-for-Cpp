@@ -61,6 +61,8 @@ public:
 	static void setQueryParameter(
 		std::map<utility::string_t, utility::string_t>& queryParams, utility::string_t name, std::vector<int32_t> value);
 	static void setQueryParameter(
+		std::map<utility::string_t, utility::string_t>& queryParams, utility::string_t name, std::vector<utility::string_t> value);
+	static void setQueryParameter(
 		std::map<utility::string_t, utility::string_t>& queryParams, utility::string_t name, int32_t value);
 	static void setQueryParameter(
 		std::map<utility::string_t, utility::string_t>& queryParams, utility::string_t name, double value);

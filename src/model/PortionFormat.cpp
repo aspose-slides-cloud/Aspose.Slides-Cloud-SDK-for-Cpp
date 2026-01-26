@@ -38,6 +38,7 @@ PortionFormat::PortionFormat()
 	m_FontHeightIsSet = false;
 	m_SmartTagCleanIsSet = false;
 	m_KerningMinimalSizeIsSet = false;
+	m_SpellCheckIsSet = false;
 }
 
 PortionFormat::~PortionFormat()
@@ -413,6 +414,27 @@ void PortionFormat::setComplexScriptFont(utility::string_t value)
 	
 }
 
+bool PortionFormat::isSpellCheck() const
+{
+	return m_SpellCheck;
+}
+
+void PortionFormat::setSpellCheck(bool value)
+{
+	m_SpellCheck = value;
+	m_SpellCheckIsSet = true;
+}
+
+bool PortionFormat::spellCheckIsSet() const
+{
+	return m_SpellCheckIsSet;
+}
+
+void PortionFormat::unsetSpellCheck()
+{
+	m_SpellCheckIsSet = false;
+}
+
 web::json::value PortionFormat::toJson() const
 {
 	web::json::value val = web::json::value::object();
@@ -531,6 +553,10 @@ web::json::value PortionFormat::toJson() const
 	if (!m_ComplexScriptFont.empty())
 	{
 		val[utility::conversions::to_string_t("ComplexScriptFont")] = ModelBase::toJson(m_ComplexScriptFont);
+	}
+	if(m_SpellCheckIsSet)
+	{
+		val[utility::conversions::to_string_t("SpellCheck")] = ModelBase::toJson(m_SpellCheck);
 	}
 	return val;
 }
@@ -688,6 +714,11 @@ void PortionFormat::fromJson(web::json::value& val)
 	if(jsonForComplexScriptFont != nullptr && !jsonForComplexScriptFont->is_null())
 	{
 		setComplexScriptFont(ModelBase::stringFromJson(*jsonForComplexScriptFont));
+	}
+	web::json::value* jsonForSpellCheck = ModelBase::getField(val, "SpellCheck");
+	if(jsonForSpellCheck != nullptr && !jsonForSpellCheck->is_null())
+	{
+		setSpellCheck(ModelBase::boolFromJson(*jsonForSpellCheck));
 	}
 }
 
