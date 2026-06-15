@@ -9294,13 +9294,14 @@ TEST_F(SlidesApiTest, createShape) {
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
 	utility::string_t paramStorage = utils->getTestValue("createShape", "storage", "utility::string_t");
 	utility::string_t paramSubShape = utils->getTestValue("createShape", "subShape", "utility::string_t");
 	utils->initialize("createShape", "", "");
-	std::shared_ptr<ShapeBase> result = utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).get();
+	std::shared_ptr<ShapeBase> result = utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).get();
 	EXPECT_NE(nullptr, result);
 }
 
@@ -9309,6 +9310,7 @@ TEST_F(SlidesApiTest, createShapeInvalidName) {
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
@@ -9320,7 +9322,7 @@ TEST_F(SlidesApiTest, createShapeInvalidName) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -9353,6 +9355,7 @@ TEST_F(SlidesApiTest, createShapeInvalidSlideIndex) {
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
@@ -9364,7 +9367,7 @@ TEST_F(SlidesApiTest, createShapeInvalidSlideIndex) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -9397,6 +9400,7 @@ TEST_F(SlidesApiTest, createShapeInvalidDto) {
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
@@ -9408,7 +9412,7 @@ TEST_F(SlidesApiTest, createShapeInvalidDto) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -9441,6 +9445,7 @@ TEST_F(SlidesApiTest, createShapeInvalidShapeToClone) {
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
@@ -9452,7 +9457,7 @@ TEST_F(SlidesApiTest, createShapeInvalidShapeToClone) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -9480,11 +9485,57 @@ TEST_F(SlidesApiTest, createShapeInvalidShapeToClone) {
 	}
 }
 
+TEST_F(SlidesApiTest, createShapeInvalidCloneFromSlide) {
+	utility::string_t paramName = utils->getTestValue("createShape", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
+	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
+	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
+	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("createShape", "storage", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("createShape", "subShape", "utility::string_t");
+	paramCloneFromSlide = utils->getInvalidIntTestValue("createShape", "cloneFromSlide", "int32_t", paramCloneFromSlide).value();
+	utils->initialize("createShape", "cloneFromSlide", "int32_t", paramCloneFromSlide);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("createShape", "cloneFromSlide", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("createShape", "cloneFromSlide", "int32_t", paramCloneFromSlide);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("createShape", "cloneFromSlide", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("createShape", "cloneFromSlide", "int32_t", paramCloneFromSlide);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("createShape", "cloneFromSlide", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
 TEST_F(SlidesApiTest, createShapeInvalidPosition) {
 	utility::string_t paramName = utils->getTestValue("createShape", "name", "utility::string_t");
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
@@ -9496,7 +9547,7 @@ TEST_F(SlidesApiTest, createShapeInvalidPosition) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -9529,6 +9580,7 @@ TEST_F(SlidesApiTest, createShapeInvalidPassword) {
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
@@ -9540,7 +9592,7 @@ TEST_F(SlidesApiTest, createShapeInvalidPassword) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -9573,6 +9625,7 @@ TEST_F(SlidesApiTest, createShapeInvalidFolder) {
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
@@ -9584,7 +9637,7 @@ TEST_F(SlidesApiTest, createShapeInvalidFolder) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -9617,6 +9670,7 @@ TEST_F(SlidesApiTest, createShapeInvalidStorage) {
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
@@ -9628,7 +9682,7 @@ TEST_F(SlidesApiTest, createShapeInvalidStorage) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -9661,6 +9715,7 @@ TEST_F(SlidesApiTest, createShapeInvalidSubShape) {
 	int32_t paramSlideIndex = utils->getIntTestValue("createShape", "slideIndex", "int32_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createShape", "folder", "utility::string_t");
@@ -9672,7 +9727,7 @@ TEST_F(SlidesApiTest, createShapeInvalidSubShape) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createShape(paramName, paramSlideIndex, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12336,13 +12391,14 @@ TEST_F(SlidesApiTest, createSpecialSlideShape) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
 	utility::string_t paramStorage = utils->getTestValue("createSpecialSlideShape", "storage", "utility::string_t");
 	utility::string_t paramSubShape = utils->getTestValue("createSpecialSlideShape", "subShape", "utility::string_t");
 	utils->initialize("createSpecialSlideShape", "", "");
-	std::shared_ptr<ShapeBase> result = utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).get();
+	std::shared_ptr<ShapeBase> result = utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).get();
 	EXPECT_NE(nullptr, result);
 }
 
@@ -12352,6 +12408,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidName) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12363,7 +12420,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidName) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12397,6 +12454,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidSlideIndex) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12408,7 +12466,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidSlideIndex) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12442,6 +12500,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidSlideType) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12453,7 +12512,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidSlideType) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12487,6 +12546,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidDto) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12498,7 +12558,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidDto) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12532,6 +12592,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidShapeToClone) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12543,7 +12604,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidShapeToClone) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12571,12 +12632,59 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidShapeToClone) {
 	}
 }
 
+TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidCloneFromSlide) {
+	utility::string_t paramName = utils->getTestValue("createSpecialSlideShape", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("createSpecialSlideShape", "slideIndex", "int32_t");
+	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
+	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
+	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
+	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("createSpecialSlideShape", "storage", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("createSpecialSlideShape", "subShape", "utility::string_t");
+	paramCloneFromSlide = utils->getInvalidIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t", paramCloneFromSlide).value();
+	utils->initialize("createSpecialSlideShape", "cloneFromSlide", "int32_t", paramCloneFromSlide);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("createSpecialSlideShape", "cloneFromSlide", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("createSpecialSlideShape", "cloneFromSlide", "int32_t", paramCloneFromSlide);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("createSpecialSlideShape", "cloneFromSlide", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("createSpecialSlideShape", "cloneFromSlide", "int32_t", paramCloneFromSlide);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("createSpecialSlideShape", "cloneFromSlide", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
 TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidPosition) {
 	utility::string_t paramName = utils->getTestValue("createSpecialSlideShape", "name", "utility::string_t");
 	int32_t paramSlideIndex = utils->getIntTestValue("createSpecialSlideShape", "slideIndex", "int32_t");
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12588,7 +12696,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidPosition) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12622,6 +12730,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidPassword) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12633,7 +12742,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidPassword) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12667,6 +12776,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidFolder) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12678,7 +12788,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidFolder) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12712,6 +12822,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidStorage) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12723,7 +12834,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidStorage) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -12757,6 +12868,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidSubShape) {
 	utility::string_t paramSlideType = utils->getTestValue("createSpecialSlideShape", "slideType", "utility::string_t");
 	std::shared_ptr<ShapeBase> paramDto = utils->getTestValueForClass<ShapeBase>("createSpecialSlideShape", "dto", "std::shared_ptr<ShapeBase>");
 	auto paramShapeToClone = utils->getOptionalIntTestValue("createSpecialSlideShape", "shapeToClone", "int32_t");
+	auto paramCloneFromSlide = utils->getOptionalIntTestValue("createSpecialSlideShape", "cloneFromSlide", "int32_t");
 	auto paramPosition = utils->getOptionalIntTestValue("createSpecialSlideShape", "position", "int32_t");
 	utility::string_t paramPassword = utils->getTestValue("createSpecialSlideShape", "password", "utility::string_t");
 	utility::string_t paramFolder = utils->getTestValue("createSpecialSlideShape", "folder", "utility::string_t");
@@ -12768,7 +12880,7 @@ TEST_F(SlidesApiTest, createSpecialSlideShapeInvalidSubShape) {
 	bool failed = true;
 	try
 	{
-		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
+		utils->getSlidesApi()->createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramCloneFromSlide, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape).wait();
 		failed = false;
 	}
 	catch (ApiException ex)
@@ -53562,6 +53674,712 @@ TEST_F(SlidesApiTest, highlightShapeTextInvalidStorage) {
 	}
 }
 
+TEST_F(SlidesApiTest, importChartFromWorkbook) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	utils->initialize("importChartFromWorkbook", "", "");
+	std::shared_ptr<ShapeBase> result = utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidName) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramName = utils->getInvalidTestValue("importChartFromWorkbook", "name", "utility::string_t", paramName);
+	utils->initialize("importChartFromWorkbook", "name", "utility::string_t", paramName);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "name", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "name", "utility::string_t", paramName);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "name", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "name", "utility::string_t", paramName);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "name", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidSlideIndex) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramSlideIndex = utils->getInvalidIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t", paramSlideIndex).value();
+	utils->initialize("importChartFromWorkbook", "slideIndex", "int32_t", paramSlideIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "slideIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "slideIndex", "int32_t", paramSlideIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "slideIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "slideIndex", "int32_t", paramSlideIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "slideIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidWorksheetName) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramWorksheetName = utils->getInvalidTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t", paramWorksheetName);
+	utils->initialize("importChartFromWorkbook", "worksheetName", "utility::string_t", paramWorksheetName);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "worksheetName", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "worksheetName", "utility::string_t", paramWorksheetName);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "worksheetName", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "worksheetName", "utility::string_t", paramWorksheetName);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "worksheetName", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidDocument) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramDocument = utils->getInvalidBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>", paramDocument);
+	utils->initialize("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>", paramDocument);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>", paramDocument);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>", paramDocument);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidChartName) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramChartName = utils->getInvalidTestValue("importChartFromWorkbook", "chartName", "utility::string_t", paramChartName);
+	utils->initialize("importChartFromWorkbook", "chartName", "utility::string_t", paramChartName);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "chartName", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "chartName", "utility::string_t", paramChartName);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "chartName", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "chartName", "utility::string_t", paramChartName);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "chartName", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidChartIndex) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramChartIndex = utils->getInvalidIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t", paramChartIndex).value();
+	utils->initialize("importChartFromWorkbook", "chartIndex", "int32_t", paramChartIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "chartIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "chartIndex", "int32_t", paramChartIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "chartIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "chartIndex", "int32_t", paramChartIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "chartIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidX) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramX = utils->getInvalidDoubleTestValue("importChartFromWorkbook", "x", "double", paramX).value();
+	utils->initialize("importChartFromWorkbook", "x", "double", paramX);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "x", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "x", "double", paramX);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "x", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "x", "double", paramX);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "x", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidY) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramY = utils->getInvalidDoubleTestValue("importChartFromWorkbook", "y", "double", paramY).value();
+	utils->initialize("importChartFromWorkbook", "y", "double", paramY);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "y", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "y", "double", paramY);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "y", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "y", "double", paramY);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "y", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidEmbedAllWorkbook) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramEmbedAllWorkbook = utils->getInvalidBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool", paramEmbedAllWorkbook).value();
+	utils->initialize("importChartFromWorkbook", "embedAllWorkbook", "bool", paramEmbedAllWorkbook);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "embedAllWorkbook", "bool");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "embedAllWorkbook", "bool", paramEmbedAllWorkbook);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "embedAllWorkbook", "bool");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "embedAllWorkbook", "bool", paramEmbedAllWorkbook);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "embedAllWorkbook", "bool"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidWorkbookPath) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramWorkbookPath = utils->getInvalidTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t", paramWorkbookPath);
+	utils->initialize("importChartFromWorkbook", "workbookPath", "utility::string_t", paramWorkbookPath);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "workbookPath", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "workbookPath", "utility::string_t", paramWorkbookPath);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "workbookPath", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "workbookPath", "utility::string_t", paramWorkbookPath);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "workbookPath", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidWorkbookStorage) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramWorkbookStorage = utils->getInvalidTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t", paramWorkbookStorage);
+	utils->initialize("importChartFromWorkbook", "workbookStorage", "utility::string_t", paramWorkbookStorage);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "workbookStorage", "utility::string_t", paramWorkbookStorage);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "workbookStorage", "utility::string_t", paramWorkbookStorage);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "workbookStorage", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidPassword) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramPassword = utils->getInvalidTestValue("importChartFromWorkbook", "password", "utility::string_t", paramPassword);
+	utils->initialize("importChartFromWorkbook", "password", "utility::string_t", paramPassword);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "password", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "password", "utility::string_t", paramPassword);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "password", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "password", "utility::string_t", paramPassword);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "password", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidFolder) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramFolder = utils->getInvalidTestValue("importChartFromWorkbook", "folder", "utility::string_t", paramFolder);
+	utils->initialize("importChartFromWorkbook", "folder", "utility::string_t", paramFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "folder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "folder", "utility::string_t", paramFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "folder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "folder", "utility::string_t", paramFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "folder", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importChartFromWorkbookInvalidStorage) {
+	utility::string_t paramName = utils->getTestValue("importChartFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importChartFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importChartFromWorkbook", "worksheetName", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importChartFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	utility::string_t paramChartName = utils->getTestValue("importChartFromWorkbook", "chartName", "utility::string_t");
+	auto paramChartIndex = utils->getOptionalIntTestValue("importChartFromWorkbook", "chartIndex", "int32_t");
+	auto paramX = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importChartFromWorkbook", "y", "double");
+	auto paramEmbedAllWorkbook = utils->getOptionalBoolTestValue("importChartFromWorkbook", "embedAllWorkbook", "bool");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importChartFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importChartFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importChartFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importChartFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importChartFromWorkbook", "storage", "utility::string_t");
+	paramStorage = utils->getInvalidTestValue("importChartFromWorkbook", "storage", "utility::string_t", paramStorage);
+	utils->initialize("importChartFromWorkbook", "storage", "utility::string_t", paramStorage);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importChartFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramDocument, paramChartName, paramChartIndex, paramX, paramY, paramEmbedAllWorkbook, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "storage", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "storage", "utility::string_t", paramStorage);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importChartFromWorkbook", "storage", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importChartFromWorkbook", "storage", "utility::string_t", paramStorage);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importChartFromWorkbook", "storage", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
 TEST_F(SlidesApiTest, importFromHtml) {
 	utility::string_t paramName = utils->getTestValue("importFromHtml", "name", "utility::string_t");
 	utility::string_t paramHtml = utils->getTestValue("importFromHtml", "html", "utility::string_t");
@@ -54704,6 +55522,588 @@ TEST_F(SlidesApiTest, importShapesFromSvgInvalidStorage) {
 		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("importShapesFromSvg", "storage", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbook) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	utils->initialize("importTableFromWorkbook", "", "");
+	std::shared_ptr<ShapeBase> result = utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidName) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramName = utils->getInvalidTestValue("importTableFromWorkbook", "name", "utility::string_t", paramName);
+	utils->initialize("importTableFromWorkbook", "name", "utility::string_t", paramName);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "name", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "name", "utility::string_t", paramName);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "name", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "name", "utility::string_t", paramName);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "name", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidSlideIndex) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramSlideIndex = utils->getInvalidIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t", paramSlideIndex).value();
+	utils->initialize("importTableFromWorkbook", "slideIndex", "int32_t", paramSlideIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "slideIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "slideIndex", "int32_t", paramSlideIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "slideIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "slideIndex", "int32_t", paramSlideIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "slideIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidWorksheetName) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramWorksheetName = utils->getInvalidTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t", paramWorksheetName);
+	utils->initialize("importTableFromWorkbook", "worksheetName", "utility::string_t", paramWorksheetName);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "worksheetName", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "worksheetName", "utility::string_t", paramWorksheetName);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "worksheetName", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "worksheetName", "utility::string_t", paramWorksheetName);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "worksheetName", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidCellRange) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramCellRange = utils->getInvalidTestValue("importTableFromWorkbook", "cellRange", "utility::string_t", paramCellRange);
+	utils->initialize("importTableFromWorkbook", "cellRange", "utility::string_t", paramCellRange);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "cellRange", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "cellRange", "utility::string_t", paramCellRange);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "cellRange", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "cellRange", "utility::string_t", paramCellRange);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "cellRange", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidDocument) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramDocument = utils->getInvalidBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>", paramDocument);
+	utils->initialize("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>", paramDocument);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>", paramDocument);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>", paramDocument);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidX) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramX = utils->getInvalidDoubleTestValue("importTableFromWorkbook", "x", "double", paramX).value();
+	utils->initialize("importTableFromWorkbook", "x", "double", paramX);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "x", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "x", "double", paramX);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "x", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "x", "double", paramX);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "x", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidY) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramY = utils->getInvalidDoubleTestValue("importTableFromWorkbook", "y", "double", paramY).value();
+	utils->initialize("importTableFromWorkbook", "y", "double", paramY);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "y", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "y", "double", paramY);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "y", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "y", "double", paramY);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "y", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidWorkbookPath) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramWorkbookPath = utils->getInvalidTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t", paramWorkbookPath);
+	utils->initialize("importTableFromWorkbook", "workbookPath", "utility::string_t", paramWorkbookPath);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "workbookPath", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "workbookPath", "utility::string_t", paramWorkbookPath);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "workbookPath", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "workbookPath", "utility::string_t", paramWorkbookPath);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "workbookPath", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidWorkbookStorage) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramWorkbookStorage = utils->getInvalidTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t", paramWorkbookStorage);
+	utils->initialize("importTableFromWorkbook", "workbookStorage", "utility::string_t", paramWorkbookStorage);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "workbookStorage", "utility::string_t", paramWorkbookStorage);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "workbookStorage", "utility::string_t", paramWorkbookStorage);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "workbookStorage", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidPassword) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramPassword = utils->getInvalidTestValue("importTableFromWorkbook", "password", "utility::string_t", paramPassword);
+	utils->initialize("importTableFromWorkbook", "password", "utility::string_t", paramPassword);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "password", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "password", "utility::string_t", paramPassword);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "password", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "password", "utility::string_t", paramPassword);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "password", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidFolder) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramFolder = utils->getInvalidTestValue("importTableFromWorkbook", "folder", "utility::string_t", paramFolder);
+	utils->initialize("importTableFromWorkbook", "folder", "utility::string_t", paramFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "folder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "folder", "utility::string_t", paramFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "folder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "folder", "utility::string_t", paramFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "folder", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, importTableFromWorkbookInvalidStorage) {
+	utility::string_t paramName = utils->getTestValue("importTableFromWorkbook", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("importTableFromWorkbook", "slideIndex", "int32_t");
+	utility::string_t paramWorksheetName = utils->getTestValue("importTableFromWorkbook", "worksheetName", "utility::string_t");
+	utility::string_t paramCellRange = utils->getTestValue("importTableFromWorkbook", "cellRange", "utility::string_t");
+	std::shared_ptr<HttpContent> paramDocument = utils->getBinaryTestValue("importTableFromWorkbook", "document", "std::shared_ptr<HttpContent>");
+	auto paramX = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "x", "double");
+	auto paramY = utils->getOptionalDoubleTestValue("importTableFromWorkbook", "y", "double");
+	utility::string_t paramWorkbookPath = utils->getTestValue("importTableFromWorkbook", "workbookPath", "utility::string_t");
+	utility::string_t paramWorkbookStorage = utils->getTestValue("importTableFromWorkbook", "workbookStorage", "utility::string_t");
+	utility::string_t paramPassword = utils->getTestValue("importTableFromWorkbook", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("importTableFromWorkbook", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("importTableFromWorkbook", "storage", "utility::string_t");
+	paramStorage = utils->getInvalidTestValue("importTableFromWorkbook", "storage", "utility::string_t", paramStorage);
+	utils->initialize("importTableFromWorkbook", "storage", "utility::string_t", paramStorage);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->importTableFromWorkbook(paramName, paramSlideIndex, paramWorksheetName, paramCellRange, paramDocument, paramX, paramY, paramWorkbookPath, paramWorkbookStorage, paramPassword, paramFolder, paramStorage).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "storage", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "storage", "utility::string_t", paramStorage);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("importTableFromWorkbook", "storage", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("importTableFromWorkbook", "storage", "utility::string_t", paramStorage);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("importTableFromWorkbook", "storage", "utility::string_t"))
 	{
 		FAIL() << "Must have failed";
 	}

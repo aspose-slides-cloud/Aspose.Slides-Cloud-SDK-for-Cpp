@@ -37,6 +37,7 @@
 #include "../model/Hyperlink.h"
 #include "../model/SmartArtNode.h"
 #include "../model/EffectFormat.h"
+#include "../model/ParagraphFormat.h"
 #include "../model/ShapeBase.h"
 #include <cpprest/details/basic_types.h>
 #include "../model/FillFormat.h"
@@ -89,6 +90,11 @@ public:
 	ASPOSE_DLL_EXPORT void setIsReversed(bool value);
 	ASPOSE_DLL_EXPORT bool isReversedIsSet() const;
 	ASPOSE_DLL_EXPORT void unsetIsReversed();
+	/// <summary>
+	/// Default paragraph format applied to all nodes. Write-only: not populated on read since there is no corresponding property at the SmartArt shape level in Aspose.Slides.
+	/// </summary>
+	ASPOSE_DLL_EXPORT std::shared_ptr<ParagraphFormat> getDefaultParagraphFormat() const;
+	ASPOSE_DLL_EXPORT void setDefaultParagraphFormat(std::shared_ptr<ParagraphFormat> value);
 
 protected:
 	utility::string_t m_Layout;
@@ -97,6 +103,7 @@ protected:
 	std::vector<std::shared_ptr<SmartArtNode>> m_Nodes;
 	bool m_IsReversed;
 	bool m_IsReversedIsSet;
+	std::shared_ptr<ParagraphFormat> m_DefaultParagraphFormat;
 };
 
 }

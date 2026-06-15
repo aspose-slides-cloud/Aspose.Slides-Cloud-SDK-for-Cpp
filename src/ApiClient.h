@@ -75,6 +75,7 @@ private:
 	void setRequestHeaders(web::http::http_request& request, const std::map<utility::string_t, utility::string_t>& headerParams) const;
 	void logRequest(web::http::http_request& request) const;
 	void logResponse(web::http::http_response& response) const;
+	void logOutput(const utility::string_t& message) const;
 };
 
 }

@@ -35,6 +35,7 @@
 #include "../ModelBase.h"
 
 #include "../model/SmartArtNode.h"
+#include "../model/ParagraphFormat.h"
 #include <cpprest/details/basic_types.h>
 #include "../model/ResourceUri.h"
 #include <vector>
@@ -88,6 +89,11 @@ public:
 	/// </summary>
 	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getParagraphs() const;
 	ASPOSE_DLL_EXPORT void setParagraphs(std::shared_ptr<ResourceUri> value);
+	/// <summary>
+	/// Default paragraph format for the node&#39;s text frame.
+	/// </summary>
+	ASPOSE_DLL_EXPORT std::shared_ptr<ParagraphFormat> getDefaultParagraphFormat() const;
+	ASPOSE_DLL_EXPORT void setDefaultParagraphFormat(std::shared_ptr<ParagraphFormat> value);
 
 protected:
 	std::vector<std::shared_ptr<SmartArtNode>> m_Nodes;
@@ -97,6 +103,7 @@ protected:
 	utility::string_t m_Text;
 	utility::string_t m_OrgChartLayout;
 	std::shared_ptr<ResourceUri> m_Paragraphs;
+	std::shared_ptr<ParagraphFormat> m_DefaultParagraphFormat;
 };
 
 }

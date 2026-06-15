@@ -106,6 +106,17 @@ void SmartArt::unsetIsReversed()
 	m_IsReversedIsSet = false;
 }
 
+std::shared_ptr<ParagraphFormat> SmartArt::getDefaultParagraphFormat() const
+{
+	return m_DefaultParagraphFormat;
+}
+
+void SmartArt::setDefaultParagraphFormat(std::shared_ptr<ParagraphFormat> value)
+{
+	m_DefaultParagraphFormat = value;
+	
+}
+
 web::json::value SmartArt::toJson() const
 {
 	web::json::value val = this->ShapeBase::toJson();
@@ -133,6 +144,10 @@ web::json::value SmartArt::toJson() const
 	if(m_IsReversedIsSet)
 	{
 		val[utility::conversions::to_string_t("IsReversed")] = ModelBase::toJson(m_IsReversed);
+	}
+	if (m_DefaultParagraphFormat != nullptr)
+	{
+		val[utility::conversions::to_string_t("DefaultParagraphFormat")] = ModelBase::toJson(m_DefaultParagraphFormat);
 	}
 	return val;
 }
@@ -179,6 +194,12 @@ void SmartArt::fromJson(web::json::value& val)
 	if(jsonForIsReversed != nullptr && !jsonForIsReversed->is_null())
 	{
 		setIsReversed(ModelBase::boolFromJson(*jsonForIsReversed));
+	}
+	web::json::value* jsonForDefaultParagraphFormat = ModelBase::getField(val, "DefaultParagraphFormat");
+	if(jsonForDefaultParagraphFormat != nullptr && !jsonForDefaultParagraphFormat->is_null())
+	{
+		std::shared_ptr<void> instanceForDefaultParagraphFormat = asposeslidescloud::api::ClassRegistry::deserialize(L"ParagraphFormat", *jsonForDefaultParagraphFormat);
+		setDefaultParagraphFormat(std::static_pointer_cast<ParagraphFormat>(instanceForDefaultParagraphFormat));
 	}
 }
 

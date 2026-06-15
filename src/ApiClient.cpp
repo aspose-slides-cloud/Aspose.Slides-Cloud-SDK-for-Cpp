@@ -171,29 +171,46 @@ void ApiClient::setRequestHeaders(
 void ApiClient::logRequest(web::http::http_request& request) const
 {
 	if (!m_Configuration->getDebug()) return;
-	ucout << request.method() << _XPLATSTR(": ") << request.request_uri().to_string() << _XPLATSTR("\nHeaders\n");
+	utility::ostringstream_t oss;
+	oss << request.method() << _XPLATSTR(": ") << request.request_uri().to_string() << _XPLATSTR("\nHeaders\n");
 	for (auto& kvp : request.headers())
 	{
-		ucout << kvp.first << _XPLATSTR(": ") << kvp.second << _XPLATSTR('\n');
+		oss << kvp.first << _XPLATSTR(": ") << kvp.second << _XPLATSTR('\n');
 	}
-	ucout << _XPLATSTR('\n');
+	oss << _XPLATSTR('\n');
+	logOutput(oss.str());
 }
 
 void ApiClient::logResponse(web::http::http_response& response) const
 {
 	if (!m_Configuration->getDebug()) return;
-	ucout << _XPLATSTR("Response ") << response.status_code() << _XPLATSTR(": ") << response.reason_phrase() << _XPLATSTR("\nHeaders\n");
+	utility::ostringstream_t oss;
+	oss << _XPLATSTR("Response ") << response.status_code() << _XPLATSTR(": ") << response.reason_phrase() << _XPLATSTR("\nHeaders\n");
 	for (auto& kvp : response.headers())
 	{
-		ucout << kvp.first << _XPLATSTR(": ") << kvp.second << _XPLATSTR('\n');
+		oss << kvp.first << _XPLATSTR(": ") << kvp.second << _XPLATSTR('\n');
 	}
-	ucout << _XPLATSTR('\n');
+	oss << _XPLATSTR('\n');
+	logOutput(oss.str());
 }
 
 void ApiClient::logString(utility::string_t content) const
 {
 	if (!m_Configuration->getDebug()) return;
-	ucout << content << _XPLATSTR('\n');
+	logOutput(content + _XPLATSTR('\n'));
+}
+
+void ApiClient::logOutput(const utility::string_t& message) const
+{
+	auto logger = m_Configuration->getLogger();
+	if (logger)
+	{
+		logger(message);
+	}
+	else
+	{
+		ucout << message;
+	}
 }
 
 void ApiClient::setBoolQueryParameter(

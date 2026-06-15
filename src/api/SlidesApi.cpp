@@ -1492,7 +1492,7 @@ pplx::task<std::shared_ptr<Sections>> SlidesApi::createSection(utility::string_t
 		});
 }
 
-pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::createShape(utility::string_t name, int32_t slideIndex, std::shared_ptr<ShapeBase> dto, boost::optional<int32_t> shapeToClone, boost::optional<int32_t> position, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t subShape)
+pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::createShape(utility::string_t name, int32_t slideIndex, std::shared_ptr<ShapeBase> dto, boost::optional<int32_t> shapeToClone, boost::optional<int32_t> cloneFromSlide, boost::optional<int32_t> position, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t subShape)
 {
 	// verify the required parameter 'name' is set
 	if (name.empty())
@@ -1507,6 +1507,10 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::createShape(utility::string_t 
 	if (shapeToClone.has_value())
 	{
 		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("shapeToClone"), shapeToClone.value());
+	}
+	if (cloneFromSlide.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("cloneFromSlide"), cloneFromSlide.value());
 	}
 	if (position.has_value())
 	{
@@ -1946,7 +1950,7 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::createSpecialSlidePortion(utilit
 		});
 }
 
-pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::createSpecialSlideShape(utility::string_t name, int32_t slideIndex, utility::string_t slideType, std::shared_ptr<ShapeBase> dto, boost::optional<int32_t> shapeToClone, boost::optional<int32_t> position, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t subShape)
+pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::createSpecialSlideShape(utility::string_t name, int32_t slideIndex, utility::string_t slideType, std::shared_ptr<ShapeBase> dto, boost::optional<int32_t> shapeToClone, boost::optional<int32_t> cloneFromSlide, boost::optional<int32_t> position, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t subShape)
 {
 	// verify the required parameter 'name' is set
 	if (name.empty())
@@ -1981,6 +1985,10 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::createSpecialSlideShape(utilit
 	if (shapeToClone.has_value())
 	{
 		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("shapeToClone"), shapeToClone.value());
+	}
+	if (cloneFromSlide.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("cloneFromSlide"), cloneFromSlide.value());
 	}
 	if (position.has_value())
 	{
@@ -8544,6 +8552,72 @@ pplx::task<std::shared_ptr<Shape>> SlidesApi::highlightShapeText(utility::string
 		});
 }
 
+pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::importChartFromWorkbook(utility::string_t name, int32_t slideIndex, utility::string_t worksheetName, std::shared_ptr<HttpContent> document, utility::string_t chartName, boost::optional<int32_t> chartIndex, boost::optional<double> x, boost::optional<double> y, boost::optional<bool> embedAllWorkbook, utility::string_t workbookPath, utility::string_t workbookStorage, utility::string_t password, utility::string_t folder, utility::string_t storage)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	// verify the required parameter 'worksheetName' is set
+	if (worksheetName.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: worksheetName");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/fromExcelChart");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("worksheetName"), worksheetName);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("chartName"), chartName);
+	if (chartIndex.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("chartIndex"), chartIndex.value());
+	}
+	if (x.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("x"), x.value());
+	}
+	if (y.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("y"), y.value());
+	}
+	if (embedAllWorkbook.has_value())
+	{
+		ApiClient::setBoolQueryParameter(queryParams, utility::conversions::to_string_t("embedAllWorkbook"), embedAllWorkbook.value());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("workbookPath"), workbookPath);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("workbookStorage"), workbookStorage);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+	if (document != nullptr)
+	{
+		requestFiles.push_back(document);
+	}
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("POST"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "importChartFromWorkbook");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			utility::string_t response(responseVector.begin(), responseVector.end());
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"ShapeBase", json);
+			return std::static_pointer_cast<ShapeBase>(instance);
+		});
+}
+
 pplx::task<std::shared_ptr<Document>> SlidesApi::importFromHtml(utility::string_t name, utility::string_t html, utility::string_t password, utility::string_t folder, utility::string_t storage, boost::optional<int32_t> position, boost::optional<bool> useSlideWithIndexAsStart)
 {
 	// verify the required parameter 'name' is set
@@ -8699,6 +8773,69 @@ pplx::task<std::shared_ptr<Shapes>> SlidesApi::importShapesFromSvg(utility::stri
 			web::json::value json = web::json::value::parse(response);
 			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"Shapes", json);
 			return std::static_pointer_cast<Shapes>(instance);
+		});
+}
+
+pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::importTableFromWorkbook(utility::string_t name, int32_t slideIndex, utility::string_t worksheetName, utility::string_t cellRange, std::shared_ptr<HttpContent> document, boost::optional<double> x, boost::optional<double> y, utility::string_t workbookPath, utility::string_t workbookStorage, utility::string_t password, utility::string_t folder, utility::string_t storage)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	// verify the required parameter 'worksheetName' is set
+	if (worksheetName.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: worksheetName");
+	}
+	// verify the required parameter 'cellRange' is set
+	if (cellRange.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: cellRange");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/fromExcelTable");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("worksheetName"), worksheetName);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("cellRange"), cellRange);
+	if (x.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("x"), x.value());
+	}
+	if (y.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("y"), y.value());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("workbookPath"), workbookPath);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("workbookStorage"), workbookStorage);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+	if (document != nullptr)
+	{
+		requestFiles.push_back(document);
+	}
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("POST"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "importTableFromWorkbook");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			utility::string_t response(responseVector.begin(), responseVector.end());
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<void> instance = ClassRegistry::deserialize(L"ShapeBase", json);
+			return std::static_pointer_cast<ShapeBase>(instance);
 		});
 }
 

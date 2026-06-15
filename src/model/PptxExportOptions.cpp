@@ -63,6 +63,17 @@ void PptxExportOptions::setZip64Mode(utility::string_t value)
 	
 }
 
+utility::string_t PptxExportOptions::getCompressionLevel() const
+{
+	return m_CompressionLevel;
+}
+
+void PptxExportOptions::setCompressionLevel(utility::string_t value)
+{
+	m_CompressionLevel = value;
+	
+}
+
 bool PptxExportOptions::isRefreshThumbnail() const
 {
 	return m_RefreshThumbnail;
@@ -95,6 +106,10 @@ web::json::value PptxExportOptions::toJson() const
 	{
 		val[utility::conversions::to_string_t("Zip64Mode")] = ModelBase::toJson(m_Zip64Mode);
 	}
+	if (!m_CompressionLevel.empty())
+	{
+		val[utility::conversions::to_string_t("CompressionLevel")] = ModelBase::toJson(m_CompressionLevel);
+	}
 	if(m_RefreshThumbnailIsSet)
 	{
 		val[utility::conversions::to_string_t("RefreshThumbnail")] = ModelBase::toJson(m_RefreshThumbnail);
@@ -114,6 +129,11 @@ void PptxExportOptions::fromJson(web::json::value& val)
 	if(jsonForZip64Mode != nullptr && !jsonForZip64Mode->is_null())
 	{
 		setZip64Mode(ModelBase::stringFromJson(*jsonForZip64Mode));
+	}
+	web::json::value* jsonForCompressionLevel = ModelBase::getField(val, "CompressionLevel");
+	if(jsonForCompressionLevel != nullptr && !jsonForCompressionLevel->is_null())
+	{
+		setCompressionLevel(ModelBase::stringFromJson(*jsonForCompressionLevel));
 	}
 	web::json::value* jsonForRefreshThumbnail = ModelBase::getField(val, "RefreshThumbnail");
 	if(jsonForRefreshThumbnail != nullptr && !jsonForRefreshThumbnail->is_null())

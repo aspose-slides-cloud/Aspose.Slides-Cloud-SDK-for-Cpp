@@ -84,6 +84,6 @@ TEST_F(TextFormatTest, textFormat3D) {
 	threeDFormat->setLightRig(lightRig);
 	textFrameFormat->setThreeDFormat(threeDFormat);
 	dto->setTextFrameFormat(textFrameFormat);
-	std::shared_ptr<ShapeBase> result = utils->getSlidesApi()->createShape(L"test.pptx", 1, dto, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
+	std::shared_ptr<ShapeBase> result = utils->getSlidesApi()->createShape(L"test.pptx", 1, dto, boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
 	EXPECT_EQ(dto->getTextFrameFormat()->getThreeDFormat()->getDepth(), (std::static_pointer_cast<Shape>(result))->getTextFrameFormat()->getThreeDFormat()->getDepth());
 }

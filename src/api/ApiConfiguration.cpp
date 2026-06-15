@@ -32,8 +32,9 @@ ApiConfiguration::ApiConfiguration()
 {
 	m_BaseUrl = utility::conversions::to_string_t("https://api.aspose.cloud");
 	m_BaseAuthUrl = utility::conversions::to_string_t("");
+	m_BaseAsyncUrl = utility::conversions::to_string_t("");
 	m_Version = utility::conversions::to_string_t("v3.0");
-	m_ApiVersion = utility::conversions::to_string_t("26.1.0");
+	m_ApiVersion = utility::conversions::to_string_t("26.6.0");
 	m_Debug = false;
 	m_Timeout = 0;
 }
@@ -60,6 +61,16 @@ utility::string_t ApiConfiguration::getBaseAuthUrl() const
 void ApiConfiguration::setBaseAuthUrl(const utility::string_t& value)
 {
 	m_BaseAuthUrl = value;
+}
+
+utility::string_t ApiConfiguration::getBaseAsyncUrl() const
+{
+	return m_BaseAsyncUrl.empty() ? m_BaseUrl : m_BaseAsyncUrl;
+}
+
+void ApiConfiguration::setBaseAsyncUrl(const utility::string_t& value)
+{
+	m_BaseAsyncUrl = value;
 }
 
 utility::string_t ApiConfiguration::getVersion() const
@@ -130,6 +141,16 @@ bool ApiConfiguration::getDebug() const
 void ApiConfiguration::setDebug(const bool value)
 {
 	m_Debug = value;
+}
+
+std::function<void(const utility::string_t&)> ApiConfiguration::getLogger() const
+{
+	return m_Logger;
+}
+
+void ApiConfiguration::setLogger(std::function<void(const utility::string_t&)> value)
+{
+	m_Logger = value;
 }
 
 int32_t ApiConfiguration::getTimeout() const

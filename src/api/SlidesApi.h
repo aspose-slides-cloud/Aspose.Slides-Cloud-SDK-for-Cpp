@@ -292,7 +292,7 @@ public:
 	/// <summary>
 	/// Create new shape.
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<ShapeBase>> createShape(utility::string_t name, int32_t slideIndex, std::shared_ptr<ShapeBase> dto = std::shared_ptr<ShapeBase>(), boost::optional<int32_t> shapeToClone = boost::none, boost::optional<int32_t> position = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t subShape = L"");
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<ShapeBase>> createShape(utility::string_t name, int32_t slideIndex, std::shared_ptr<ShapeBase> dto = std::shared_ptr<ShapeBase>(), boost::optional<int32_t> shapeToClone = boost::none, boost::optional<int32_t> cloneFromSlide = boost::none, boost::optional<int32_t> position = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t subShape = L"");
 
 	/// <summary>
 	/// Create a slide.
@@ -332,7 +332,7 @@ public:
 	/// <summary>
 	/// Create new shape.
 	/// </summary>
-	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<ShapeBase>> createSpecialSlideShape(utility::string_t name, int32_t slideIndex, utility::string_t slideType, std::shared_ptr<ShapeBase> dto, boost::optional<int32_t> shapeToClone = boost::none, boost::optional<int32_t> position = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t subShape = L"");
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<ShapeBase>> createSpecialSlideShape(utility::string_t name, int32_t slideIndex, utility::string_t slideType, std::shared_ptr<ShapeBase> dto, boost::optional<int32_t> shapeToClone = boost::none, boost::optional<int32_t> cloneFromSlide = boost::none, boost::optional<int32_t> position = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t subShape = L"");
 
 	/// <summary>
 	/// Creates table cell paragraph.
@@ -1095,6 +1095,11 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Shape>> highlightShapeText(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, utility::string_t text, utility::string_t color, boost::optional<bool> wholeWordsOnly = boost::none, boost::optional<bool> ignoreCase = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
 
 	/// <summary>
+	/// Imports a chart from an Excel workbook and adds it to the slide.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<ShapeBase>> importChartFromWorkbook(utility::string_t name, int32_t slideIndex, utility::string_t worksheetName, std::shared_ptr<HttpContent> document = std::shared_ptr<HttpContent>(), utility::string_t chartName = L"", boost::optional<int32_t> chartIndex = boost::none, boost::optional<double> x = boost::none, boost::optional<double> y = boost::none, boost::optional<bool> embedAllWorkbook = boost::none, utility::string_t workbookPath = L"", utility::string_t workbookStorage = L"", utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+
+	/// <summary>
 	/// Create presentation document from html.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Document>> importFromHtml(utility::string_t name, utility::string_t html = L"", utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", boost::optional<int32_t> position = boost::none, boost::optional<bool> useSlideWithIndexAsStart = boost::none);
@@ -1108,6 +1113,11 @@ public:
 	/// Imports shapes from SVG file.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Shapes>> importShapesFromSvg(utility::string_t name, int32_t slideIndex, std::shared_ptr<HttpContent> image = std::shared_ptr<HttpContent>(), boost::optional<int32_t> x = boost::none, boost::optional<int32_t> y = boost::none, boost::optional<int32_t> width = boost::none, boost::optional<int32_t> height = boost::none, std::vector<int32_t> shapes = std::vector<int32_t>(), boost::optional<bool> group = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
+
+	/// <summary>
+	/// Imports a table from an Excel workbook and adds it to the slide.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<ShapeBase>> importTableFromWorkbook(utility::string_t name, int32_t slideIndex, utility::string_t worksheetName, utility::string_t cellRange, std::shared_ptr<HttpContent> document = std::shared_ptr<HttpContent>(), boost::optional<double> x = boost::none, boost::optional<double> y = boost::none, utility::string_t workbookPath = L"", utility::string_t workbookStorage = L"", utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
 
 	/// <summary>
 	/// Merge the presentation with other presentations specified in the request parameter.

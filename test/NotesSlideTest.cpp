@@ -104,7 +104,7 @@ TEST_F(NotesSlideTest, notesSlideShapes) {
 	dto->setHeight(100);
 	dto->setWidth(500);
 	dto->setText(L"New shape");
-	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->createSpecialSlideShape(fileName, slideIndex, L"notesSlide", dto, boost::none, boost::none, password, folderName).get();
+	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->createSpecialSlideShape(fileName, slideIndex, L"notesSlide", dto, boost::none, boost::none, boost::none, password, folderName).get();
 	std::shared_ptr<Shape> resultShape = std::static_pointer_cast<Shape>(shape);
 	EXPECT_EQ(dto->getText(), resultShape->getText());
 

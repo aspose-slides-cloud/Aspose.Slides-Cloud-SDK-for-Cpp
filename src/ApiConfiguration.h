@@ -26,6 +26,7 @@
 #ifndef _ApiConfiguration_H_
 #define _ApiConfiguration_H_
 
+#include <functional>
 #include <map>
 #include "defines.h"
 
@@ -46,6 +47,9 @@ public:
 
 	ASPOSE_DLL_EXPORT utility::string_t getBaseAuthUrl() const;
 	ASPOSE_DLL_EXPORT void setBaseAuthUrl(const utility::string_t& value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getBaseAsyncUrl() const;
+	ASPOSE_DLL_EXPORT void setBaseAsyncUrl(const utility::string_t& value);
 
 	ASPOSE_DLL_EXPORT utility::string_t getVersion() const;
 	ASPOSE_DLL_EXPORT void setVersion(const utility::string_t& value);
@@ -69,12 +73,16 @@ public:
 	ASPOSE_DLL_EXPORT bool getDebug() const;
 	ASPOSE_DLL_EXPORT void setDebug(const bool value);
 
+	ASPOSE_DLL_EXPORT std::function<void(const utility::string_t&)> getLogger() const;
+	ASPOSE_DLL_EXPORT void setLogger(std::function<void(const utility::string_t&)> value);
+
 	ASPOSE_DLL_EXPORT int32_t getTimeout() const;
 	ASPOSE_DLL_EXPORT void setTimeout(const int32_t value);
 
 protected:
 	utility::string_t m_BaseUrl;
 	utility::string_t m_BaseAuthUrl;
+	utility::string_t m_BaseAsyncUrl;
 	utility::string_t m_Version;
 	utility::string_t m_ApiVersion;
 	std::map<utility::string_t, utility::string_t> m_Headers;
@@ -83,6 +91,7 @@ protected:
 	utility::string_t m_AccessToken;
 	bool m_Debug;
 	int32_t m_Timeout;
+	std::function<void(const utility::string_t&)> m_Logger;
 };
 
 }

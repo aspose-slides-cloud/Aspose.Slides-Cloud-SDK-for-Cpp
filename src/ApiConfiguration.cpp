@@ -62,6 +62,16 @@ void ApiConfiguration::setBaseAuthUrl(const utility::string_t& value)
 	m_BaseAuthUrl = value;
 }
 
+utility::string_t ApiConfiguration::getBaseAsyncUrl() const
+{
+	return m_BaseAsyncUrl.empty() ? m_BaseUrl : m_BaseAsyncUrl;
+}
+
+void ApiConfiguration::setBaseAsyncUrl(const utility::string_t& value)
+{
+	m_BaseAsyncUrl = value;
+}
+
 utility::string_t ApiConfiguration::getVersion() const
 {
 	return m_Version;
@@ -130,6 +140,16 @@ bool ApiConfiguration::getDebug() const
 void ApiConfiguration::setDebug(const bool value)
 {
 	m_Debug = value;
+}
+
+std::function<void(const utility::string_t&)> ApiConfiguration::getLogger() const
+{
+	return m_Logger;
+}
+
+void ApiConfiguration::setLogger(std::function<void(const utility::string_t&)> value)
+{
+	m_Logger = value;
 }
 
 int32_t ApiConfiguration::getTimeout() const

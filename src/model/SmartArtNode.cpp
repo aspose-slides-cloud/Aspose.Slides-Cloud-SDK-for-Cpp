@@ -116,6 +116,17 @@ void SmartArtNode::setParagraphs(std::shared_ptr<ResourceUri> value)
 	
 }
 
+std::shared_ptr<ParagraphFormat> SmartArtNode::getDefaultParagraphFormat() const
+{
+	return m_DefaultParagraphFormat;
+}
+
+void SmartArtNode::setDefaultParagraphFormat(std::shared_ptr<ParagraphFormat> value)
+{
+	m_DefaultParagraphFormat = value;
+	
+}
+
 web::json::value SmartArtNode::toJson() const
 {
 	web::json::value val = web::json::value::object();
@@ -147,6 +158,10 @@ web::json::value SmartArtNode::toJson() const
 	if (m_Paragraphs != nullptr)
 	{
 		val[utility::conversions::to_string_t("Paragraphs")] = ModelBase::toJson(m_Paragraphs);
+	}
+	if (m_DefaultParagraphFormat != nullptr)
+	{
+		val[utility::conversions::to_string_t("DefaultParagraphFormat")] = ModelBase::toJson(m_DefaultParagraphFormat);
 	}
 	return val;
 }
@@ -199,6 +214,12 @@ void SmartArtNode::fromJson(web::json::value& val)
 	{
 		std::shared_ptr<void> instanceForParagraphs = asposeslidescloud::api::ClassRegistry::deserialize(L"ResourceUri", *jsonForParagraphs);
 		setParagraphs(std::static_pointer_cast<ResourceUri>(instanceForParagraphs));
+	}
+	web::json::value* jsonForDefaultParagraphFormat = ModelBase::getField(val, "DefaultParagraphFormat");
+	if(jsonForDefaultParagraphFormat != nullptr && !jsonForDefaultParagraphFormat->is_null())
+	{
+		std::shared_ptr<void> instanceForDefaultParagraphFormat = asposeslidescloud::api::ClassRegistry::deserialize(L"ParagraphFormat", *jsonForDefaultParagraphFormat);
+		setDefaultParagraphFormat(std::static_pointer_cast<ParagraphFormat>(instanceForDefaultParagraphFormat));
 	}
 }
 

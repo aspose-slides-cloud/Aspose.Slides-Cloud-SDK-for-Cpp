@@ -26,6 +26,7 @@
 
 #include "gtest/gtest.h"
 
+#include <fstream>
 #include "TestUtils.h"
 #include "model/OneValueSeries.h"
 #include "model/NoFill.h"
@@ -99,7 +100,7 @@ TEST_F(ChartTest, chartCreate) {
 	std::shared_ptr<ChartCategory> category3(new ChartCategory());
 	category3->setValue(L"Category3");
 	chart->setCategories({ category1, category2, category3 });
-	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->createShape(L"test.pptx", 3, chart, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
+	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->createShape(L"test.pptx", 3, chart, boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
 	std::shared_ptr<Chart> resultChart = std::static_pointer_cast<Chart>(shape);
 	EXPECT_EQ(2, resultChart->getSeries().size());
 	EXPECT_EQ(3, resultChart->getCategories().size());
@@ -324,7 +325,7 @@ TEST_F(ChartTest, chartSunburst) {
 	std::shared_ptr<ChartCategory> category4(new ChartCategory());
 	category4->setValue(L"Stem2");
 	chart->setCategories({ category1, category2, category3, category4 });
-	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->createShape(L"test.pptx", 3, chart, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
+	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->createShape(L"test.pptx", 3, chart, boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
 	std::shared_ptr<Chart> resultChart = std::static_pointer_cast<Chart>(shape);
 	EXPECT_EQ(1, resultChart->getSeries().size());
 	EXPECT_EQ(4, resultChart->getCategories().size());
@@ -382,7 +383,7 @@ TEST_F(ChartTest, chartMultilevelCategoryAxis) {
 	std::shared_ptr<ChartCategory> category8(new ChartCategory());
 	category8->setValue(L"Category8");
 	chart->setCategories({ category1, category2, category3, category4, category5, category6, category7, category8 });
-	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->createShape(L"test.pptx", 3, chart, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
+	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->createShape(L"test.pptx", 3, chart, boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
 	std::shared_ptr<Chart> resultChart = std::static_pointer_cast<Chart>(shape);
 	EXPECT_EQ(1, resultChart->getSeries().size());
 	EXPECT_EQ(8, resultChart->getCategories().size());
@@ -465,4 +466,27 @@ TEST_F(ChartTest, chartGridLinesFormat) {
 	EXPECT_EQ(L"Solid", chart->getAxes()->getHorizontalAxis()->getMinorGridLinesFormat()->getLineFormat()->getFillFormat()->getType());
 	EXPECT_EQ(L"Gradient", chart->getAxes()->getVerticalAxis()->getMajorGridLinesFormat()->getLineFormat()->getFillFormat()->getType());
 	EXPECT_EQ(L"NoFill", chart->getAxes()->getVerticalAxis()->getMinorGridLinesFormat()->getLineFormat()->getFillFormat()->getType());
+}
+
+TEST_F(ChartTest, importChartFromWorkbook) {
+	utils->initialize("", "", "");
+	std::shared_ptr<HttpContent> data = std::make_shared<HttpContent>();
+	data->setData(std::make_shared<std::ifstream>(L"TestData/oleObject.xlsx", std::ios::binary));
+	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->importChartFromWorkbook(
+		L"test.pptx", 3, L"Sheet1", data, L"", 1,
+		boost::none, boost::none, boost::none, L"", L"", L"password", L"TempSlidesSDK").get();
+	EXPECT_FALSE(shape == nullptr);
+	EXPECT_EQ(L"Chart", shape->getType());
+}
+
+TEST_F(ChartTest, importChartFromWorkbookByPath) {
+	utils->initialize("", "", "");
+	std::shared_ptr<HttpContent> data = std::make_shared<HttpContent>();
+	data->setData(std::make_shared<std::ifstream>(L"TestData/oleObject.xlsx", std::ios::binary));
+	utils->getSlidesApi()->uploadFile(L"TempSlidesSDK/oleObject.xlsx", data).get();
+	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->importChartFromWorkbook(
+		L"test.pptx", 3, L"Sheet1", nullptr, L"", 1,
+		boost::none, boost::none, boost::none, L"TempSlidesSDK/oleObject.xlsx", L"", L"password", L"TempSlidesSDK").get();
+	EXPECT_FALSE(shape == nullptr);
+	EXPECT_EQ(L"Chart", shape->getType());
 }

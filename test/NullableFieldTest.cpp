@@ -91,7 +91,7 @@ TEST_F(NullableFieldTest, nullableProperties) {
 	axis->setMaxValue(max1);
 	axes->setHorizontalAxis(axis);
 	dto->setAxes(axes);
-	utils->getSlidesApi()->createShape(fileName, slideIndex, dto, boost::none, boost::none, password, folderName).wait();
+	utils->getSlidesApi()->createShape(fileName, slideIndex, dto, boost::none, boost::none, boost::none, password, folderName).wait();
 	std::shared_ptr<ShapeBase> shape = utils->getSlidesApi()->getShape(fileName, slideIndex, shapeIndex, password, folderName).get();
 	std::shared_ptr<Chart> chart = std::static_pointer_cast<Chart>(shape);
 	EXPECT_EQ(min1, chart->getAxes()->getHorizontalAxis()->getMinValue());

@@ -68,6 +68,11 @@ public:
 	ASPOSE_DLL_EXPORT utility::string_t getZip64Mode() const;
 	ASPOSE_DLL_EXPORT void setZip64Mode(utility::string_t value);
 	/// <summary>
+	/// The compression level used when saving the presentation document. Higher compression levels produce smaller files but require more processing time. The actual compression ratio depends on the content of the presentation. The default value is CompressionLevel.Level6.
+	/// </summary>
+	ASPOSE_DLL_EXPORT utility::string_t getCompressionLevel() const;
+	ASPOSE_DLL_EXPORT void setCompressionLevel(utility::string_t value);
+	/// <summary>
 	/// True to refresh the presentation thumbnail on save
 	/// </summary>
 	ASPOSE_DLL_EXPORT bool isRefreshThumbnail() const;
@@ -78,6 +83,7 @@ public:
 protected:
 	utility::string_t m_Conformance;
 	utility::string_t m_Zip64Mode;
+	utility::string_t m_CompressionLevel;
 	bool m_RefreshThumbnail;
 	bool m_RefreshThumbnailIsSet;
 };
