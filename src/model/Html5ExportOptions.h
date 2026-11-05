@@ -96,6 +96,11 @@ public:
 	ASPOSE_DLL_EXPORT void setDisableFontLigatures(bool value);
 	ASPOSE_DLL_EXPORT bool disableFontLigaturesIsSet() const;
 	ASPOSE_DLL_EXPORT void unsetDisableFontLigatures();
+	/// <summary>
+	/// Represents the pictures compression level. Pictures are not compressed (DocumentResolution) by default. Not applied when TemplatesPath is set.
+	/// </summary>
+	ASPOSE_DLL_EXPORT utility::string_t getPicturesCompression() const;
+	ASPOSE_DLL_EXPORT void setPicturesCompression(utility::string_t value);
 
 protected:
 	bool m_AnimateTransitions;
@@ -108,6 +113,7 @@ protected:
 	utility::string_t m_TemplatesPath;
 	bool m_DisableFontLigatures;
 	bool m_DisableFontLigaturesIsSet;
+	utility::string_t m_PicturesCompression;
 };
 
 }

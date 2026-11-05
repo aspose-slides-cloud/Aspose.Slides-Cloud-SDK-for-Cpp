@@ -715,6 +715,11 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadNotesSlideOnline(std::shared_ptr<HttpContent> document, int32_t slideIndex, utility::string_t format, boost::optional<int32_t> width = boost::none, boost::optional<int32_t> height = boost::none, utility::string_t password = L"", utility::string_t fontsFolder = L"");
 
 	/// <summary>
+	/// Render paragraph to specified picture format.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadParagraph(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t paragraphIndex, utility::string_t format, boost::optional<double> scaleX = boost::none, boost::optional<double> scaleY = boost::none, boost::optional<int32_t> quality = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"", utility::string_t subShape = L"");
+
+	/// <summary>
 	/// Save a presentation to a specified format.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadPresentation(utility::string_t name, utility::string_t format, std::shared_ptr<ExportOptions> options = std::shared_ptr<ExportOptions>(), utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"", std::vector<int32_t> slides = std::vector<int32_t>());
@@ -748,6 +753,11 @@ public:
 	/// Render shape to specified picture format.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadSpecialSlideShape(utility::string_t name, int32_t slideIndex, utility::string_t slideType, int32_t shapeIndex, utility::string_t format, std::shared_ptr<IShapeExportOptions> options = std::shared_ptr<IShapeExportOptions>(), boost::optional<double> scaleX = boost::none, boost::optional<double> scaleY = boost::none, utility::string_t bounds = L"", utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"", utility::string_t subShape = L"");
+
+	/// <summary>
+	/// Render table cell paragraph to specified picture format.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<HttpContent> downloadTableCellParagraph(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t rowIndex, int32_t cellIndex, int32_t paragraphIndex, utility::string_t format, boost::optional<double> scaleX = boost::none, boost::optional<double> scaleY = boost::none, boost::optional<int32_t> quality = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"");
 
 	/// <summary>
 	/// Read slide animation effects.
@@ -1255,6 +1265,11 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<void> saveMathPortion(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t paragraphIndex, int32_t portionIndex, utility::string_t format, utility::string_t outPath, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"");
 
 	/// <summary>
+	/// Render paragraph to specified picture format and save it to the storage.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<void> saveParagraph(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t paragraphIndex, utility::string_t format, utility::string_t outPath, boost::optional<double> scaleX = boost::none, boost::optional<double> scaleY = boost::none, boost::optional<int32_t> quality = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"", utility::string_t subShape = L"");
+
+	/// <summary>
 	/// Save a presentation to a specified format.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<void> savePresentation(utility::string_t name, utility::string_t format, utility::string_t outPath, std::shared_ptr<ExportOptions> options = std::shared_ptr<ExportOptions>(), utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"", std::vector<int32_t> slides = std::vector<int32_t>());
@@ -1283,6 +1298,11 @@ public:
 	/// Render shape to specified picture format.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<void> saveSpecialSlideShape(utility::string_t name, int32_t slideIndex, utility::string_t slideType, int32_t shapeIndex, utility::string_t format, utility::string_t outPath, std::shared_ptr<IShapeExportOptions> options = std::shared_ptr<IShapeExportOptions>(), boost::optional<double> scaleX = boost::none, boost::optional<double> scaleY = boost::none, utility::string_t bounds = L"", utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"", utility::string_t subShape = L"");
+
+	/// <summary>
+	/// Render table cell paragraph to specified picture format and save it to the storage.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<void> saveTableCellParagraph(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t rowIndex, int32_t cellIndex, int32_t paragraphIndex, utility::string_t format, utility::string_t outPath, boost::optional<double> scaleX = boost::none, boost::optional<double> scaleY = boost::none, boost::optional<int32_t> quality = boost::none, utility::string_t password = L"", utility::string_t folder = L"", utility::string_t storage = L"", utility::string_t fontsFolder = L"");
 
 	/// <summary>
 	/// Set slide animation.

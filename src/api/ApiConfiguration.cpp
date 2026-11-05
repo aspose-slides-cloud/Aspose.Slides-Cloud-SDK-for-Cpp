@@ -34,7 +34,7 @@ ApiConfiguration::ApiConfiguration()
 	m_BaseAuthUrl = utility::conversions::to_string_t("");
 	m_BaseAsyncUrl = utility::conversions::to_string_t("");
 	m_Version = utility::conversions::to_string_t("v3.0");
-	m_ApiVersion = utility::conversions::to_string_t("26.6.0");
+	m_ApiVersion = utility::conversions::to_string_t("26.10.0");
 	m_Debug = false;
 	m_Timeout = 0;
 }

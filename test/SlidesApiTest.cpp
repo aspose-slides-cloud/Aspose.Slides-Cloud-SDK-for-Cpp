@@ -33245,6 +33245,649 @@ TEST_F(SlidesApiTest, downloadNotesSlideOnlineInvalidFontsFolder) {
 	}
 }
 
+TEST_F(SlidesApiTest, downloadParagraph) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	utils->initialize("downloadParagraph", "", "");
+	HttpContent result = utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).get();
+	EXPECT_FALSE(result.getData()->eof());
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidName) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramName = utils->getInvalidTestValue("downloadParagraph", "name", "utility::string_t", paramName);
+	utils->initialize("downloadParagraph", "name", "utility::string_t", paramName);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "name", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "name", "utility::string_t", paramName);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "name", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "name", "utility::string_t", paramName);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "name", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidSlideIndex) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramSlideIndex = utils->getInvalidIntTestValue("downloadParagraph", "slideIndex", "int32_t", paramSlideIndex).value();
+	utils->initialize("downloadParagraph", "slideIndex", "int32_t", paramSlideIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "slideIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "slideIndex", "int32_t", paramSlideIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "slideIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "slideIndex", "int32_t", paramSlideIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "slideIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidShapeIndex) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramShapeIndex = utils->getInvalidIntTestValue("downloadParagraph", "shapeIndex", "int32_t", paramShapeIndex).value();
+	utils->initialize("downloadParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "shapeIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "shapeIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "shapeIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidParagraphIndex) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramParagraphIndex = utils->getInvalidIntTestValue("downloadParagraph", "paragraphIndex", "int32_t", paramParagraphIndex).value();
+	utils->initialize("downloadParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "paragraphIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "paragraphIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "paragraphIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidFormat) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramFormat = utils->getInvalidTestValue("downloadParagraph", "format", "utility::string_t", paramFormat);
+	utils->initialize("downloadParagraph", "format", "utility::string_t", paramFormat);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "format", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "format", "utility::string_t", paramFormat);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "format", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "format", "utility::string_t", paramFormat);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "format", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidScaleX) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramScaleX = utils->getInvalidDoubleTestValue("downloadParagraph", "scaleX", "double", paramScaleX).value();
+	utils->initialize("downloadParagraph", "scaleX", "double", paramScaleX);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "scaleX", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "scaleX", "double", paramScaleX);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "scaleX", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "scaleX", "double", paramScaleX);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "scaleX", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidScaleY) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramScaleY = utils->getInvalidDoubleTestValue("downloadParagraph", "scaleY", "double", paramScaleY).value();
+	utils->initialize("downloadParagraph", "scaleY", "double", paramScaleY);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "scaleY", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "scaleY", "double", paramScaleY);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "scaleY", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "scaleY", "double", paramScaleY);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "scaleY", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidQuality) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramQuality = utils->getInvalidIntTestValue("downloadParagraph", "quality", "int32_t", paramQuality).value();
+	utils->initialize("downloadParagraph", "quality", "int32_t", paramQuality);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "quality", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "quality", "int32_t", paramQuality);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "quality", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "quality", "int32_t", paramQuality);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "quality", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidPassword) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramPassword = utils->getInvalidTestValue("downloadParagraph", "password", "utility::string_t", paramPassword);
+	utils->initialize("downloadParagraph", "password", "utility::string_t", paramPassword);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "password", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "password", "utility::string_t", paramPassword);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "password", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "password", "utility::string_t", paramPassword);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "password", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidFolder) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramFolder = utils->getInvalidTestValue("downloadParagraph", "folder", "utility::string_t", paramFolder);
+	utils->initialize("downloadParagraph", "folder", "utility::string_t", paramFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "folder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "folder", "utility::string_t", paramFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "folder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "folder", "utility::string_t", paramFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "folder", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidStorage) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramStorage = utils->getInvalidTestValue("downloadParagraph", "storage", "utility::string_t", paramStorage);
+	utils->initialize("downloadParagraph", "storage", "utility::string_t", paramStorage);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "storage", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "storage", "utility::string_t", paramStorage);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "storage", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "storage", "utility::string_t", paramStorage);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "storage", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidFontsFolder) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramFontsFolder = utils->getInvalidTestValue("downloadParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+	utils->initialize("downloadParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "fontsFolder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "fontsFolder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "fontsFolder", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadParagraphInvalidSubShape) {
+	utility::string_t paramName = utils->getTestValue("downloadParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("downloadParagraph", "subShape", "utility::string_t");
+	paramSubShape = utils->getInvalidTestValue("downloadParagraph", "subShape", "utility::string_t", paramSubShape);
+	utils->initialize("downloadParagraph", "subShape", "utility::string_t", paramSubShape);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "subShape", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "subShape", "utility::string_t", paramSubShape);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadParagraph", "subShape", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadParagraph", "subShape", "utility::string_t", paramSubShape);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadParagraph", "subShape", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
 TEST_F(SlidesApiTest, downloadPresentation) {
 	utility::string_t paramName = utils->getTestValue("downloadPresentation", "name", "utility::string_t");
 	utility::string_t paramFormat = utils->getTestValue("downloadPresentation", "format", "utility::string_t");
@@ -36429,6 +37072,712 @@ TEST_F(SlidesApiTest, downloadSpecialSlideShapeInvalidSubShape) {
 		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("downloadSpecialSlideShape", "subShape", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraph) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	utils->initialize("downloadTableCellParagraph", "", "");
+	HttpContent result = utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).get();
+	EXPECT_FALSE(result.getData()->eof());
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidName) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramName = utils->getInvalidTestValue("downloadTableCellParagraph", "name", "utility::string_t", paramName);
+	utils->initialize("downloadTableCellParagraph", "name", "utility::string_t", paramName);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "name", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "name", "utility::string_t", paramName);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "name", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "name", "utility::string_t", paramName);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "name", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidSlideIndex) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramSlideIndex = utils->getInvalidIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t", paramSlideIndex).value();
+	utils->initialize("downloadTableCellParagraph", "slideIndex", "int32_t", paramSlideIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "slideIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "slideIndex", "int32_t", paramSlideIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "slideIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "slideIndex", "int32_t", paramSlideIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "slideIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidShapeIndex) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramShapeIndex = utils->getInvalidIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t", paramShapeIndex).value();
+	utils->initialize("downloadTableCellParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "shapeIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "shapeIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "shapeIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidRowIndex) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramRowIndex = utils->getInvalidIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t", paramRowIndex).value();
+	utils->initialize("downloadTableCellParagraph", "rowIndex", "int32_t", paramRowIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "rowIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "rowIndex", "int32_t", paramRowIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "rowIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "rowIndex", "int32_t", paramRowIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "rowIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidCellIndex) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramCellIndex = utils->getInvalidIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t", paramCellIndex).value();
+	utils->initialize("downloadTableCellParagraph", "cellIndex", "int32_t", paramCellIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "cellIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "cellIndex", "int32_t", paramCellIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "cellIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "cellIndex", "int32_t", paramCellIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "cellIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidParagraphIndex) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramParagraphIndex = utils->getInvalidIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t", paramParagraphIndex).value();
+	utils->initialize("downloadTableCellParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "paragraphIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidFormat) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramFormat = utils->getInvalidTestValue("downloadTableCellParagraph", "format", "utility::string_t", paramFormat);
+	utils->initialize("downloadTableCellParagraph", "format", "utility::string_t", paramFormat);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "format", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "format", "utility::string_t", paramFormat);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "format", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "format", "utility::string_t", paramFormat);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "format", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidScaleX) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramScaleX = utils->getInvalidDoubleTestValue("downloadTableCellParagraph", "scaleX", "double", paramScaleX).value();
+	utils->initialize("downloadTableCellParagraph", "scaleX", "double", paramScaleX);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "scaleX", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "scaleX", "double", paramScaleX);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "scaleX", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "scaleX", "double", paramScaleX);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "scaleX", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidScaleY) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramScaleY = utils->getInvalidDoubleTestValue("downloadTableCellParagraph", "scaleY", "double", paramScaleY).value();
+	utils->initialize("downloadTableCellParagraph", "scaleY", "double", paramScaleY);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "scaleY", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "scaleY", "double", paramScaleY);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "scaleY", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "scaleY", "double", paramScaleY);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "scaleY", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidQuality) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramQuality = utils->getInvalidIntTestValue("downloadTableCellParagraph", "quality", "int32_t", paramQuality).value();
+	utils->initialize("downloadTableCellParagraph", "quality", "int32_t", paramQuality);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "quality", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "quality", "int32_t", paramQuality);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "quality", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "quality", "int32_t", paramQuality);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "quality", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidPassword) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramPassword = utils->getInvalidTestValue("downloadTableCellParagraph", "password", "utility::string_t", paramPassword);
+	utils->initialize("downloadTableCellParagraph", "password", "utility::string_t", paramPassword);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "password", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "password", "utility::string_t", paramPassword);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "password", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "password", "utility::string_t", paramPassword);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "password", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidFolder) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramFolder = utils->getInvalidTestValue("downloadTableCellParagraph", "folder", "utility::string_t", paramFolder);
+	utils->initialize("downloadTableCellParagraph", "folder", "utility::string_t", paramFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "folder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "folder", "utility::string_t", paramFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "folder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "folder", "utility::string_t", paramFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "folder", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidStorage) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramStorage = utils->getInvalidTestValue("downloadTableCellParagraph", "storage", "utility::string_t", paramStorage);
+	utils->initialize("downloadTableCellParagraph", "storage", "utility::string_t", paramStorage);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "storage", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "storage", "utility::string_t", paramStorage);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "storage", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "storage", "utility::string_t", paramStorage);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "storage", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, downloadTableCellParagraphInvalidFontsFolder) {
+	utility::string_t paramName = utils->getTestValue("downloadTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("downloadTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("downloadTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("downloadTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("downloadTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("downloadTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("downloadTableCellParagraph", "format", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("downloadTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("downloadTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("downloadTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("downloadTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("downloadTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramFontsFolder = utils->getInvalidTestValue("downloadTableCellParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+	utils->initialize("downloadTableCellParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->downloadTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadTableCellParagraph", "fontsFolder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadTableCellParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("downloadTableCellParagraph", "fontsFolder", "utility::string_t"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -62684,6 +64033,711 @@ TEST_F(SlidesApiTest, saveMathPortionInvalidStorage) {
 	}
 }
 
+TEST_F(SlidesApiTest, saveParagraph) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	utils->initialize("saveParagraph", "", "");
+	utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidName) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramName = utils->getInvalidTestValue("saveParagraph", "name", "utility::string_t", paramName);
+	utils->initialize("saveParagraph", "name", "utility::string_t", paramName);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "name", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "name", "utility::string_t", paramName);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "name", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "name", "utility::string_t", paramName);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "name", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidSlideIndex) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramSlideIndex = utils->getInvalidIntTestValue("saveParagraph", "slideIndex", "int32_t", paramSlideIndex).value();
+	utils->initialize("saveParagraph", "slideIndex", "int32_t", paramSlideIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "slideIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "slideIndex", "int32_t", paramSlideIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "slideIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "slideIndex", "int32_t", paramSlideIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "slideIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidShapeIndex) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramShapeIndex = utils->getInvalidIntTestValue("saveParagraph", "shapeIndex", "int32_t", paramShapeIndex).value();
+	utils->initialize("saveParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "shapeIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "shapeIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "shapeIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidParagraphIndex) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramParagraphIndex = utils->getInvalidIntTestValue("saveParagraph", "paragraphIndex", "int32_t", paramParagraphIndex).value();
+	utils->initialize("saveParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "paragraphIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "paragraphIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "paragraphIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidFormat) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramFormat = utils->getInvalidTestValue("saveParagraph", "format", "utility::string_t", paramFormat);
+	utils->initialize("saveParagraph", "format", "utility::string_t", paramFormat);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "format", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "format", "utility::string_t", paramFormat);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "format", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "format", "utility::string_t", paramFormat);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "format", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidOutPath) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramOutPath = utils->getInvalidTestValue("saveParagraph", "outPath", "utility::string_t", paramOutPath);
+	utils->initialize("saveParagraph", "outPath", "utility::string_t", paramOutPath);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "outPath", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "outPath", "utility::string_t", paramOutPath);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "outPath", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "outPath", "utility::string_t", paramOutPath);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "outPath", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidScaleX) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramScaleX = utils->getInvalidDoubleTestValue("saveParagraph", "scaleX", "double", paramScaleX).value();
+	utils->initialize("saveParagraph", "scaleX", "double", paramScaleX);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "scaleX", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "scaleX", "double", paramScaleX);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "scaleX", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "scaleX", "double", paramScaleX);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "scaleX", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidScaleY) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramScaleY = utils->getInvalidDoubleTestValue("saveParagraph", "scaleY", "double", paramScaleY).value();
+	utils->initialize("saveParagraph", "scaleY", "double", paramScaleY);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "scaleY", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "scaleY", "double", paramScaleY);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "scaleY", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "scaleY", "double", paramScaleY);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "scaleY", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidQuality) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramQuality = utils->getInvalidIntTestValue("saveParagraph", "quality", "int32_t", paramQuality).value();
+	utils->initialize("saveParagraph", "quality", "int32_t", paramQuality);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "quality", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "quality", "int32_t", paramQuality);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "quality", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "quality", "int32_t", paramQuality);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "quality", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidPassword) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramPassword = utils->getInvalidTestValue("saveParagraph", "password", "utility::string_t", paramPassword);
+	utils->initialize("saveParagraph", "password", "utility::string_t", paramPassword);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "password", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "password", "utility::string_t", paramPassword);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "password", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "password", "utility::string_t", paramPassword);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "password", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidFolder) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramFolder = utils->getInvalidTestValue("saveParagraph", "folder", "utility::string_t", paramFolder);
+	utils->initialize("saveParagraph", "folder", "utility::string_t", paramFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "folder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "folder", "utility::string_t", paramFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "folder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "folder", "utility::string_t", paramFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "folder", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidStorage) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramStorage = utils->getInvalidTestValue("saveParagraph", "storage", "utility::string_t", paramStorage);
+	utils->initialize("saveParagraph", "storage", "utility::string_t", paramStorage);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "storage", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "storage", "utility::string_t", paramStorage);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "storage", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "storage", "utility::string_t", paramStorage);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "storage", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidFontsFolder) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramFontsFolder = utils->getInvalidTestValue("saveParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+	utils->initialize("saveParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "fontsFolder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "fontsFolder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "fontsFolder", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveParagraphInvalidSubShape) {
+	utility::string_t paramName = utils->getTestValue("saveParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveParagraph", "shapeIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveParagraph", "fontsFolder", "utility::string_t");
+	utility::string_t paramSubShape = utils->getTestValue("saveParagraph", "subShape", "utility::string_t");
+	paramSubShape = utils->getInvalidTestValue("saveParagraph", "subShape", "utility::string_t", paramSubShape);
+	utils->initialize("saveParagraph", "subShape", "utility::string_t", paramSubShape);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveParagraph(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "subShape", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "subShape", "utility::string_t", paramSubShape);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveParagraph", "subShape", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveParagraph", "subShape", "utility::string_t", paramSubShape);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveParagraph", "subShape", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
 TEST_F(SlidesApiTest, savePresentation) {
 	utility::string_t paramName = utils->getTestValue("savePresentation", "name", "utility::string_t");
 	utility::string_t paramFormat = utils->getTestValue("savePresentation", "format", "utility::string_t");
@@ -66132,6 +68186,776 @@ TEST_F(SlidesApiTest, saveSpecialSlideShapeInvalidSubShape) {
 		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("saveSpecialSlideShape", "subShape", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraph) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	utils->initialize("saveTableCellParagraph", "", "");
+	utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidName) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramName = utils->getInvalidTestValue("saveTableCellParagraph", "name", "utility::string_t", paramName);
+	utils->initialize("saveTableCellParagraph", "name", "utility::string_t", paramName);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "name", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "name", "utility::string_t", paramName);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "name", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "name", "utility::string_t", paramName);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "name", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidSlideIndex) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramSlideIndex = utils->getInvalidIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t", paramSlideIndex).value();
+	utils->initialize("saveTableCellParagraph", "slideIndex", "int32_t", paramSlideIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "slideIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "slideIndex", "int32_t", paramSlideIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "slideIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "slideIndex", "int32_t", paramSlideIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "slideIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidShapeIndex) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramShapeIndex = utils->getInvalidIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t", paramShapeIndex).value();
+	utils->initialize("saveTableCellParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "shapeIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "shapeIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "shapeIndex", "int32_t", paramShapeIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "shapeIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidRowIndex) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramRowIndex = utils->getInvalidIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t", paramRowIndex).value();
+	utils->initialize("saveTableCellParagraph", "rowIndex", "int32_t", paramRowIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "rowIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "rowIndex", "int32_t", paramRowIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "rowIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "rowIndex", "int32_t", paramRowIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "rowIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidCellIndex) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramCellIndex = utils->getInvalidIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t", paramCellIndex).value();
+	utils->initialize("saveTableCellParagraph", "cellIndex", "int32_t", paramCellIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "cellIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "cellIndex", "int32_t", paramCellIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "cellIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "cellIndex", "int32_t", paramCellIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "cellIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidParagraphIndex) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramParagraphIndex = utils->getInvalidIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t", paramParagraphIndex).value();
+	utils->initialize("saveTableCellParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "paragraphIndex", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "paragraphIndex", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "paragraphIndex", "int32_t", paramParagraphIndex);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "paragraphIndex", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidFormat) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramFormat = utils->getInvalidTestValue("saveTableCellParagraph", "format", "utility::string_t", paramFormat);
+	utils->initialize("saveTableCellParagraph", "format", "utility::string_t", paramFormat);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "format", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "format", "utility::string_t", paramFormat);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "format", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "format", "utility::string_t", paramFormat);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "format", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidOutPath) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramOutPath = utils->getInvalidTestValue("saveTableCellParagraph", "outPath", "utility::string_t", paramOutPath);
+	utils->initialize("saveTableCellParagraph", "outPath", "utility::string_t", paramOutPath);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "outPath", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "outPath", "utility::string_t", paramOutPath);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "outPath", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "outPath", "utility::string_t", paramOutPath);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "outPath", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidScaleX) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramScaleX = utils->getInvalidDoubleTestValue("saveTableCellParagraph", "scaleX", "double", paramScaleX).value();
+	utils->initialize("saveTableCellParagraph", "scaleX", "double", paramScaleX);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "scaleX", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "scaleX", "double", paramScaleX);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "scaleX", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "scaleX", "double", paramScaleX);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "scaleX", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidScaleY) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramScaleY = utils->getInvalidDoubleTestValue("saveTableCellParagraph", "scaleY", "double", paramScaleY).value();
+	utils->initialize("saveTableCellParagraph", "scaleY", "double", paramScaleY);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "scaleY", "double");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "scaleY", "double", paramScaleY);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "scaleY", "double");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "scaleY", "double", paramScaleY);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "scaleY", "double"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidQuality) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramQuality = utils->getInvalidIntTestValue("saveTableCellParagraph", "quality", "int32_t", paramQuality).value();
+	utils->initialize("saveTableCellParagraph", "quality", "int32_t", paramQuality);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "quality", "int32_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "quality", "int32_t", paramQuality);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "quality", "int32_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "quality", "int32_t", paramQuality);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "quality", "int32_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidPassword) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramPassword = utils->getInvalidTestValue("saveTableCellParagraph", "password", "utility::string_t", paramPassword);
+	utils->initialize("saveTableCellParagraph", "password", "utility::string_t", paramPassword);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "password", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "password", "utility::string_t", paramPassword);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "password", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "password", "utility::string_t", paramPassword);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "password", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidFolder) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramFolder = utils->getInvalidTestValue("saveTableCellParagraph", "folder", "utility::string_t", paramFolder);
+	utils->initialize("saveTableCellParagraph", "folder", "utility::string_t", paramFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "folder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "folder", "utility::string_t", paramFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "folder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "folder", "utility::string_t", paramFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "folder", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidStorage) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramStorage = utils->getInvalidTestValue("saveTableCellParagraph", "storage", "utility::string_t", paramStorage);
+	utils->initialize("saveTableCellParagraph", "storage", "utility::string_t", paramStorage);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "storage", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "storage", "utility::string_t", paramStorage);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "storage", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "storage", "utility::string_t", paramStorage);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "storage", "utility::string_t"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, saveTableCellParagraphInvalidFontsFolder) {
+	utility::string_t paramName = utils->getTestValue("saveTableCellParagraph", "name", "utility::string_t");
+	int32_t paramSlideIndex = utils->getIntTestValue("saveTableCellParagraph", "slideIndex", "int32_t");
+	int32_t paramShapeIndex = utils->getIntTestValue("saveTableCellParagraph", "shapeIndex", "int32_t");
+	int32_t paramRowIndex = utils->getIntTestValue("saveTableCellParagraph", "rowIndex", "int32_t");
+	int32_t paramCellIndex = utils->getIntTestValue("saveTableCellParagraph", "cellIndex", "int32_t");
+	int32_t paramParagraphIndex = utils->getIntTestValue("saveTableCellParagraph", "paragraphIndex", "int32_t");
+	utility::string_t paramFormat = utils->getTestValue("saveTableCellParagraph", "format", "utility::string_t");
+	utility::string_t paramOutPath = utils->getTestValue("saveTableCellParagraph", "outPath", "utility::string_t");
+	auto paramScaleX = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleX", "double");
+	auto paramScaleY = utils->getOptionalDoubleTestValue("saveTableCellParagraph", "scaleY", "double");
+	auto paramQuality = utils->getOptionalIntTestValue("saveTableCellParagraph", "quality", "int32_t");
+	utility::string_t paramPassword = utils->getTestValue("saveTableCellParagraph", "password", "utility::string_t");
+	utility::string_t paramFolder = utils->getTestValue("saveTableCellParagraph", "folder", "utility::string_t");
+	utility::string_t paramStorage = utils->getTestValue("saveTableCellParagraph", "storage", "utility::string_t");
+	utility::string_t paramFontsFolder = utils->getTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+	paramFontsFolder = utils->getInvalidTestValue("saveTableCellParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+	utils->initialize("saveTableCellParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+
+	bool failed = true;
+	try
+	{
+		utils->getSlidesApi()->saveTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramFormat, paramOutPath, paramScaleX, paramScaleY, paramQuality, paramPassword, paramFolder, paramStorage, paramFontsFolder).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("saveTableCellParagraph", "fontsFolder", "utility::string_t");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("saveTableCellParagraph", "fontsFolder", "utility::string_t", paramFontsFolder);
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("saveTableCellParagraph", "fontsFolder", "utility::string_t"))
 	{
 		FAIL() << "Must have failed";
 	}

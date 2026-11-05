@@ -5297,6 +5297,74 @@ pplx::task<HttpContent> SlidesApi::downloadNotesSlideOnline(std::shared_ptr<Http
 		});
 }
 
+pplx::task<HttpContent> SlidesApi::downloadParagraph(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t paragraphIndex, utility::string_t format, boost::optional<double> scaleX, boost::optional<double> scaleY, boost::optional<int32_t> quality, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t fontsFolder, utility::string_t subShape)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	// verify the required parameter 'format' is set
+	if (format.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: format");
+	}
+	// verify the required parameter 'format' is set
+	if (format.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: format");
+	}
+	// validate the parameter 'format'
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff"))
+	{
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff.");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/{format}");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+	ApiClient::setPathParameter(methodPath, "shapeIndex", shapeIndex);
+	ApiClient::setPathParameter(methodPath, "paragraphIndex", paragraphIndex);
+	ApiClient::setPathParameter(methodPath, "format", format);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	if (scaleX.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("scaleX"), scaleX.value());
+	}
+	if (scaleY.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("scaleY"), scaleY.value());
+	}
+	if (quality.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("quality"), quality.value());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("fontsFolder"), fontsFolder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("subShape"), subShape);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("POST"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "downloadParagraph");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			HttpContent result;
+			std::shared_ptr<std::stringstream> stream = std::make_shared<std::stringstream>(std::string(responseVector.begin(), responseVector.end()));
+			result.setData(stream);
+			return result;
+		});
+}
+
 pplx::task<HttpContent> SlidesApi::downloadPresentation(utility::string_t name, utility::string_t format, std::shared_ptr<ExportOptions> options, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t fontsFolder, std::vector<int32_t> slides)
 {
 	// verify the required parameter 'name' is set
@@ -5759,6 +5827,75 @@ pplx::task<HttpContent> SlidesApi::downloadSpecialSlideShape(utility::string_t n
 		.then([=](web::http::http_response response)
 		{
 			m_ApiClient->assertResponseException(response, "downloadSpecialSlideShape");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			HttpContent result;
+			std::shared_ptr<std::stringstream> stream = std::make_shared<std::stringstream>(std::string(responseVector.begin(), responseVector.end()));
+			result.setData(stream);
+			return result;
+		});
+}
+
+pplx::task<HttpContent> SlidesApi::downloadTableCellParagraph(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t rowIndex, int32_t cellIndex, int32_t paragraphIndex, utility::string_t format, boost::optional<double> scaleX, boost::optional<double> scaleY, boost::optional<int32_t> quality, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t fontsFolder)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	// verify the required parameter 'format' is set
+	if (format.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: format");
+	}
+	// verify the required parameter 'format' is set
+	if (format.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: format");
+	}
+	// validate the parameter 'format'
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff"))
+	{
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff.");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/{format}");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+	ApiClient::setPathParameter(methodPath, "shapeIndex", shapeIndex);
+	ApiClient::setPathParameter(methodPath, "rowIndex", rowIndex);
+	ApiClient::setPathParameter(methodPath, "cellIndex", cellIndex);
+	ApiClient::setPathParameter(methodPath, "paragraphIndex", paragraphIndex);
+	ApiClient::setPathParameter(methodPath, "format", format);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	if (scaleX.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("scaleX"), scaleX.value());
+	}
+	if (scaleY.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("scaleY"), scaleY.value());
+	}
+	if (quality.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("quality"), quality.value());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("fontsFolder"), fontsFolder);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("POST"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "downloadTableCellParagraph");
 			return response.extract_vector();
 		})
 		.then([=](std::vector<unsigned char> responseVector)
@@ -10061,6 +10198,79 @@ pplx::task<void> SlidesApi::saveMathPortion(utility::string_t name, int32_t slid
 		});
 }
 
+pplx::task<void> SlidesApi::saveParagraph(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t paragraphIndex, utility::string_t format, utility::string_t outPath, boost::optional<double> scaleX, boost::optional<double> scaleY, boost::optional<int32_t> quality, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t fontsFolder, utility::string_t subShape)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	// verify the required parameter 'format' is set
+	if (format.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: format");
+	}
+	// verify the required parameter 'format' is set
+	if (format.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: format");
+	}
+	// validate the parameter 'format'
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff"))
+	{
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff.");
+	}
+	// verify the required parameter 'outPath' is set
+	if (outPath.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: outPath");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/{format}");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+	ApiClient::setPathParameter(methodPath, "shapeIndex", shapeIndex);
+	ApiClient::setPathParameter(methodPath, "paragraphIndex", paragraphIndex);
+	ApiClient::setPathParameter(methodPath, "format", format);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("outPath"), outPath);
+	if (scaleX.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("scaleX"), scaleX.value());
+	}
+	if (scaleY.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("scaleY"), scaleY.value());
+	}
+	if (quality.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("quality"), quality.value());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("fontsFolder"), fontsFolder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("subShape"), subShape);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("PUT"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "saveParagraph");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			utility::string_t response(responseVector.begin(), responseVector.end());
+			m_ApiClient->logString(response);
+			return void();
+		});
+}
+
 pplx::task<void> SlidesApi::savePresentation(utility::string_t name, utility::string_t format, utility::string_t outPath, std::shared_ptr<ExportOptions> options, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t fontsFolder, std::vector<int32_t> slides)
 {
 	// verify the required parameter 'name' is set
@@ -10504,6 +10714,80 @@ pplx::task<void> SlidesApi::saveSpecialSlideShape(utility::string_t name, int32_
 		.then([=](web::http::http_response response)
 		{
 			m_ApiClient->assertResponseException(response, "saveSpecialSlideShape");
+			return response.extract_vector();
+		})
+		.then([=](std::vector<unsigned char> responseVector)
+		{
+			utility::string_t response(responseVector.begin(), responseVector.end());
+			m_ApiClient->logString(response);
+			return void();
+		});
+}
+
+pplx::task<void> SlidesApi::saveTableCellParagraph(utility::string_t name, int32_t slideIndex, int32_t shapeIndex, int32_t rowIndex, int32_t cellIndex, int32_t paragraphIndex, utility::string_t format, utility::string_t outPath, boost::optional<double> scaleX, boost::optional<double> scaleY, boost::optional<int32_t> quality, utility::string_t password, utility::string_t folder, utility::string_t storage, utility::string_t fontsFolder)
+{
+	// verify the required parameter 'name' is set
+	if (name.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: name");
+	}
+	// verify the required parameter 'format' is set
+	if (format.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: format");
+	}
+	// verify the required parameter 'format' is set
+	if (format.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: format");
+	}
+	// validate the parameter 'format'
+	if (!boost::iequals(format, "Jpeg") && !boost::iequals(format, "Png") && !boost::iequals(format, "Gif") && !boost::iequals(format, "Bmp") && !boost::iequals(format, "Tiff"))
+	{
+		throw std::invalid_argument("Invalid value for format. Must be one of Jpeg, Png, Gif, Bmp, Tiff.");
+	}
+	// verify the required parameter 'outPath' is set
+	if (outPath.empty())
+	{
+		throw std::invalid_argument("Missing required parameter: outPath");
+	}
+	utility::string_t methodPath = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/{format}");
+	ApiClient::setPathParameter(methodPath, "name", name);
+	ApiClient::setPathParameter(methodPath, "slideIndex", slideIndex);
+	ApiClient::setPathParameter(methodPath, "shapeIndex", shapeIndex);
+	ApiClient::setPathParameter(methodPath, "rowIndex", rowIndex);
+	ApiClient::setPathParameter(methodPath, "cellIndex", cellIndex);
+	ApiClient::setPathParameter(methodPath, "paragraphIndex", paragraphIndex);
+	ApiClient::setPathParameter(methodPath, "format", format);
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("outPath"), outPath);
+	if (scaleX.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("scaleX"), scaleX.value());
+	}
+	if (scaleY.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("scaleY"), scaleY.value());
+	}
+	if (quality.has_value())
+	{
+		ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("quality"), quality.value());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), folder);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), storage);
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("fontsFolder"), fontsFolder);
+
+	std::map<utility::string_t, utility::string_t> headerParams;
+	ApiClient::setQueryParameter(headerParams, utility::conversions::to_string_t("password"), password);
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	std::vector<std::shared_ptr<HttpContent>> requestFiles;
+
+	return m_ApiClient->callApi(methodPath, utility::conversions::to_string_t("PUT"), queryParams, headerParams, httpBody, requestFiles)
+		.then([=](web::http::http_response response)
+		{
+			m_ApiClient->assertResponseException(response, "saveTableCellParagraph");
 			return response.extract_vector();
 		})
 		.then([=](std::vector<unsigned char> responseVector)

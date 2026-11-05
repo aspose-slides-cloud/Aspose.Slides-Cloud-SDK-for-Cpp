@@ -150,6 +150,17 @@ void Html5ExportOptions::unsetDisableFontLigatures()
 	m_DisableFontLigaturesIsSet = false;
 }
 
+utility::string_t Html5ExportOptions::getPicturesCompression() const
+{
+	return m_PicturesCompression;
+}
+
+void Html5ExportOptions::setPicturesCompression(utility::string_t value)
+{
+	m_PicturesCompression = value;
+	
+}
+
 web::json::value Html5ExportOptions::toJson() const
 {
 	web::json::value val = this->ExportOptions::toJson();
@@ -176,6 +187,10 @@ web::json::value Html5ExportOptions::toJson() const
 	if(m_DisableFontLigaturesIsSet)
 	{
 		val[utility::conversions::to_string_t("DisableFontLigatures")] = ModelBase::toJson(m_DisableFontLigatures);
+	}
+	if (!m_PicturesCompression.empty())
+	{
+		val[utility::conversions::to_string_t("PicturesCompression")] = ModelBase::toJson(m_PicturesCompression);
 	}
 	return val;
 }
@@ -213,6 +228,11 @@ void Html5ExportOptions::fromJson(web::json::value& val)
 	if(jsonForDisableFontLigatures != nullptr && !jsonForDisableFontLigatures->is_null())
 	{
 		setDisableFontLigatures(ModelBase::boolFromJson(*jsonForDisableFontLigatures));
+	}
+	web::json::value* jsonForPicturesCompression = ModelBase::getField(val, "PicturesCompression");
+	if(jsonForPicturesCompression != nullptr && !jsonForPicturesCompression->is_null())
+	{
+		setPicturesCompression(ModelBase::stringFromJson(*jsonForPicturesCompression));
 	}
 }
 

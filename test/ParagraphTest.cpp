@@ -209,3 +209,46 @@ TEST_F(ParagraphTest, paragraphGetEffectiveForSubshape) {
 	std::shared_ptr<Paragraph> paragraph = utils->getSlidesApi()->getParagraphEffective(L"test.pptx", 6, 3, 1, L"password", L"TempSlidesSDK", L"", L"1").get();
 	EXPECT_EQ(72, paragraph->getDefaultTabSize());
 }
+
+TEST_F(ParagraphTest, paragraphDownload) {
+	utils->initialize("", "", "");
+	HttpContent result = utils->getSlidesApi()->downloadParagraph(L"test.pptx", 6, 2, 1, L"png", boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
+	EXPECT_NE(nullptr, result.getData());
+}
+
+TEST_F(ParagraphTest, paragraphDownloadForSubshape) {
+	utils->initialize("", "", "");
+	HttpContent result = utils->getSlidesApi()->downloadParagraph(L"test.pptx", 6, 3, 1, L"png", boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK", L"", L"", L"1").get();
+	EXPECT_NE(nullptr, result.getData());
+}
+
+TEST_F(ParagraphTest, paragraphDownloadScaled) {
+	utils->initialize("", "", "");
+	HttpContent result = utils->getSlidesApi()->downloadParagraph(L"test.pptx", 6, 2, 1, L"png", boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
+	int resultSize = 0;
+	do {
+		resultSize++;
+	} while (result.getData()->get() != EOF);
+	HttpContent scaledResult = utils->getSlidesApi()->downloadParagraph(L"test.pptx", 6, 2, 1, L"png", 2.0, 2.0, boost::none, L"password", L"TempSlidesSDK").get();
+	int scaledResultSize = 0;
+	do {
+		scaledResultSize++;
+	} while (scaledResult.getData()->get() != EOF);
+	EXPECT_GT(scaledResultSize, resultSize);
+}
+
+TEST_F(ParagraphTest, paragraphSave) {
+	utils->initialize("", "", "");
+	utility::string_t outPath = L"TempSlidesSDK/paragraph.png";
+	utils->getSlidesApi()->saveParagraph(L"test.pptx", 6, 2, 1, L"png", outPath, boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK").wait();
+	std::shared_ptr<ObjectExist> exists = utils->getSlidesApi()->objectExists(outPath).get();
+	EXPECT_TRUE(exists->isExists());
+}
+
+TEST_F(ParagraphTest, paragraphSaveForSubshape) {
+	utils->initialize("", "", "");
+	utility::string_t outPath = L"TempSlidesSDK/paragraph.png";
+	utils->getSlidesApi()->saveParagraph(L"test.pptx", 6, 3, 1, L"png", outPath, boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK", L"", L"", L"1").wait();
+	std::shared_ptr<ObjectExist> exists = utils->getSlidesApi()->objectExists(outPath).get();
+	EXPECT_TRUE(exists->isExists());
+}

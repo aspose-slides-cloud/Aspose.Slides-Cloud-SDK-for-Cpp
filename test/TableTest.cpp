@@ -68,3 +68,19 @@ TEST_F(TableTest, importTableFromWorkbookByPath) {
 	EXPECT_FALSE(shape == nullptr);
 	EXPECT_EQ(L"Table", shape->getType());
 }
+
+TEST_F(TableTest, tableCellParagraphDownload) {
+	utils->initialize("", "", "");
+	HttpContent result = utils->getSlidesApi()->downloadTableCellParagraph(
+		L"test.pptx", 9, 1, 1, 1, 1, L"png", boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK").get();
+	EXPECT_NE(nullptr, result.getData());
+}
+
+TEST_F(TableTest, tableCellParagraphSave) {
+	utils->initialize("", "", "");
+	utility::string_t outPath = L"TempSlidesSDK/tableCellParagraph.png";
+	utils->getSlidesApi()->saveTableCellParagraph(
+		L"test.pptx", 9, 1, 1, 1, 1, L"png", outPath, boost::none, boost::none, boost::none, L"password", L"TempSlidesSDK").wait();
+	std::shared_ptr<ObjectExist> exists = utils->getSlidesApi()->objectExists(outPath).get();
+	EXPECT_TRUE(exists->isExists());
+}
